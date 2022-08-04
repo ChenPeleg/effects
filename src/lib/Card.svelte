@@ -1,9 +1,14 @@
 <script>
+    /**@typedef CardContent
+     * @prop {string} name @prop {string} content @prop {string} color*/
+    /**@type {CardContent}*/
     export let cardContent;
+
+    let cardcond;
 </script>
 
 <div class="card-wrapper">
-    <div class="card-body">{cardContent}</div>
+    <div class="card-body">{cardContent.name}</div>
 </div>
 
 <style>

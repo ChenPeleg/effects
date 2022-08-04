@@ -1,7 +1,4 @@
 <script>
-  import svelteLogo from "../assets/svelte.svg";
-  import Card from "./Card.svelte";
-  import Counter from "./Counter.svelte";
   import LayoutMain from "./LayoutMain.svelte";
 </script>
 
