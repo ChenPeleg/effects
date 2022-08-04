@@ -27,13 +27,15 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  background-image: linear-gradient(rgb(197, 241, 201),rgb(190, 156, 156));
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
+  margin-top: 0px;
   line-height: 1.1;
 }
 
@@ -45,7 +47,7 @@ h1 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 button {
