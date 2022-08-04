@@ -5,5 +5,5 @@
 </script>
 
 <main>
-  <Card />
+  <Card cardContent="my card" />
 </main>

@@ -1,8 +1,9 @@
 <script>
+    export let cardContent;
 </script>
 
 <div class="card-wrapper">
-    <div class="card-body">Card</div>
+    <div class="card-body">{cardContent}</div>
 </div>
 
 <style>
@@ -17,5 +18,9 @@
         border-radius: 1rem;
         box-shadow: 2px 2px 10px 2px black;
         cursor: pointer;
+        transition: box-shadow 200ms ease-in-out;
+    }
+    div.card-body:hover {
+        box-shadow: 2px 2px 15px 2px black;
     }
 </style>
