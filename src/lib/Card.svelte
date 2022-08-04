@@ -1,7 +1,9 @@
 <script>
-    /**@typedef CardContent
-     * @prop {string} name @prop {string} content @prop {string} color*/
-    /**@type {CardContent}*/
+    // @ts-ignore
+    import * as T from "./types/types";
+
+    /**@import {T.CardContent}*/
+    /**@type {T.CardContent}*/
     export let cardContent;
 
     let cardcond;

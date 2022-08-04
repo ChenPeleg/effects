@@ -1,10 +1,5 @@
 <script>
-  import svelteLogo from "../assets/svelte.svg";
   import Card from "./Card.svelte";
-  import Counter from "./Counter.svelte";
-  /**@typedef {import('./Card.svelte').CardContent} CardContent */
-
-  const cardcont = {};
 </script>
 
 <main>
