@@ -4,16 +4,57 @@
 		{
 			"type": "shell",
 			"command": "C:/Users/chenp/AppData/Local/nvs/node/18.6.0/x64/npm run dev",
-			"problemMatcher": [],
+			"isBackground": true,
+			"problemMatcher": [
+				{
+					"pattern": [
+						{
+							"regexp": ".",
+							"file": 1,
+							"location": 2,
+							"message": 3
+						}
+					],
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": ".",
+						"endsPattern": ".",
+					}
+				}
+			],
 			"label": "dev server",
 			"detail": "vite"
 		},
 		{
 			"type": "shell",
-			"command": "C:/Users/chenp/AppData/Local/nvs/node/18.6.0/x64/npm run build",
-			"problemMatcher": [],
-			"label": "npm run build",
+			"command": "C:/Users/chenp/AppData/Local/nvs/node/18.6.0/x64/npm run dev",
+			"isBackground": true,
+			"problemMatcher": [
+				{
+					"pattern": [
+						{
+							"regexp": ".",
+							"file": 1,
+							"location": 2,
+							"message": 3
+						}
+					],
+					"background": {
+						"activeOnStart": true,
+						"beginsPattern": ".",
+						"endsPattern": ".",
+					}
+				}
+			],
+			"label": "server tryout",
 			"detail": "vite"
-		}
+		},
+		// {
+		// 	"type": "shell",
+		// 	"command": "C:/Users/chenp/AppData/Local/nvs/node/18.6.0/x64/npm run build",
+		// 	"problemMatcher": [],
+		// 	"label": "npm run build",
+		// 	"detail": "vite"
+		// }
 	]
 }
