@@ -1,14 +1,19 @@
 <script>
-    // @ts-ignore
-    import * as T from "./types/types";
+    import { createEventDispatcher } from "svelte";
 
-    /**@type {T.CardContent} */
+    /**@type {CardContent} */
     export let cardContent;
 
-    let cardcond;
+    let clicks = 0;
+    const dispatch = createEventDispatcher();
+
+    /**@type {MouseEventHandler} */
+    const clickCard = (ev) => {
+        clicks++;
+    };
 </script>
 
-<div class="card-wrapper">
+<div on:click={clickCard} class="card-wrapper">
     <div class="card-body">{cardContent.name}</div>
 </div>
 

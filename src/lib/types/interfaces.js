@@ -11,21 +11,4 @@
 
 
 /**@type {power} */
-function power(n1, n2) {
-    return n1 + n2
-}
 
-
-/** Another type of card, which can give you much more power to
- * assosiate with that card. 
- 
- *@typedef AnotherType 
- *@prop {string} name - The name of the card @prop {string} content @prop {string} color @prop {string} lady*/
-
-
-/**@namespace nmSpace */ {
-
-}
-export const Interfaces = {
-
-};

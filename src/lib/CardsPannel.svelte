@@ -1,6 +1,6 @@
 <script>
     import Card from "./Card.svelte";
-    /**@typedef {import("./types/types").CardContent} CardContent*/
+    /**@typedef {CardContent} */
 
     /**@type {CardContent[]}*/
     const cards = [
@@ -28,9 +28,5 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1em;
-        /* display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 1em;
-        grid-auto-rows: minmax(100px, auto); */
     }
 </style>
