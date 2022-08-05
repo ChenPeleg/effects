@@ -2,8 +2,15 @@ import * as Interfaces from './interfaces'
 
 
 
-/**@typedef  {Interfaces.AnotherType} Another1 */
-/**@typedef CardContent @prop {string} name @prop {string} content @prop {string} color*/
+/**@typedef  {Interfaces.AnotherType} AnotherType */
+
+/**@typedef CardContent
+ * Returns a reaference
+ * @prop {string} name @prop {string} content @prop {string} color 
+ * @description 'asdfasfd'
+ * @description The all the content of the card that the user can press
+ * */
+
 /**@typedef BigCard @prop {string} name 
  * @prop {string} content 
  * @prop {string} color

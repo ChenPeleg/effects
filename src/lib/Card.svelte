@@ -1,7 +1,8 @@
 <script>
     // @ts-ignore
     import * as T from "./types/types";
-    /**@type {T.CardContent}*/
+
+    /**@type {T.CardContent} */
     export let cardContent;
 
     let cardcond;
@@ -13,10 +14,13 @@
 
 <style>
     div.card-wrapper {
-        display: flexbox;
+        display: inline-flex;
     }
     div.card-body {
-        width: 20vw;
+        display: inline-flex;
+        margin: 0px 0px;
+        width: 15vw;
+        min-width: 100px;
         padding: 1rem;
         height: 10vh;
         background-color: white;

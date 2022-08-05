@@ -1,7 +1,8 @@
 <script>
   import Card from "./Card.svelte";
+  import CardsPannel from "./CardsPannel.svelte";
 </script>
 
 <main>
-  <Card cardContent={{ color: "blue", content: "hey", name: "my card" }} />
+  <CardsPannel />
 </main>
