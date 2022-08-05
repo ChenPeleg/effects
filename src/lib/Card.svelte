@@ -1,20 +1,30 @@
 <script>
+    import { MainStore } from "src/store/store.main";
+
     import { createEventDispatcher } from "svelte";
 
     /**@type {CardContent} */
     export let cardContent;
-
+    /**@type {boolean}*/
+    export let isCurrent;
     let clicks = 0;
     const dispatch = createEventDispatcher();
 
     /**@type {MouseEventHandler} */
     const clickCard = (ev) => {
+        MainStore.update((s) => {
+            s.currentCard = cardContent.id || 0;
+            return s;
+        });
         clicks++;
     };
 </script>
 
 <div on:click={clickCard} class="card-wrapper">
-    <div class="card-body">{cardContent.name}</div>
+    <div class="card-body">
+        {cardContent.name}
+        {isCurrent ? "Its Current" : ""}
+    </div>
 </div>
 
 <style>

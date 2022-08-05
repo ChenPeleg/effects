@@ -1,7 +1,16 @@
 <script>
-    import Card from "./Card.svelte";
-    /**@typedef {CardContent} */
+    import App from "src/App.svelte";
+    import { MainStore } from "src/store/store.main";
 
+    import Card from "./Card.svelte";
+    import Layout from "./Layout.svelte";
+    import LayoutMain from "./LayoutMain.svelte";
+
+    let currentCard;
+    /**@typedef {CardContent} */
+    const unsbscribe = MainStore.subscribe(
+        (s) => (currentCard = s.currentCard)
+    );
     /**@type {CardContent[]}*/
     const cards = [
         { color: "green", content: "car keys", name: "car" },
@@ -17,7 +26,10 @@
 
 <div class="cards-pannel-flex">
     {#each cards as card}
-        <Card cardContent={card} />
+        <Card
+            isCurrent={cards.indexOf(card) === currentCard}
+            cardContent={{ ...card, id: cards.indexOf(card) }}
+        />
     {/each}
 </div>
 
