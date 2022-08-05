@@ -1,8 +1,6 @@
 <script>
     // @ts-ignore
     import * as T from "./types/types";
-
-    /**@import {T.CardContent}*/
     /**@type {T.CardContent}*/
     export let cardContent;
 
