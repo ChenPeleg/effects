@@ -1,5 +1,7 @@
 import * as Interfaces from './interfaces'
 
+
+
 /**@typedef  {Interfaces.AnotherType} Another1 */
 /**@typedef CardContent @prop {string} name @prop {string} content @prop {string} color*/
 /**@typedef BigCard @prop {string} name 
