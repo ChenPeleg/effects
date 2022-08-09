@@ -1,12 +1,10 @@
 <script>
-    import App from "src/App.svelte";
-    import { MainStore } from "src/store/store.main";
-
+    import { MainStore } from "src/store/store.main.js";
     import Card from "./Card.svelte";
-    import Layout from "./Layout.svelte";
-    import LayoutMain from "./LayoutMain.svelte";
 
+    /**@typedef {number} */
     let currentCard;
+
     /**@typedef {CardContent} */
     const unsbscribe = MainStore.subscribe(
         (s) => (currentCard = s.currentCard)
