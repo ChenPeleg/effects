@@ -1,5 +1,5 @@
 <script>
-    import { MainStore } from "src/store/store.main";
+    import { MainStore } from "../store/store.main";
 
     import { createEventDispatcher } from "svelte";
 

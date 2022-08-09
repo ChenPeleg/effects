@@ -1,5 +1,4 @@
 <script>
-    import App from "src/App.svelte";
     import { MainStore } from "../store/store.main.js";
 
     import Card from "./Card.svelte";
