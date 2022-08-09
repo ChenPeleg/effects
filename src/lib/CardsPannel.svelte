@@ -1,6 +1,6 @@
 <script>
     import App from "src/App.svelte";
-    import { MainStore } from "src/store/store.main";
+    import { MainStore } from "../store/store.main.js";
 
     import Card from "./Card.svelte";
 
