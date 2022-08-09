@@ -1,5 +1,7 @@
 <script>
-    import { MainStore } from "src/store/store.main.js";
+    import App from "src/App.svelte";
+    import { MainStore } from "src/store/store.main";
+
     import Card from "./Card.svelte";
 
     /**@typedef {number} */
