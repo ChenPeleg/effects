@@ -1,0 +1,3 @@
+interface MyWierdType {
+    a: string
+}

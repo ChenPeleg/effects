@@ -8,7 +8,6 @@
     /**@type {boolean}*/
     export let isCurrent;
     let clicks = 0;
-    console.log("asdfasdf");
 
     /**@type {MouseEventHandler} */
     const clickCard = (ev) => {
