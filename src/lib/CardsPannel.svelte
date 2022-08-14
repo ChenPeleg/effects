@@ -1,10 +1,7 @@
 <script>
-    import App from "src/App.svelte";
-    import { MainStore } from "src/store/store.main";
+    import { MainStore } from "./store/store.main";
 
     import Card from "./Card.svelte";
-    import Layout from "./Layout.svelte";
-    import LayoutMain from "./LayoutMain.svelte";
 
     let currentCard;
     /**@typedef {CardContent} */

@@ -1,7 +1,6 @@
 <script>
-    import { MainStore } from "src/store/store.main";
-
     import { createEventDispatcher } from "svelte";
+    import { MainStore } from "./store/store.main";
 
     /**@type {CardContent} */
     export let cardContent;
