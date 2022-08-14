@@ -1,17 +1,17 @@
 
 import { writable } from "svelte/store";
-/** @template {any} T */
-/**@typedef {(value: T) => void} Subscriber<T> */
-/**@prams {T} value2*/
 
 
+/**@typedef { (action: any) => void } Dispatch */
+/**@typedef { (this: void, run: import("svelte/store").Subscriber<any>, invalidate?: any ) => import("svelte/store").Unsubscriber} Subscribe */
 
-/*-@typedef {  (this: void, run: Subscriber<any>, invalidate?: Invalidator<any>) => Unsubscriber} subscribe */
 
-// function firstElement<Type>(arr: Type[]): Type | undefined {
-//     return arr[0];
-//   }
-
+/**
+ * 
+ * @param {any} reducer the reducer function
+ * @param {any} initialState 
+ * @returns  {{subscribe :Subscribe,dispatch :Dispatch}}
+ */
 const createStore = (reducer, initialState) => {
     const { subscribe, update } = writable(initialState);
     const dispatch = (action) => update((state) => reducer(state, action));
