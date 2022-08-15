@@ -10,7 +10,7 @@
 /**@see other to notify */
 const G = {}
 
-/**@interface  asdf*/
+/**@description  Example interface to use in cscode*/
 
 /** with typescript you cant **see** the comments near the properties themselfs but you can writ comments in the file and: line breaks
  *  <br> but only one, peaces of code like this `thisIsMyCode()`
@@ -31,3 +31,11 @@ const G = {}
  * @prop { CardContent } currentCardContent
  *   
 */
+
+
+
+/**@typedef {Record<string,any>} StoreModel */
+
+/**@typedef {{type : any, payload? : any}} ActionModel */
+
+/**@typedef {(state: StoreModel, action : ActionModel) => void} Reducer */
