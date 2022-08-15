@@ -32,10 +32,10 @@ const G = {}
  *   
 */
 
-
+/**@typedef {(action: ActionModel) => void} ReactDispatcher */
 
 /**@typedef {Record<string,any>} StoreModel */
 
 /**@typedef {{type : any, payload? : any}} ActionModel */
 
-/**@typedef {(state: StoreModel, action : ActionModel) => void} Reducer */
+/**@typedef {(state: StoreModel, action : ActionModel) => StoreModel} Reducer */

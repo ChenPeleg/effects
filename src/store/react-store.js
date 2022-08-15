@@ -9,12 +9,14 @@ import { reducer } from "./reducer";
 
 /**
  * 
- * @param {any} reducer the reducer function
+ * @param {Reducer} reducer the reducer function
  * @param {StoreModel} initialState 
  * @returns  {{subscribe :Subscribe,dispatch :Dispatch}}
  */
 const createStore = (reducer, initialState) => {
     const { subscribe, update } = writable(initialState);
+
+    /**@type {ReactDispatcher} */
     const dispatch = (action) => update((state) => reducer(state, action));
     return { subscribe, dispatch };
 };
@@ -28,4 +30,4 @@ const initialStore = {
 };
 
 
-export const ReactStore = createStore(initialStore, reducer);
+export const ReactStore = createStore(reducer, initialStore);
