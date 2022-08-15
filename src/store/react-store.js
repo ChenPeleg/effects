@@ -1,5 +1,6 @@
 
 import { writable } from "svelte/store";
+import { reducer } from "./reducer";
 
 
 /**@typedef { (action: any) => void } Dispatch */
@@ -9,7 +10,7 @@ import { writable } from "svelte/store";
 /**
  * 
  * @param {any} reducer the reducer function
- * @param {any} initialState 
+ * @param {StoreModel} initialState 
  * @returns  {{subscribe :Subscribe,dispatch :Dispatch}}
  */
 const createStore = (reducer, initialState) => {
@@ -19,7 +20,7 @@ const createStore = (reducer, initialState) => {
 };
 
 
-
+/**@type {StoreModel} */
 const initialStore = {
     user: "",
     currentCard: 0,
@@ -27,4 +28,4 @@ const initialStore = {
 };
 
 
-export const MainStore = writable(initialStore);
+export const ReactStore = createStore(initialStore, reducer);
