@@ -51,7 +51,7 @@
 
 	div.card-body.isCurrent {
 		background-color: aquamarine;
-		background-color: var(--main-current-color);
+		background: var(--main-current-color-gradient);
 	}
 	div.card-body:hover {
 		box-shadow: var(--main-box-shadow-hover);

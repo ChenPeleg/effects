@@ -22,6 +22,11 @@
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 		--main-font-size: 24px;
 		--main-current-color: rgb(183, 184, 198);
+		--main-current-color-gradient: linear-gradient(
+			90deg,
+			rgba(234, 236, 160, 1) 3%,
+			rgba(250, 255, 105, 1) 81%
+		);
 		--main-box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
 		--main-box-shadow-hover: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 45%);
 	}
