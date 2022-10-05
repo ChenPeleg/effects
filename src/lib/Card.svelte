@@ -38,15 +38,16 @@
 		height: 10vh;
 		background-color: white;
 		border-radius: 4px;
-		box-shadow: 2px 2px 5px 2px rgb(54, 54, 54);
+		box-shadow: var(--main-box-shadow);
 		cursor: pointer;
 		font-size: 24px;
 		transition: box-shadow 200ms ease-in-out;
 	}
 	div.card-body.isCurrent {
-		background-color: aqua;
+		background-color: aquamarine;
+		background-color: var(--main-current-color);
 	}
 	div.card-body:hover {
-		box-shadow: 2px 2px 15px 2px black;
+		box-shadow: 0 4px 8px 3px rgb(60 64 67 / 35%);
 	}
 </style>
