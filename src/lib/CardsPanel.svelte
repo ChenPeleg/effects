@@ -1,5 +1,7 @@
 <script>
-    import { MainStore } from "../store/store.main.js";
+	import { onDestroy } from "svelte";
+	import { CardsStore } from "../store/store.cards";
+    import { MainStore } from "../store/store.main";
     import Card from "./Card.svelte"; 
     /**
 	 * @type {number}
@@ -11,16 +13,11 @@
         (s) => (currentCard = s.currentCard)
     );
     /**@type {CardContent[]}*/
-    const cards = [
-        { color: "green", content: "car keys", name: "car", id: 1 },
-        { color: "red", content: "laughing kid", name: "laugh", id: 2 },
-        { color: "blue", content: "scream", name: "scream", id: 3 },
-        { color: "blue", content: "claping", name: "claping", id: 4 },
-        { color: "green", content: "car keys", name: "horn", id: 5},
-        { color: "red", content: "laughing kid", name: "laugh 2", id: 6 },
-        { color: "blue", content: "scream", name: "winning", id: 7 },
-        { color: "blue", content: "claping", name: "boo", id: 8 },
-    ];
+     
+    let cards = []
+
+    const unsubscribe =  CardsStore.subscribe(Storecards=>cards = Storecards);
+    onDestroy (unsubscribe)
 </script>
 
 <div class="cards-pannel-flex">
