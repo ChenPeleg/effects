@@ -17,8 +17,8 @@
 	};
 </script>
 
-<div on:click={clickCard} class="card-wrapper">
-	<div data-testid={'single-card-' + cardContent.id} class="card-body">
+<div on:click={clickCard} class:isCurrent>
+	<div data-testid={'single-card-' + cardContent.id} class="card-body" class:isCurrent>
 		{cardContent.name}
 		{isCurrent ? 'Its Current' : ''}
 	</div>
@@ -28,12 +28,13 @@
 	div.card-wrapper {
 		display: inline-flex;
 	}
+
 	div.card-body {
 		display: inline-flex;
 		margin: 0px 0px;
 		width: 15vw;
 		min-width: 100px;
-		padding: 1rem;
+		padding: 0.5rem;
 		height: 10vh;
 		background-color: white;
 		border-radius: 4px;
@@ -41,6 +42,9 @@
 		cursor: pointer;
 		font-size: 24px;
 		transition: box-shadow 200ms ease-in-out;
+	}
+	div.card-body.isCurrent {
+		background-color: aqua;
 	}
 	div.card-body:hover {
 		box-shadow: 2px 2px 15px 2px black;
