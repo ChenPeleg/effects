@@ -2,5 +2,7 @@
   import LayoutMain from "./LayoutMain.svelte";
 </script>
 
-
-<LayoutMain />
+ 
+  <LayoutMain />
+ 
+ 
