@@ -33,7 +33,7 @@
 		justify-content: space-around;
 		align-items: center;
 		margin: 0px 0px;
-		width: 15vw;
+		min-width: 15vw;
 		min-width: 100px;
 		padding: 0.5rem;
 		height: 10vh;
@@ -41,7 +41,7 @@
 		border-radius: 4px;
 		box-shadow: var(--main-box-shadow);
 		cursor: pointer;
-		font-size: 24px;
+		font-size: var(--main-font-size);
 		transition: box-shadow 200ms ease-in-out;
 	}
 
@@ -53,6 +53,17 @@
 		box-shadow: var(--main-box-shadow-hover);
 	}
 	div.card-body > span.card-icon {
-		font-size: 32px;
+		font-size: var(--main-icon-size);
+	}
+	@media (max-width: 576px) {
+		div.card-body {
+			font-size: var(--main-font-size-mobile);
+		}
+		div.card-body > span.card-icon {
+			font-size: var(--main-icon-size-mobile);
+		}
+		div.card-wrapper {
+			flex-grow: 1;
+		}
 	}
 </style>

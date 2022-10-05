@@ -26,10 +26,10 @@
 
 <style>
 	div.cards-pannel-flex {
-		width: 80vw;
+		width: 95vw;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: 1em;
+		gap: 0.7em;
 	}
 </style>
