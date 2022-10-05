@@ -18,7 +18,7 @@
 </script>
 
 <div on:click={clickCard} class="card-wrapper">
-    <div data-testid="single-card" class="card-body">
+    <div data-testid={"single-card-" +cardContent.id } class="card-body">
         {cardContent.name}
         {isCurrent ? "Its Current" : ""}
     </div>
