@@ -15,7 +15,7 @@
 	div.wrapper {
 		display: inline-block;
 		min-width: 80px;
-		min-height: 40px;
+		min-height: 30px;
 	}
 
 	div.container {

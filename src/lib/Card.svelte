@@ -12,11 +12,7 @@
 
 	/**@type {MouseEventHandler} */
 	const clickCard = (ev) => {
-		MainStore.update((s) => {
-			s.currentCard = cardContent.id || 0;
-			return s;
-		});
-		clicks++;
+		MainStore.cardChosen(cardContent.id);
 	};
 </script>
 
