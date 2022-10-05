@@ -10,7 +10,7 @@
 
 <style>
 	:root {
-		--speed: 1000;
+		--speed: 700;
 	}
 	div.wrapper {
 		display: inline-block;
@@ -31,27 +31,27 @@
 		height: 5px;
 		background: #9b59b6;
 		position: absolute;
-		animation: audio-wave 1.5s infinite ease-in-out;
+		animation: audio-wave calc(var(--speed) * 1.5ms) infinite ease-in-out;
 	}
 
 	span:nth-child(2) {
 		left: 11px;
-		animation-delay: 0.2s;
+		animation-delay: calc(var(--speed) * 0.2ms);
 	}
 
 	span:nth-child(3) {
 		left: 22px;
-		animation-delay: 0.4s;
+		animation-delay: calc(var(--speed) * 0.4ms);
 	}
 
 	span:nth-child(4) {
 		left: 33px;
-		animation-delay: 0.6s;
+		animation-delay: calc(var(--speed) * 0.6ms);
 	}
 
 	span:nth-child(5) {
 		left: 44px;
-		animation-delay: 0.8s;
+		animation-delay: calc(var(--speed) * 0.8ms);
 	}
 
 	@keyframes audio-wave {
