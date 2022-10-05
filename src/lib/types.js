@@ -9,6 +9,7 @@
  * @prop {string} content
  * @prop {string} color
  * @prop {number} id
+ * @prop {string} icon
  * @prop {number=} clicks
  * @prop {CardCategory=} category
  * */

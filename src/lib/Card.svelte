@@ -39,6 +39,7 @@
 		border-radius: 4px;
 		box-shadow: 2px 2px 5px 2px rgb(54, 54, 54);
 		cursor: pointer;
+		font-size: 24px;
 		transition: box-shadow 200ms ease-in-out;
 	}
 	div.card-body:hover {
