@@ -2,12 +2,15 @@
 
 /**@typedef {(event : MouseEventHandler) => void}  Handler*/
 
-/**@typedef CardContent
+/**@typedef {string | string []} CardCategory*/
+/**
+ * @typedef CardContent
  * @prop {string} name
  * @prop {string} content
  * @prop {string} color
- * @prop {number=} clicks
  * @prop {number} id
+ * @prop {number=} clicks
+ * @prop {CardCategory=} category
  * */
 
 /**@typedef BigCard @prop {string} name

@@ -1,14 +1,12 @@
-
-
-/** The main store of the app use @to inlist all the data you need 
+/** The main store of the app use @to inlist all the data you need
  * @typedef MainStore
- * @property  {string} user   
- * @prop {number} currentCard  
- * @prop { CardContent } currentCardContent 
-*/
+ * @property  {string} user
+ * @prop {number} currentCard
+ * @prop { CardContent | null } currentCardContent
+ */
 
 /**@see other to notify */
-const G = {}
+const G = {};
 
 /**@description  Example interface to use in cscode*/
 
