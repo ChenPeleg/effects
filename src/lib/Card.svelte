@@ -1,4 +1,5 @@
 <script>
+	import { LanguageService } from '../services/language.service';
 	import { MainStore } from '../store/store.main';
 
 	/**@type {CardContent} */
@@ -6,6 +7,8 @@
 	/**@type {boolean}*/
 	export let isCurrent;
 	let clicks = 0;
+
+	const standartCaseName = LanguageService.toStandardCase(cardContent.name);
 
 	/**@type {MouseEventHandler} */
 	const clickCard = (ev) => {
@@ -17,10 +20,10 @@
 	};
 </script>
 
-<div on:click={clickCard} class:isCurrent>
+<div on:click={clickCard} class="card-wrapper">
 	<div data-testid={'single-card-' + cardContent.id} class="card-body" class:isCurrent>
-		{cardContent.name}
-		{isCurrent ? 'Its Current' : ''}
+		<span class="card-icon">{cardContent.icon}</span>
+		{standartCaseName}
 	</div>
 </div>
 
@@ -31,6 +34,8 @@
 
 	div.card-body {
 		display: inline-flex;
+		justify-content: space-around;
+		align-items: center;
 		margin: 0px 0px;
 		width: 15vw;
 		min-width: 100px;
@@ -43,11 +48,15 @@
 		font-size: 24px;
 		transition: box-shadow 200ms ease-in-out;
 	}
+
 	div.card-body.isCurrent {
 		background-color: aquamarine;
 		background-color: var(--main-current-color);
 	}
 	div.card-body:hover {
-		box-shadow: 0 4px 8px 3px rgb(60 64 67 / 35%);
+		box-shadow: var(--main-box-shadow-hover);
+	}
+	div.card-body > span.card-icon {
+		font-size: 32px;
 	}
 </style>
