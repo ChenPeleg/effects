@@ -1,7 +1,7 @@
 <script>
-  import CardsPannel from "./CardsPannel.svelte";
+  import CardsPanel from "./CardsPanel.svelte";
 </script>
 
 <main>
-  <CardsPannel />
+  <CardsPanel />
 </main>

@@ -3,8 +3,11 @@
 
     import Card from "./Card.svelte";
 
-    /**@typedef {number} */
-    let currentCard;
+ 
+    /**
+	 * @type {number}
+	 */
+    let currentCard /**@typedef {number} */;
 
     /**@typedef {CardContent} */
     const unsbscribe = MainStore.subscribe(
