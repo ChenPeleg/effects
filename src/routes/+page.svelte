@@ -1,5 +1,6 @@
 <div class="route1">
-	<a href="/about">About my site</a>
+	<a href="/"><b>main</b></a>
+	<a href="/category">category</a>
 </div>
 
 <style>
