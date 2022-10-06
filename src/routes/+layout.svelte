@@ -1,7 +1,7 @@
 <script>
 	import Main from '../lib/Main.svelte';
 	import Header from './Header.svelte';
-	import '../assets/css/fonts.css';
+	import '$lib/style/fonts.css';
 </script>
 
 <svelte:head>
@@ -33,6 +33,7 @@
 			rgba(234, 236, 160, 1) 3%,
 			rgba(250, 255, 105, 1) 81%
 		);
+		/* font-family: "Signika_Negative"; */
 		--main-box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
 		--main-box-shadow-hover: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 45%);
 	}
