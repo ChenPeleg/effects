@@ -1,6 +1,6 @@
 <div class="route1">
-	<a href="/"><b>main</b></a>
-	<a href="/category">category</a>
+	<!-- <a href="/"><b>main</b></a> -->
+	<!-- <a href="/category">category</a> -->
 </div>
 
 <style>
