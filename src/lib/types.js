@@ -12,6 +12,7 @@
  * @prop {string} icon
  * @prop {number=} clicks
  * @prop {CardCategory=} category
+ * @prop {HTMLAudioElement=} audioElement
  * */
 
 /**@typedef BigCard @prop {string} name

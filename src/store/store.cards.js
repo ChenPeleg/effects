@@ -1,3 +1,4 @@
+import { AudioService } from '../services/audio.service';
 import { readable } from 'svelte/store';
 /**@type {CardContent []} */
 const allCards = [
@@ -11,4 +12,8 @@ const allCards = [
 	{ color: 'blue', content: 'reverse', name: 'reverse', id: 8, icon: '🚚' },
 	{ color: 'blue', content: 'joke-drums', name: 'joke', id: 9, icon: '🥁' }
 ];
+const allCardsWithAudio = allCards.map((c) => ({
+	...c,
+	audioElement: AudioService.getAudioElement(c)
+}));
 export const CardsStore = readable(allCards);
