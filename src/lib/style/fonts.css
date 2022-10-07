@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Signika_Negative';
+    font-style: normal;
+    font-weight: 500;
+    src:
+        /* Modern Browsers */
+        url('/fonts/SignikaNegative-Medium.ttf') format('truetype'),
+
+}
