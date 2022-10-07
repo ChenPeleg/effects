@@ -1,15 +1,17 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
+  import Header from "./Header.svelte";
 </script>
 
-<div class="main-layout-container">
+<div class="app-wrapper">
+  <Header />
   <main>
     <CardsPanel />
   </main>
 </div>
 
 <style>
-  .main-layout-container {
+  div.app-wrapper {
     width: 100vw;
   }
   :global(:root) {
