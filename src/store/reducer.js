@@ -1,5 +1,3 @@
-
-
 export const reducer = (/** @type {StoreModel} */ state) => {
-    return state;
-}
+  return state;
+};

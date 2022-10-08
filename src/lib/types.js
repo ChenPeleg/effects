@@ -6,7 +6,7 @@
 /**
  * @typedef CardContent
  * @prop {string} name
- * @prop {string} content
+ * @prop {string} soundFile
  * @prop {string} color
  * @prop {number} id
  * @prop {string} icon

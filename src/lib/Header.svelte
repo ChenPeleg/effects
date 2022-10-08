@@ -14,28 +14,55 @@
 
 <header>
   <div class="header-wrapper">
-    <h1>Effects</h1>
-    <Divider w={15} />
-    {#if card > 0}
-      <WaveAnimation />
-    {/if}
+    <div class="header-and-wave">
+      <h1>Effects</h1>
+      <Divider w={15} />
+      {#if card > 0}
+        <WaveAnimation />
+      {/if}
+    </div>
   </div>
 </header>
 
 <style>
   h1 {
+    --shaow-color: rgba(0, 0, 0, 1);
+    color: rgb(10, 27, 211);
     margin: 0px;
-    font-size: 2em;
+    font-size: 2.9em;
+    font-family: "PatrickHand-Regular";
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 1px var(--shaow-color), 2px -2px 1px var(--shaow-color),
+      -2px -2px 1px var(--shaow-color), -2px 2px 1px var(--shaow-color);
   }
   .header-wrapper {
+    margin: 0px 20px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-and-wave {
+    margin: 0;
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
   header {
-    padding: 15px;
-    margin-bottom: 5px;
+    /* position: static; */
+    z-index: 200;
+    height: 55px;
+    max-height: 55px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-width: 100vw;
+    overflow: hidden;
+    /* padding-bottom: 15px;
+    margin-bottom: 5px; */
+    max-width: 62vw;
     display: flex;
     justify-content: space-between;
   }

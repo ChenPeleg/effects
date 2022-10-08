@@ -1,36 +1,45 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
   import Header from "./Header.svelte";
+  import GlobalStyles from "./style/GlobalStyles.svelte";
 </script>
 
 <div class="app-wrapper">
+  <GlobalStyles />
   <Header />
-  <main>
-    <CardsPanel />
-  </main>
+  <div class="main-wrapper">
+    <main>
+      <CardsPanel />
+    </main>
+  </div>
 </div>
 
 <style>
   div.app-wrapper {
-    width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
-  :global(:root) {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-      sans-serif;
-    --main-font-size: 24px;
-    --main-icon-size: 32px;
-    --main-font-size-mobile: 17px;
-    --main-icon-size-mobile: 24px;
-    --main-current-color: rgb(183, 184, 198);
-    --main-current-color-gradient: linear-gradient(
-      90deg,
-      rgba(234, 236, 160, 1) 3%,
-      rgba(250, 255, 105, 1) 81%
-    );
-    /* font-family: "Signika_Negative"; */
-    --main-box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
-      0 1px 3px 1px rgb(60 64 67 / 15%);
-    --main-box-shadow-hover: 0 1px 3px 0 rgb(60 64 67 / 30%),
-      0 4px 8px 3px rgb(60 64 67 / 45%);
+  main {
+    display: flex;
+    max-width: 95vw;
+  }
+  div.main-wrapper {
+    --pad: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: var(--pad);
+    padding-top: 65px;
+    width: calc(100vw - var(--pad));
+  }
+  @media (max-width: 576px) {
+    div.main-wrapper {
+      box-sizing: border-box;
+      --pad: 4px;
+      padding: var(--pad);
+      padding-top: 65px;
+      width: calc(100vw - var(--pad));
+      max-width: calc(100vw - var(--pad));
+      overflow-x: hidden;
+    }
   }
 </style>
