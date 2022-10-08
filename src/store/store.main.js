@@ -27,7 +27,7 @@ const CreateMainStore = () => {
     update((s) => {
       s.currentCard = cardId || 0;
       const card = allCards.find((c) => c.id === cardId);
-      const fileName = card?.content || "car_remote";
+      const fileName = card?.soundFile || "car_remote";
       if (!audio) {
         audio = new Audio();
         audio.addEventListener("ended", (event) => {
