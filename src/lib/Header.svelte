@@ -24,8 +24,15 @@
 
 <style>
   h1 {
+    --shaow-color: rgba(0, 0, 0, 1);
+    color: rgb(10, 27, 211);
     margin: 0px;
-    font-size: 2em;
+    font-size: 2.9em;
+    font-family: "PatrickHand-Regular";
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 1px var(--shaow-color), 2px -2px 1px var(--shaow-color),
+      -2px -2px 1px var(--shaow-color), -2px 2px 1px var(--shaow-color);
   }
   .header-wrapper {
     display: inline-flex;
@@ -34,7 +41,7 @@
     align-items: center;
   }
   header {
-    padding: 15px;
+    padding-bottom: 15px;
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;

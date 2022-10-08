@@ -35,14 +35,15 @@
   div.card-body {
     display: inline-flex;
     justify-content: space-around;
+    flex-direction: column;
     align-items: center;
     margin: 0px 0px;
     min-width: 15vw;
     min-width: 100px;
     padding: 0.5rem;
-    height: 10vh;
+    min-height: 100px;
     background-color: white;
-    border-radius: 4px;
+    border-radius: 3px;
     box-shadow: var(--main-box-shadow);
     cursor: pointer;
     font-size: var(--main-font-size);
@@ -57,8 +58,7 @@
     box-shadow: var(--main-box-shadow-hover);
   }
   div.card-body > span.card-icon {
-    color: green;
-    filter: grayscale(90%) contrast(175%) saturate(50%);
+    filter: grayscale(40%) contrast(175%) saturate(100%) hue-rotate(-190deg);
     font-size: var(--main-icon-size);
   }
   @media (max-width: 576px) {

@@ -32,7 +32,7 @@
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
       sans-serif;
     --main-font-size: 24px;
-    --main-icon-size: 32px;
+    --main-icon-size: 42px;
     --main-font-size-mobile: 17px;
     --main-icon-size-mobile: 24px;
     --main-current-color: rgb(183, 184, 198);
