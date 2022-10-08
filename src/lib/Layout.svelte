@@ -7,17 +7,39 @@
 <div class="app-wrapper">
   <GlobalStyles />
   <Header />
-  <main>
-    <CardsPanel />
-  </main>
+  <div class="main-wrapper">
+    <main>
+      <CardsPanel />
+    </main>
+  </div>
 </div>
 
 <style>
   div.app-wrapper {
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100vw;
+    overflow-x: hidden;
     min-height: 100vh;
-    background-image: linear-gradient(rgb(241, 166, 228), rgb(212, 167, 167));
+  }
+  main {
+    display: flex;
+    max-width: 95vw;
+  }
+  div.main-wrapper {
+    --pad: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: var(--pad);
+    padding-top: 10px;
+    width: calc(100vw - var(--pad));
+  }
+  @media (max-width: 576px) {
+    div.main-wrapper {
+      box-sizing: border-box;
+      --pad: 4px;
+      padding: var(--pad);
+      padding-top: 10px;
+      width: calc(100vw - var(--pad));
+      max-width: calc(100vw - var(--pad));
+      overflow-x: hidden;
+    }
   }
 </style>

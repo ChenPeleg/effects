@@ -34,14 +34,13 @@
 
   div.card-body {
     display: inline-flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     margin: 0px 0px;
-    min-width: 15vw;
     min-width: 100px;
     padding: 0.5rem;
-    min-height: 100px;
+    min-height: 80px;
     background-color: white;
     border-radius: 3px;
     box-shadow: var(--main-box-shadow);

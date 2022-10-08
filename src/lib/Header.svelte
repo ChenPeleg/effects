@@ -35,14 +35,22 @@
       -2px -2px 1px var(--shaow-color), -2px 2px 1px var(--shaow-color);
   }
   .header-wrapper {
+    margin: 0px 20px;
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
   header {
-    padding-bottom: 15px;
-    margin-bottom: 5px;
+    position: static;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-width: 100vw;
+    overflow: hidden;
+    /* padding-bottom: 15px;
+    margin-bottom: 5px; */
+    max-width: 62vw;
     display: flex;
     justify-content: space-between;
   }
