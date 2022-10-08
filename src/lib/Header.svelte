@@ -14,11 +14,13 @@
 
 <header>
   <div class="header-wrapper">
-    <h1>Effects</h1>
-    <Divider w={15} />
-    {#if card > 0}
-      <WaveAnimation />
-    {/if}
+    <div class="header-and-wave">
+      <h1>Effects</h1>
+      <Divider w={15} />
+      {#if card > 0}
+        <WaveAnimation />
+      {/if}
+    </div>
   </div>
 </header>
 
@@ -41,8 +43,18 @@
     justify-content: space-between;
     align-items: center;
   }
+  .header-and-wave {
+    margin: 0;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   header {
-    position: static;
+    /* position: static; */
+    z-index: 200;
+    height: 55px;
+    max-height: 55px;
     top: 0px;
     left: 0px;
     width: 100%;

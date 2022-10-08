@@ -28,7 +28,7 @@
     overflow: hidden;
     box-sizing: border-box;
     padding: var(--pad);
-    padding-top: 10px;
+    padding-top: 65px;
     width: calc(100vw - var(--pad));
   }
   @media (max-width: 576px) {
@@ -36,7 +36,7 @@
       box-sizing: border-box;
       --pad: 4px;
       padding: var(--pad);
-      padding-top: 10px;
+      padding-top: 65px;
       width: calc(100vw - var(--pad));
       max-width: calc(100vw - var(--pad));
       overflow-x: hidden;

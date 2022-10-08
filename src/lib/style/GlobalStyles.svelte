@@ -41,6 +41,11 @@
       rgba(234, 236, 160, 1) 3%,
       rgba(250, 255, 105, 1) 81%
     );
+    --main-current-color-gradient: linear-gradient(
+      90deg,
+      #faad49 1%,
+      #ff9100 61%
+    );
     font-family: "Signika Negative", sans-serif;
     font-family: "Balsamiq Sans", sans-serif;
     --main-box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
@@ -53,6 +58,7 @@
     background-color: #ff4081;
   }
   :global(header) {
+    position: fixed;
     background-color: #ff9100;
     box-shadow: #0003 0px 2px 4px -1px, #00000024 0px 4px 5px 0px,
       #0000001f 0px 1px 10px 0px;
