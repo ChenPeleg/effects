@@ -1,5 +1,7 @@
 import { AudioService } from "../services/audio.service";
 import { readable } from "svelte/store";
+import { CategoryNames } from "../lib/models/categories.js";
+
 /**@type {CardContent []} */
 const allCards = [
   {
@@ -8,6 +10,7 @@ const allCards = [
     name: "car keys",
     id: 1,
     icon: "🚗",
+    category: [CategoryNames.FUNNY],
   },
   { color: "red", soundFile: "laughing-kid", name: "laugh", id: 2, icon: "😂" },
   { color: "blue", soundFile: "scream_1", name: "scream", id: 3, icon: "😱" },
