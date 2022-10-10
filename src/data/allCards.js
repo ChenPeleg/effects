@@ -1,4 +1,4 @@
-import { AudioService } from "src/services/audio.service";
+import { AudioService } from "../services/audio.service";
 import { CategoryNames } from "../lib/models/categories";
 
 /**@type {CardContent []} */

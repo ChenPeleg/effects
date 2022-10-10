@@ -1,4 +1,5 @@
 <script>
+  import { CardStore } from "../../store/store.cards";
   import { LanguageService } from "../../services/language.service";
   import { CategoryNames } from "../models/categories";
 
@@ -8,7 +9,7 @@
     LanguageService.toStandardCase(CategoryNames[key])
   );
   const categoryChanged = (ev) => {
-    console.log(selected);
+    CardStore.categoryChosen(selected);
   };
   let lang;
 </script>
@@ -17,7 +18,7 @@
   <select
     class={lang === "en" ? "rtl" : "ltr"}
     bind:value={selected}
-    on:change={(ev) => categoryChanged}
+    on:change={categoryChanged}
   >
     {#each categories as category}
       <option value={category}>

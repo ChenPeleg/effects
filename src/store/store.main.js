@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { CardsStore } from "./store.cards";
+import { CardStore } from "./store.cards";
 
 const MAXIMUM_SOUND_TIME = 2000;
 
@@ -13,11 +13,10 @@ const initialStore = {
 /**
  * @type {CardContent[]}
  */
-let allCards;
+let allCards = CardStore.getAllCards();
 
 /**@type { HTMLAudioElement | null} */
 let audio;
-CardsStore.subscribe((c) => (allCards = c));
 
 const CreateMainStore = () => {
   const { subscribe, set, update } = writable(initialStore);
