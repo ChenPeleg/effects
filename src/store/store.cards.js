@@ -1,188 +1,26 @@
 import { AudioService } from "../services/audio.service";
-import { readable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 import { CategoryNames } from "../lib/models/categories.js";
+import { allCards } from "../data/allCards";
+import { CardsService } from "../services/cards.service";
 
-/**@type {CardContent []} */
-const allCards = [
-  {
-    color: "green",
-    soundFile: "car-keys",
-    name: "car keys",
-    id: 1,
-    icon: "🚗",
-    category: [CategoryNames.GENERAL],
-  },
-  {
-    color: "red",
-    soundFile: "laughing-kid",
-    name: "laugh",
-    id: 2,
-    icon: "😂",
-    category: [CategoryNames.FUNNY],
-  },
-  {
-    color: "blue",
-    soundFile: "scream_1",
-    name: "scream",
-    id: 3,
-    icon: "😱",
-    category: [CategoryNames.SCARY],
-  },
-  {
-    color: "blue",
-    soundFile: "applause_1",
-    name: "clapping",
-    id: 4,
-    icon: "👏",
-    category: [CategoryNames.GAMES],
-  },
-  {
-    color: "green",
-    soundFile: "psycho",
-    name: "psycho",
-    id: 5,
-    icon: "🔪",
-    category: [CategoryNames.SCARY],
-  },
-  {
-    color: "red",
-    soundFile: "toilet",
-    name: "toilet",
-    id: 6,
-    icon: "🚽",
-    category: [CategoryNames.RUDE],
-  },
-  {
-    color: "blue",
-    soundFile: "winning",
-    name: "winning",
-    id: 7,
-    icon: "🏆",
-    category: [CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "door-bell",
-    name: "door bell",
-    id: 8,
-    icon: "🚚",
-    category: [CategoryNames.GENERAL],
-  },
-  {
-    color: "blue",
-    soundFile: "glass-breaking",
-    name: "glass breaking",
-    id: 9,
-    icon: "🔨",
-    category: [CategoryNames.GENERAL, CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "snoring",
-    name: "snoring",
-    id: 10,
-    icon: "😴",
-    category: [CategoryNames.GENERAL, CategoryNames.FUNNY],
-  },
-  {
-    color: "blue",
-    soundFile: "gong",
-    name: "gong",
-    id: 11,
-    icon: "🔔",
-    category: [CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "fart",
-    name: "fart",
-    id: 12,
-    icon: "💩",
-    category: [CategoryNames.RUDE],
-  },
-  {
-    color: "blue",
-    soundFile: "alien",
-    name: "alien",
-    id: 13,
-    icon: "👽",
-    category: [CategoryNames.SCARY],
-  },
-  {
-    color: "blue",
-    soundFile: "kiss",
-    name: "kiss",
-    id: 14,
-    icon: "💋",
-    category: [CategoryNames.GENERAL, CategoryNames.RUDE],
-  },
-  {
-    color: "blue",
-    soundFile: "wrong",
-    name: "wrong",
-    id: 15,
-    icon: "👎",
-    category: [CategoryNames.GENERAL, CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "magic",
-    name: "magic",
-    id: 16,
-    icon: "🧙",
-    category: [CategoryNames.GENERAL],
-  },
-  {
-    color: "blue",
-    soundFile: "joke-drums",
-    name: "game",
-    id: 17,
-    icon: "🎮",
-    category: [CategoryNames.GENERAL, CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "alarm",
-    name: "alarm",
-    id: 18,
-    icon: "⏰",
-    category: [CategoryNames.GENERAL, CategoryNames.GAMES],
-  },
-  {
-    color: "blue",
-    soundFile: "slayer",
-    name: "slayer",
-    id: 19,
-    icon: "🎸",
-    category: [CategoryNames.GENERAL, CategoryNames.SONG],
-  },
-  {
-    color: "blue",
-    soundFile: "twilight-zone",
-    name: "twilight zone",
-    id: 20,
-    icon: "💀",
-    category: [CategoryNames.SCARY, CategoryNames.SONG],
-  },
-  {
-    color: "blue",
-    soundFile: "mizrahi",
-    name: "mizrahi",
-    id: 21,
-    icon: "🎤",
-    category: [CategoryNames.GAMES, CategoryNames.SONG],
-  },
-  {
-    color: "blue",
-    soundFile: "stop",
-    name: "stop",
-    id: 22,
-    icon: "🎹",
-    category: [CategoryNames.GAMES, CategoryNames.SONG],
-  },
-];
-const allCardsWithAudio = allCards.map((c) => ({
-  ...c,
-  audioElement: AudioService.getAudioElement(c),
-}));
 export const CardsStore = readable(allCards);
+
+const createCardStore = (
+  /** @type {CardContent []} */ allTheCards,
+  /** @type {string} */ category
+) => {
+  const { subscribe, set, update } = writable(allTheCards);
+
+  const categoryChosen = (/** @type {string} */ category) => {
+    update((s) => {
+      return CardsService.filterCardsByCategory(s, category);
+    });
+  };
+  const getAllCards = () => [...allTheCards];
+  return {
+    subscribe,
+    getAllCards,
+    categoryChosen,
+  };
+};

@@ -1,9 +1,15 @@
 <script>
+  import { LanguageService } from "../../services/language.service";
   import { CategoryNames } from "../models/categories";
 
   let selected;
-  let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
-  const categoryChanged = (cat) => {};
+
+  let categories = Object.keys(CategoryNames).map((key) =>
+    LanguageService.toStandardCase(CategoryNames[key])
+  );
+  const categoryChanged = (ev) => {
+    console.log(selected);
+  };
   let lang;
 </script>
 
@@ -11,7 +17,7 @@
   <select
     class={lang === "en" ? "rtl" : "ltr"}
     bind:value={selected}
-    on:change={categoryChanged}
+    on:change={(ev) => categoryChanged}
   >
     {#each categories as category}
       <option value={category}>
@@ -23,7 +29,7 @@
 
 <style>
   select {
-    font-size: calc(var(--main-font-size)-3);
+    font-size: calc(var(--main-font-size) - 5px);
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
     -webkit-appearance: none;
