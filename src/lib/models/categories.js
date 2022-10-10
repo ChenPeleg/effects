@@ -5,6 +5,7 @@ export const CategoryNames = {
   FUNNY: "funny",
   GAMES: "games",
   SCARY: "scary",
+  RUDE: "rude",
 };
 
 /**@typedef {keyof CategoryNames} CardCategory */

@@ -3,6 +3,8 @@
   import { onDestroy } from "svelte";
   import Divider from "./style/divider.svelte";
   import WaveAnimation from "./animation/WaveAnimation.svelte";
+
+  import CategorySelect from "./components/CategorySelect.svelte";
   /**
    * @type {number}
    */
@@ -21,6 +23,9 @@
         <WaveAnimation />
       {/if}
     </div>
+    <div class="categories-and-settings">
+      <CategorySelect />
+    </div>
   </div>
 </header>
 
@@ -37,13 +42,16 @@
       -2px -2px 1px var(--shaow-color), -2px 2px 1px var(--shaow-color);
   }
   .header-wrapper {
+    width: 95%;
     margin: 0px 20px;
+    box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  .header-and-wave {
+  .header-and-wave,
+  .categories-and-settings {
     margin: 0;
     display: inline-flex;
     flex-direction: row;
