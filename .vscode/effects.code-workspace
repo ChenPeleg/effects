@@ -1,13 +1,14 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		}
-	],
-	"settings": {
-		"material-icon-theme.folders.associations": {
-			"store": "Redux-store",
-			"stripe": "Resource"
-		}
-	}
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "material-icon-theme.folders.associations": {
+      "store": "Redux-store",
+      "stripe": "Resource"
+    },
+    "cSpell.words": ["mizrahi"]
+  }
 }
