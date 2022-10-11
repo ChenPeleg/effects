@@ -1,4 +1,3 @@
-import { AudioService } from "../services/audio.service";
 import { CategoryNames } from "../lib/models/categories";
 
 /**@type {CardContent []} */
@@ -182,6 +181,5 @@ const allCardsWithoutAudio = [
 ];
 const allCards = allCardsWithoutAudio.map((c) => ({
   ...c,
-  audioElement: AudioService.getAudioElement(c),
 }));
 export { allCards };
