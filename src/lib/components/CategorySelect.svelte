@@ -5,9 +5,7 @@
 
   let selected;
 
-  let categories = Object.keys(CategoryNames).map((key) =>
-    LanguageService.toStandardCase(CategoryNames[key])
-  );
+  let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
   const categoryChanged = (ev) => {
     CardStore.categoryChosen(selected);
   };
@@ -17,12 +15,13 @@
 <div>
   <select
     class={lang === "en" ? "rtl" : "ltr"}
+    data-testid="category-select-select"
     bind:value={selected}
     on:change={categoryChanged}
   >
     {#each categories as category}
       <option data-testid={"category_" + category} value={category}>
-        {category}
+        {LanguageService.toStandardCase(category)}
       </option>
     {/each}
   </select>
