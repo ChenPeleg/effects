@@ -23,7 +23,7 @@
     class:isCurrent
   >
     <span class="card-icon">{cardContent.icon}</span>
-    {standartCaseName}
+    <span class="card-text">{standartCaseName}</span>
   </div>
 </div>
 
@@ -56,6 +56,10 @@
   div.card-body:hover {
     box-shadow: var(--main-box-shadow-hover);
   }
+  span.card-text {
+    text-align: center;
+    line-height: 90%;
+  }
   div.card-body > span.card-icon {
     filter: grayscale(40%) contrast(175%) saturate(100%) hue-rotate(-190deg);
     font-size: var(--main-icon-size);
@@ -63,12 +67,17 @@
   @media (max-width: 576px) {
     div.card-body {
       font-size: var(--main-font-size-mobile);
+      min-width: 70px;
+      max-width: 70px;
+      padding: 0.2rem;
+      min-height: 60px;
     }
     div.card-body > span.card-icon {
       font-size: var(--main-icon-size-mobile);
     }
     div.card-wrapper {
       flex-grow: 1;
+      flex-grow: initial;
     }
   }
 </style>

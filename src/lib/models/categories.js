@@ -1,5 +1,6 @@
 /**@typedef {   Record<string,string>} CategoryNames*/
 export const CategoryNames = {
+  ALL: "all",
   GENERAL: "general",
   SONG: "song",
   FUNNY: "funny",

@@ -1,3 +1,5 @@
+import { CategoryNames } from "../lib/models/categories";
+
 export const CardsService = {
   /**
    * @param {CardContent[]} cards
@@ -5,6 +7,9 @@ export const CardsService = {
    * @returns {CardContent[]}
    */
   filterCardsByCategory(cards, category) {
+    if (category === CategoryNames.ALL) {
+      return cards;
+    }
     return cards.filter(
       (c) =>
         c.category.includes(category.toLowerCase()) ||
