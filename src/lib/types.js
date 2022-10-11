@@ -2,7 +2,6 @@
 
 /**@typedef {(event : MouseEventHandler) => void}  Handler*/
 
-/**@typedef {string | string []} CardCategory*/
 /**
  * @typedef CardContent
  * @prop {string} name
@@ -11,7 +10,7 @@
  * @prop {number} id
  * @prop {string} icon
  * @prop {number=} clicks
- * @prop {CardCategory=} category
+ * @prop {(import("./models/categories.js").CardCategory)[]=} category
  * @prop {HTMLAudioElement=} audioElement
  * */
 
