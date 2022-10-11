@@ -21,7 +21,7 @@
     on:change={categoryChanged}
   >
     {#each categories as category}
-      <option value={category}>
+      <option data-testid={"category_" + category} value={category}>
         {category}
       </option>
     {/each}

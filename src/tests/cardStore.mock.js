@@ -3,7 +3,7 @@ import { CategoryNames } from "../lib/models/categories.js";
 import { allCards } from "../data/allCards";
 import { CardsService } from "../services/cards.service";
 
-const createCardStore = (
+export const createCardStoreMock = (
   /** @type {CardContent []} */ allTheCards,
   /** @type {string} */ baseCategory
 ) => {
@@ -21,4 +21,3 @@ const createCardStore = (
     categoryChosen,
   };
 };
-export const CardStore = createCardStore(allCards, CategoryNames.GENERAL);
