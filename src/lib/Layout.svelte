@@ -2,6 +2,7 @@
   import CardsPanel from "./CardsPanel.svelte";
   import Header from "./Header.svelte";
   import Route from "./router/route.svelte";
+  import Divider from "./style/divider.svelte";
   import GlobalStyles from "./style/GlobalStyles.svelte";
 </script>
 
@@ -10,7 +11,11 @@
   <Header />
   <div class="main-wrapper">
     <main>
-      <Route route={"abc"}><span>abc</span></Route>
+      <Route route={""}>main</Route>
+      <Route route={"abc"}>abc</Route>
+      <Route route={(p) => p !== "abc" && p !== ""}>404</Route>
+
+      <Divider />
       <CardsPanel />
     </main>
   </div>

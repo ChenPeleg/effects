@@ -1,11 +1,12 @@
 <script>
-  import { pathname } from "../../store/store.path";
+  import { pathStore } from "../../store/store.path";
   import { onDestroy } from "svelte";
   /**@type {string | ((path: string)=> boolean)}*/
   export let route;
   let path;
 
-  const unsubscribe = pathname.subscribe((p) => {
+  const unsubscribe = pathStore.subscribe((p) => {
+    console.log(path, route);
     path = p;
   });
 
@@ -13,7 +14,7 @@
 </script>
 
 <div id={"route-" + route}>
-  {#if route === path.replace("#", "")}
+  {#if pathStore.match(path.replace("#/", ""), route)}
     <div>
       <slot />
     </div>
