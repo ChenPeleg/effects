@@ -1,6 +1,7 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
   import Header from "./Header.svelte";
+  import Route from "./router/route.svelte";
   import GlobalStyles from "./style/GlobalStyles.svelte";
 </script>
 
@@ -9,6 +10,7 @@
   <Header />
   <div class="main-wrapper">
     <main>
+      <Route route={"abc"}><span>abc</span></Route>
       <CardsPanel />
     </main>
   </div>

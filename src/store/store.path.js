@@ -1,3 +1,4 @@
+import { MatchPathService } from "../services/matchPathService";
 import { readable, derived } from "svelte/store";
 
 let regex = /(#?[^?]*)?(\?.*)?/;
@@ -20,8 +21,11 @@ let pathname = derived(path, ($) => $.pathname); // current pathname without que
 
 const makePathStore = () => {
   const { subscribe } = pathname;
-  return { subscribe };
+  const match = MatchPathService.match;
+  return { subscribe, match };
 };
+
+let pathStore = makePathStore();
 
 // @ts-ignore
 let querystring = derived(path, ($) => $.querystring);
@@ -32,4 +36,4 @@ let query = derived(querystring, ($) => {
   }, {});
 });
 
-export { pathname, query };
+export { pathname, query, pathStore };
