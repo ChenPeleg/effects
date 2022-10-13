@@ -15,7 +15,15 @@ let path = readable(parse(), (set) => {
   return () => window.removeEventListener("hashchange", update);
 });
 
+// @ts-ignore
 let pathname = derived(path, ($) => $.pathname); // current pathname without query
+
+const makePathStore = () => {
+  const { subscribe } = pathname;
+  return { subscribe };
+};
+
+// @ts-ignore
 let querystring = derived(path, ($) => $.querystring);
 let query = derived(querystring, ($) => {
   return Array.from(new URLSearchParams($)).reduce((a, [i, e]) => {
