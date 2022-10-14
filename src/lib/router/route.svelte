@@ -6,7 +6,6 @@
   let path;
 
   const unsubscribe = pathStore.subscribe((p) => {
-    console.log(path, route);
     path = p;
   });
 

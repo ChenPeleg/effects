@@ -15,7 +15,7 @@
   onDestroy(unsbscribe);
 </script>
 
-<header>
+<header data-testid="app-header">
   <div class="header-wrapper">
     <div class="header-and-wave">
       <h1>Effects</h1>

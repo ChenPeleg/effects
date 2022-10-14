@@ -17,7 +17,6 @@
       <Route route={(p) => p !== "settings" && p !== ""}><NotFound404 /></Route>
 
       <Divider />
-      <!-- <CardsPanel /> -->
     </main>
   </div>
 </div>
