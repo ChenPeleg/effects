@@ -5,6 +5,7 @@
   import WaveAnimation from "./animation/WaveAnimation.svelte";
 
   import CategorySelect from "./components/CategorySelect.svelte";
+  import NavLinks from "./components/NavLinks.svelte";
   /**
    * @type {number}
    */
@@ -24,6 +25,7 @@
       {/if}
     </div>
     <div class="categories-and-settings">
+      <NavLinks />
       <CategorySelect />
     </div>
   </div>
