@@ -14,7 +14,7 @@
 
 <div id={"route-" + route}>
   {#if pathStore.match(path.replace("#/", ""), route)}
-    <div>
+    <div data-testid={"route-" + path.replace("#/", "") + "-active"}>
       <slot />
     </div>
   {/if}
