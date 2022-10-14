@@ -1,6 +1,9 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
+  import NotFound404 from "./components/NotFound404.svelte";
   import Header from "./Header.svelte";
+  import Route from "./router/route.svelte";
+  import Divider from "./style/divider.svelte";
   import GlobalStyles from "./style/GlobalStyles.svelte";
 </script>
 
@@ -9,7 +12,11 @@
   <Header />
   <div class="main-wrapper">
     <main>
-      <CardsPanel />
+      <Route route={""}><CardsPanel /></Route>
+      <Route route={"settings"}>settings</Route>
+      <Route route={(p) => p !== "settings" && p !== ""}><NotFound404 /></Route>
+
+      <Divider />
     </main>
   </div>
 </div>

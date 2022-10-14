@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<span />
+<span data-testid="global-styles" />
 
 <style>
   @font-face {
