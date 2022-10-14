@@ -1,5 +1,6 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
+  import EditCategories from "./components/EditCategories.svelte";
   import NotFound404 from "./components/NotFound404.svelte";
   import Header from "./Header.svelte";
   import Route from "./router/route.svelte";
@@ -13,7 +14,7 @@
   <div class="main-wrapper">
     <main>
       <Route route={""}><CardsPanel /></Route>
-      <Route route={"settings"}>settings</Route>
+      <Route route={"settings"}><EditCategories /></Route>
       <Route route={(p) => p !== "settings" && p !== ""}><NotFound404 /></Route>
 
       <Divider />
