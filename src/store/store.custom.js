@@ -15,7 +15,10 @@ const createCustomCategoryStore = (
   };
   const deleteCategory = (catId) =>
     updateCustomCategory(catId, { cardsIds: [], customId: catId, name: "" });
-  return { subscribe, updateCustomCategory, deleteCategory };
+  /** @type {( category :CustomCategory )=> boolean} */
+  const isCatExist = (category) =>
+    !!(category.name && category.cardsIds.length);
+  return { subscribe, updateCustomCategory, deleteCategory, isCatExist };
 };
 /**@type {CustomCategory[]} */
 const baseCategories = [1, 2, 3, 4].map((c) => ({
@@ -24,4 +27,4 @@ const baseCategories = [1, 2, 3, 4].map((c) => ({
   customId: c,
 }));
 
-export const categoryStore = createCustomCategoryStore([]);
+export const categoryStore = createCustomCategoryStore(baseCategories);
