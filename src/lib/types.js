@@ -14,7 +14,16 @@
  * @prop {HTMLAudioElement=} audioElement
  * */
 
-/**@typedef BigCard @prop {string} name
+/**
+ * @typedef BigCard @prop {string} name
  * @prop {string} content
  * @prop {string} color
  * @prop {string} image}*/
+
+/**
+ * @typedef CustomCategory
+ * @prop  {number } customId
+ * @prop {number []} cardsIds
+ * @prop {string} name
+ *
+ */
