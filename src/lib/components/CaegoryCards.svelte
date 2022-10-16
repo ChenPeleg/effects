@@ -2,10 +2,10 @@
   import { quintOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";
   import { flip } from "svelte/animate";
+  import { CardStore } from "../../store/store.cards";
 
   const [send, receive] = crossfade({
     duration: (d) => Math.sqrt(d * 200),
-
     fallback(node, params) {
       const style = getComputedStyle(node);
       const transform = style.transform === "none" ? "" : style.transform;
@@ -20,73 +20,60 @@
       };
     },
   });
+  const allCards = CardStore.getAllCards();
 
   let uid = 1;
 
-  let todos = [
-    { id: uid++, done: false, description: "write some docs" },
-    { id: uid++, done: false, description: "start writing blog post" },
-    { id: uid++, done: true, description: "buy some milk" },
-    { id: uid++, done: false, description: "mow the lawn" },
-    { id: uid++, done: false, description: "feed the turtle" },
-    { id: uid++, done: false, description: "fix some bugs" },
-  ];
-
-  function add(input) {
-    const todo = {
+  let cards = [
+    {
       id: uid++,
-      done: false,
-      description: input.value,
+      isInCategory: false,
+      description: "write some docs",
+      cardContent: {},
+    },
+  ];
+  cards = allCards.map((c) => {
+    return {
+      id: c.id,
+      isInCategory: false,
+      description: c.name,
+      cardContent: c,
     };
+  });
 
-    todos = [todo, ...todos];
-    input.value = "";
-  }
-
-  function remove(todo) {
-    todos = todos.filter((t) => t !== todo);
-  }
-
-  function mark(todo, done) {
-    todo.done = done;
-    remove(todo);
-    todos = todos.concat(todo);
-  }
+  const mark = (card, isInCategory) => {
+    card.isInCategory = isInCategory;
+    cards = cards.filter((t) => t !== card);
+    cards = cards.concat(card);
+  };
 </script>
 
 <div class="board">
-  <input
-    placeholder="what needs to be done?"
-    on:keydown={(e) => e.key === "Enter" && add(e.target)}
-  />
-
   <div class="left">
-    <h2>todo</h2>
-    {#each todos.filter((t) => !t.done) as todo (todo.id)}
+    <h3>Choose effect</h3>
+    {#each cards.filter((t) => !t.isInCategory) as card (card.id)}
       <label
-        in:receive={{ key: todo.id }}
-        out:send={{ key: todo.id }}
+        in:receive={{ key: card.id }}
+        out:send={{ key: card.id }}
         animate:flip
       >
-        <input type="checkbox" on:change={() => mark(todo, true)} />
-        {todo.description}
-        <button on:click={() => remove(todo)}>remove</button>
+        <input type="checkbox" on:change={() => mark(card, true)} />
+        {card.description}
       </label>
     {/each}
   </div>
 
   <div class="right">
-    <h2>done</h2>
-    {#each todos.filter((t) => t.done) as todo (todo.id)}
+    <h3>Inside categories</h3>
+    {#each cards.filter((t) => t.isInCategory) as card (card.id)}
       <label
-        class="done"
-        in:receive={{ key: todo.id }}
-        out:send={{ key: todo.id }}
+        class="isInCategory"
+        in:receive={{ key: card.id }}
+        out:send={{ key: card.id }}
         animate:flip
       >
-        <input type="checkbox" checked on:change={() => mark(todo, false)} />
-        {todo.description}
-        <button on:click={() => remove(todo)}>remove</button>
+        <input type="checkbox" checked on:change={() => mark(card, false)} />
+        {card.description}
       </label>
     {/each}
   </div>
@@ -106,16 +93,10 @@
     margin: 0 auto;
   }
 
-  .board > input {
-    font-size: 1.4em;
-    grid-column: 1/3;
-  }
-
-  h2 {
-    font-size: 2em;
+  h3 {
     font-weight: 200;
     user-select: none;
-    margin: 0 0 0.5em 0;
+    margin: 0 0 10px 0;
   }
 
   label {
@@ -137,7 +118,7 @@
     margin: 0;
   }
 
-  .done {
+  .isInCategory {
     border: 1px solid hsl(240, 8%, 90%);
     background-color: hsl(240, 8%, 98%);
   }
@@ -146,15 +127,9 @@
     position: absolute;
     top: 0;
     right: 0.2em;
-    width: 2em;
+    width: 20px;
     height: 100%;
-    background: no-repeat 50% 50%
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23676778' d='M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M17,7H14.5L13.5,6H10.5L9.5,7H7V9H17V7M9,18H15A1,1 0 0,0 16,17V10H8V17A1,1 0 0,0 9,18Z'%3E%3C/path%3E%3C/svg%3E");
-    background-size: 1.4em 1.4em;
     border: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    text-indent: -9999px;
     cursor: pointer;
   }
 

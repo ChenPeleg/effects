@@ -13,7 +13,4 @@
 </div>
 
 <style>
-  .cards-wrapper {
-    height: 1000px;
-  }
 </style>
