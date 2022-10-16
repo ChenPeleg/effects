@@ -1,3 +1,4 @@
+import { storageService } from "../services/storage.service";
 import { writable } from "svelte/store";
 
 const createCustomCategoryStore = (
@@ -10,6 +11,7 @@ const createCustomCategoryStore = (
       const cat = s.find((c) => c.customId === catId);
       cat.cardsIds = category.cardsIds;
       cat.name = category.name;
+      storageService.saveCategories(s);
       return s;
     });
   };
@@ -27,4 +29,8 @@ const baseCategories = [1, 2, 3, 4].map((c) => ({
   customId: c,
 }));
 
-export const categoryStore = createCustomCategoryStore(baseCategories);
+const lsCategories = storageService.getCategories();
+
+export const categoryStore = createCustomCategoryStore(
+  lsCategories || baseCategories
+);
