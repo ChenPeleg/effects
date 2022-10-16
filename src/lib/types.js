@@ -15,7 +15,8 @@
  * */
 
 /**
- * @typedef BigCard @prop {string} name
+ * @typedef BigCard
+ * @prop {string} name
  * @prop {string} content
  * @prop {string} color
  * @prop {string} image}*/
