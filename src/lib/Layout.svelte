@@ -1,6 +1,6 @@
 <script>
   import CardsPanel from "./CardsPanel.svelte";
-  import EditCategories from "./components/EditCategories.svelte";
+
   import NotFound404 from "./components/NotFound404.svelte";
   import Header from "./Header.svelte";
   import Route from "./router/route.svelte";

@@ -1,13 +1,21 @@
 <script>
+  import { SettingsStore } from "../../store/settings.store";
   import { categoryStore } from "../../store/store.custom";
+  SettingsStore;
+  const selectSlot = (slotId) => {
+    SettingsStore.setSlotInEdit(slotId);
+  };
 </script>
 
 <div>
   <div class="flex-box">
-    Edit categories
     {#each $categoryStore as saveSlot}
-      <div class="save-slot">
-        {saveSlot.customId}
+      <div
+        class="save-slot"
+        class:isSelected={$SettingsStore.slotInEdit === saveSlot.customId}
+        on:click={(ev) => selectSlot(saveSlot.customId)}
+      >
+        {saveSlot.name || " Slot " + saveSlot.customId}
       </div>
     {/each}
   </div>
@@ -38,5 +46,8 @@
     border-radius: 0.25em;
     box-shadow: var(--main-box-shadow);
     padding: 0.25rem var(--base-side-gap);
+  }
+  .save-slot.isSelected {
+    background-color: aqua;
   }
 </style>

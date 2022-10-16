@@ -1,5 +1,5 @@
 <script>
-  import EditCategories from "./components/EditCategories.svelte";
+  import EditCategories from "./components/ChooseEditCategories.svelte";
 </script>
 
 <div>
