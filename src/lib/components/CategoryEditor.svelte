@@ -24,23 +24,33 @@
     currentCat.name = name;
     categoryStore.updateCustomCategory(slodId, currentCat);
   };
+  const clear = () => {
+    categoryStore.deleteCategory(slodId);
+  };
   onDestroy(() => {
     unsubscribe1();
   });
 </script>
 
 <div class="wrapper">
-  <div class="input-wrapper">
-    <input
-      class="form-input"
-      bind:value={name}
-      maxlength="20"
-      on:focusout={(ev) => updatename()}
-    />
+  <div class="row">
+    <div class="input-wrapper">
+      <input
+        class="form-input"
+        bind:value={name}
+        maxlength="20"
+        on:focusout={(ev) => updatename()}
+      />
+    </div>
+    <button class="clear-button" on:click={(ev) => clear()}>Clear</button>
   </div>
 </div>
 
 <style>
+  div.row {
+    display: flex;
+    flex-direction: row;
+  }
   div.wrapper {
     display: flex;
     flex-direction: column;
@@ -66,5 +76,28 @@
     padding-bottom: 0;
     border-color: #6c6a6a;
     outline: none;
+  }
+  .clear-button {
+    font-size: calc(var(--main-font-size) - 5px);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+    min-width: 140px;
+
+    background: rgb(222, 0, 0) no-repeat;
+    height: 2.4rem;
+    --base-side-gap: 0.5rem;
+    margin-right: var(--base-side-gap);
+    margin-left: var(--base-side-gap);
+
+    border: 0px solid #dfdfdf;
+
+    border-radius: 0.25em;
+    box-shadow: var(--main-box-shadow);
+    padding: 0.25rem var(--base-side-gap);
+  }
+  .clear-button:hover {
+    background: rgb(255, 0, 0) no-repeat;
   }
 </style>
