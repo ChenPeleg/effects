@@ -3,6 +3,9 @@
   import { crossfade } from "svelte/transition";
   import { flip } from "svelte/animate";
   import { CardStore } from "../../store/store.cards";
+  import { categoryStore } from "../../store/store.custom";
+  import { SettingsStore } from "../../store/settings.store";
+  import { onDestroy } from "svelte";
 
   const [send, receive] = crossfade({
     duration: (d) => Math.sqrt(d * 200),
@@ -21,30 +24,56 @@
     },
   });
   const allCards = CardStore.getAllCards();
-
-  let uid = 1;
+  /**@type { CustomCategory[]}*/
+  let allCategories = [];
+  let catInEdit = null;
 
   let cards = [
     {
-      id: uid++,
+      id: 1,
       isInCategory: false,
       description: "write some docs",
       cardContent: {},
     },
   ];
-  cards = allCards.map((c) => {
-    return {
-      id: c.id,
-      isInCategory: false,
-      description: c.name,
-      cardContent: c,
-    };
+  function updateCards() {
+    const cureentCategory = allCategories.find((c) => c.customId === catInEdit);
+    if (!cureentCategory) {
+      return;
+    }
+
+    cards = allCards.map((c) => {
+      return {
+        id: c.id,
+        isInCategory: cureentCategory.cardsIds.includes(c.id),
+        description: c.icon + " " + c.name,
+        cardContent: c,
+      };
+    });
+  }
+  let unsbscribe = categoryStore.subscribe((s) => (allCategories = s));
+  let unsbscribe2 = SettingsStore.subscribe((s) => {
+    catInEdit = s.slotInEdit;
+    updateCards();
+  });
+  onDestroy(() => {
+    unsbscribe();
+    unsbscribe2();
   });
 
   const mark = (card, isInCategory) => {
     card.isInCategory = isInCategory;
     cards = cards.filter((t) => t !== card);
     cards = cards.concat(card);
+    const currentCategory = allCategories.find((c) => c.customId === catInEdit);
+    if (!currentCategory) {
+      return;
+    }
+    categoryStore.updateCustomCategory(catInEdit, {
+      cardsIds: cards.filter((t) => t.isInCategory).map((c) => c.id),
+      name: currentCategory.name,
+      customId: catInEdit,
+    });
   };
 </script>
 
@@ -121,19 +150,5 @@
   .isInCategory {
     border: 1px solid hsl(240, 8%, 90%);
     background-color: hsl(240, 8%, 98%);
-  }
-
-  button {
-    position: absolute;
-    top: 0;
-    right: 0.2em;
-    width: 20px;
-    height: 100%;
-    border: none;
-    cursor: pointer;
-  }
-
-  label:hover button {
-    opacity: 1;
   }
 </style>
