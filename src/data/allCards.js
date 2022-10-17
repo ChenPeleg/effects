@@ -178,6 +178,30 @@ const allCardsWithoutAudio = [
     icon: "🎹",
     category: [CategoryNames.GAMES, CategoryNames.SONG],
   },
+  {
+    color: "blue",
+    soundFile: "hawai50",
+    name: "hawai50",
+    id: 23,
+    icon: "🎺",
+    category: [CategoryNames.GAMES, CategoryNames.SONG],
+  },
+  {
+    color: "blue",
+    soundFile: "mission-imposable",
+    name: "mission-imposable",
+    id: 24,
+    icon: "🔥",
+    category: [CategoryNames.GAMES, CategoryNames.SONG],
+  },
+  {
+    color: "blue",
+    soundFile: "dabadaba",
+    name: "dabadaba",
+    id: 25,
+    icon: "🖼️",
+    category: [CategoryNames.GAMES, CategoryNames.SONG],
+  },
 ];
 const allCards = allCardsWithoutAudio.map((c) => ({
   ...c,
