@@ -23,8 +23,10 @@
 
 <style>
   .flex-box {
+    max-width: 98vw;
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     flex-direction: row;
   }
   .save-slot {
@@ -34,9 +36,10 @@
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
     min-width: 140px;
+    margin: 5px;
+    height: 1.8rem;
 
     background: rgb(207, 194, 194) no-repeat;
-    height: 1.8rem;
     --base-side-gap: 0.5rem;
     margin-right: var(--base-side-gap);
     margin-left: var(--base-side-gap);
@@ -49,5 +52,12 @@
   }
   .save-slot.isSelected {
     background-color: aqua;
+  }
+  @media (max-width: 576px) {
+    .save-slot {
+      min-width: 80px;
+      margin: 4px;
+      height: 1.3rem;
+    }
   }
 </style>
