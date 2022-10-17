@@ -9,4 +9,10 @@
     font-size: calc(var(--main-icon-size) - 15px);
     text-decoration: none;
   }
+  @media (max-width: 576px) {
+    a.link {
+      font-size: calc(var(--main-icon-size) - 20px);
+      text-decoration: none;
+    }
+  }
 </style>

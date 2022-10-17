@@ -72,10 +72,27 @@
     width: 100%;
     min-width: 100vw;
     overflow: hidden;
-    /* padding-bottom: 15px;
-    margin-bottom: 5px; */
+
     max-width: 62vw;
     display: flex;
     justify-content: space-between;
+  }
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 20px;
+      text-shadow: 2px 2px 1px var(--shaow-color);
+    }
+    .header-wrapper {
+      width: 90%;
+      margin: 0px 5px;
+      box-sizing: border-box;
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .categories-and-settings {
+      min-width: 80px;
+    }
   }
 </style>
