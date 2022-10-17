@@ -5,18 +5,24 @@
   import { pathStore } from "../../store/store.path";
   import { onDestroy } from "svelte";
   import { categoryStore } from "../../store/store.custom";
-  /**@type {{value: string, isCustom: boolean} }*/
-  let selected = { value: "", isCustom: false };
+
+  const CUSTOM_INDICATOR = "__custom__";
+
+  /**@type {string }*/
+  let selected = "";
   let path;
   /**@type {CustomCategory[]}*/
   let custumCategories = [];
 
   let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
+
   const categoryChanged = (ev) => {
-    if (selected.isCustom) {
-      CardStore.customCategoryChosen(selected.value || "");
+    if (selected.includes(CUSTOM_INDICATOR)) {
+      CardStore.customCategoryChosen(
+        (selected || "").replace(CUSTOM_INDICATOR, "")
+      );
     } else {
-      CardStore.categoryChosen(selected.value || "");
+      CardStore.categoryChosen(selected || "");
     }
   };
   let lang;
@@ -44,16 +50,13 @@
     {#each custumCategories as customCat}
       <option
         data-testid={"custumCategories_" + customCat.name}
-        value={{ value: customCat.name, isCustom: true }}
+        value={customCat.name + CUSTOM_INDICATOR}
       >
-        {LanguageService.toStandardCase(customCat.name) + " 123"}
+        {LanguageService.toStandardCase(customCat.name)}
       </option>
     {/each}
     {#each categories as category}
-      <option
-        data-testid={"category_" + category}
-        value={{ value: category, isCustom: false }}
-      >
+      <option data-testid={"category_" + category} value={category}>
         {LanguageService.toStandardCase(category)}
       </option>
     {/each}

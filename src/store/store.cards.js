@@ -18,7 +18,7 @@ const createCardStore = (
   const customCategoryChosen = (/** @type {string} */ category) => {
     update((s) => {
       const allCustomCats = categoryStore.getAll();
-      console.log(allCustomCats);
+
       const SelectedCategory = allCustomCats.find((c) => c.name === category);
 
       return CardsService.filterCardsByCustomCategory(
