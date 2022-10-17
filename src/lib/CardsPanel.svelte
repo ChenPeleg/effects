@@ -14,12 +14,15 @@
 
   let cards = [];
 
-  const unsubscribe = CardStore.subscribe((Storecards) => (cards = Storecards));
+  const unsubscribe = CardStore.subscribe((Storecards) => {
+    console.log(Storecards);
+    cards = Storecards;
+  });
   onDestroy(unsubscribe);
 </script>
 
 <div class="cards-pannel-flex">
-  {#each cards as card}
+  {#each cards as card (card.id)}
     <Card isCurrent={card.id === currentCard} cardContent={{ ...card }} />
   {/each}
 </div>

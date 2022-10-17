@@ -6,6 +6,7 @@
 
   import CategorySelect from "./components/CategorySelect.svelte";
   import NavLinks from "./components/NavLinks.svelte";
+  import StopButton from "./components/StopButton.svelte";
   /**
    * @type {number}
    */
@@ -22,6 +23,7 @@
       <Divider w={15} />
       {#if card > 0}
         <WaveAnimation />
+        <StopButton />
       {/if}
     </div>
     <div class="categories-and-settings">
