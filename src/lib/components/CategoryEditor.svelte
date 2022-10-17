@@ -11,9 +11,6 @@
     slodId = s.slotInEdit;
     const currentCat = allCats.find((c) => c.customId === slodId);
     name = currentCat ? currentCat.name : name;
-    setTimeout(() => {
-      //
-    }, 300);
   });
   categoryStore.subscribe((cats) => (allCats = cats));
   const updatename = () => {
@@ -99,5 +96,41 @@
   }
   .clear-button:hover {
     background: rgb(255, 0, 0) no-repeat;
+  }
+  @media (max-width: 576px) {
+    input.form-input {
+      font-size: calc(var(--main-font-size) - 10px);
+      max-width: 155px;
+    }
+    .input-wrapper {
+      max-height: 24px;
+      padding: 2px;
+      max-width: 160px;
+    }
+    div.wrapper {
+      margin: 5px;
+    }
+  }
+  @media (max-width: 576px) {
+    .clear-button {
+      font-size: calc(var(--main-font-size) - 10px);
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-in-out;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-in-out;
+      min-width: 80px;
+
+      background: rgb(222, 0, 0) no-repeat;
+      height: 1.5rem;
+      --base-side-gap: 0.5rem;
+      margin-right: var(--base-side-gap);
+      margin-left: var(--base-side-gap);
+
+      border: 0px solid #dfdfdf;
+
+      border-radius: 0.25em;
+      box-shadow: var(--main-box-shadow);
+      padding: 0.25rem var(--base-side-gap);
+    }
   }
 </style>

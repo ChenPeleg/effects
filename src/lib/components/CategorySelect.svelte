@@ -83,7 +83,7 @@
     margin-left: var(--base-side-gap);
     background-position-y: 2px;
     background-position-x: 2%;
-
+    max-width: 50vw;
     border: 1px solid #dfdfdf;
     outline-color: transparent;
 

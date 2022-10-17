@@ -135,6 +135,7 @@
     margin: 0 0 0.5em 0;
     border-radius: 2px;
     user-select: none;
+    max-width: 40vw;
     border: 1px solid hsl(240, 8%, 70%);
     background-color: hsl(240, 8%, 93%);
     color: #333;
