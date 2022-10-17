@@ -1,4 +1,4 @@
-<div>
+<div class="nav-links-wrapper">
   <a class="link" href="#/">🔊</a>
   <a class="link" href="#/settings">⚙️</a>
 </div>
@@ -13,6 +13,10 @@
     a.link {
       font-size: calc(var(--main-icon-size) - 20px);
       text-decoration: none;
+    }
+    .nav-links-wrapper {
+      display: flex;
+      flex-direction: row;
     }
   }
 </style>
