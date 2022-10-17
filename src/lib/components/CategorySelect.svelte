@@ -2,23 +2,59 @@
   import { CardStore } from "../../store/store.cards";
   import { LanguageService } from "../../services/language.service";
   import { CategoryNames } from "../models/categories";
+  import { pathStore } from "../../store/store.path";
+  import { onDestroy } from "svelte";
+  import { categoryStore } from "../../store/store.custom";
 
-  let selected;
+  const CUSTOM_INDICATOR = "__custom__";
+
+  /**@type {string }*/
+  let selected = "";
+  let path;
+  /**@type {CustomCategory[]}*/
+  let custumCategories = [];
 
   let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
+
   const categoryChanged = (ev) => {
-    CardStore.categoryChosen(selected);
+    if (selected.includes(CUSTOM_INDICATOR)) {
+      CardStore.customCategoryChosen(
+        (selected || "").replace(CUSTOM_INDICATOR, "")
+      );
+    } else {
+      CardStore.categoryChosen(selected || "");
+    }
   };
   let lang;
+  const unsubscribe = pathStore.subscribe((p) => {
+    path = p;
+  });
+  const unsubscribe2 = categoryStore.subscribe((s) => {
+    custumCategories = s.filter((c) => categoryStore.isCatExist(c));
+  });
+
+  onDestroy(() => {
+    unsubscribe();
+    unsubscribe2();
+  });
 </script>
 
 <div>
   <select
     class={lang === "en" ? "rtl" : "ltr"}
     data-testid="category-select-select"
+    disabled={!pathStore.match(path.replace("#/", ""), "")}
     bind:value={selected}
     on:change={categoryChanged}
   >
+    {#each custumCategories as customCat}
+      <option
+        data-testid={"custumCategories_" + customCat.name}
+        value={customCat.name + CUSTOM_INDICATOR}
+      >
+        {LanguageService.toStandardCase(customCat.name)}
+      </option>
+    {/each}
     {#each categories as category}
       <option data-testid={"category_" + category} value={category}>
         {LanguageService.toStandardCase(category)}

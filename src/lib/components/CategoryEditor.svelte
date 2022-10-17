@@ -1,7 +1,7 @@
 <script>
   import { SettingsStore } from "../../store/settings.store";
   import { onDestroy } from "svelte";
-  import { categoryStore } from "../../store/store.custom";
+  import { categoryStore } from "../../store/store.custom.js";
 
   let name;
   let slodId;

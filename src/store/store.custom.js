@@ -1,6 +1,7 @@
 import { storageService } from "../services/storage.service";
-import { writable } from "svelte/store";
-
+import { derived, writable } from "svelte/store";
+/** @type {CustomCategory []} */
+let customCategories = [];
 const createCustomCategoryStore = (
   /** @type {CustomCategory []} */ allCustomCategories
 ) => {
@@ -12,15 +13,24 @@ const createCustomCategoryStore = (
       cat.cardsIds = category.cardsIds;
       cat.name = category.name;
       storageService.saveCategories(s);
+      customCategories = s;
       return s;
     });
   };
+  subscribe((all) => (customCategories = all));
+  const getAll = () => customCategories;
   const deleteCategory = (catId) =>
     updateCustomCategory(catId, { cardsIds: [], customId: catId, name: "" });
   /** @type {( category :CustomCategory )=> boolean} */
   const isCatExist = (category) =>
     !!(category.name && category.cardsIds.length);
-  return { subscribe, updateCustomCategory, deleteCategory, isCatExist };
+  return {
+    subscribe,
+    updateCustomCategory,
+    deleteCategory,
+    isCatExist,
+    getAll,
+  };
 };
 /**@type {CustomCategory[]} */
 const baseCategories = [1, 2, 3, 4].map((c) => ({

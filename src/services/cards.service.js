@@ -16,4 +16,12 @@ export const CardsService = {
         c.category.includes(category)
     );
   },
+  /**
+   * @param {CardContent[]} cards
+   * @param {CustomCategory} customCategory
+   * @returns {CardContent[]}
+   */
+  filterCardsByCustomCategory(cards, customCategory) {
+    return cards.filter((c) => customCategory.cardsIds.includes(c.id));
+  },
 };
