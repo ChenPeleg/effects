@@ -3,8 +3,9 @@
   import { LanguageService } from "../../services/language.service";
   import { CategoryNames } from "../models/categories";
   import { pathStore } from "../../store/store.path";
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { categoryStore } from "../../store/store.custom";
+  import { storageService } from "../../services/storage.service";
 
   const CUSTOM_INDICATOR = "__custom__";
 
@@ -17,6 +18,7 @@
   let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
 
   const categoryChanged = (ev) => {
+    storageService.saveSelection(selected);
     if (selected.includes(CUSTOM_INDICATOR)) {
       CardStore.customCategoryChosen(
         (selected || "").replace(CUSTOM_INDICATOR, "")
@@ -36,6 +38,13 @@
   onDestroy(() => {
     unsubscribe();
     unsubscribe2();
+  });
+  onMount(() => {
+    const saved = storageService.getSelection();
+    if (saved) {
+      selected = saved;
+      categoryChanged();
+    }
   });
 </script>
 
