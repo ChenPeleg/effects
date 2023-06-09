@@ -8,6 +8,7 @@
   export let isCurrent;
   let clicks = 0;
 
+
   const standartCaseName = LanguageService.toStandardCase(cardContent.name);
 
   /**@type {MouseEventHandler} */

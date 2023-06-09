@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
+    "build:pages": "vite build:pages",
     "preview": "vite preview",
     "test": "jest src",
     "test:watch": "npm run test -- --watch",

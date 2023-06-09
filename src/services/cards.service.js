@@ -2,6 +2,7 @@ import { CategoryNames } from "../lib/models/categories";
 
 export const CardsService = {
   /**
+   * This function does this
    * @param {CardContent[]} cards
    * @param {string} category
    * @returns {CardContent[]}
