@@ -33,6 +33,6 @@ jobs:
             "nodeversion": "18",
             "dist": "build",
             "custom": "custom data"
-          }
+           }
           }'
 
