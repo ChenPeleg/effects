@@ -8,11 +8,12 @@
     "node": "18"
   },
   "scripts": {
-    "predeploy": "npm run build", 
+    "predeploy": "vite build --mode prodgithub",
     "deploy": "gh-pages -d build",
-    "dev": "vite",
+    "dev": "vite --mode prodfirebase",
     "build": "vite build",
-    "build:pages": "vite build:pages",
+    "build:pages": "vite build --mode prodgithub",
+    "build:site": "vite build --mode prodfirebase",
     "preview": "vite preview",
     "test": "jest src",
     "test:watch": "npm run test -- --watch",
