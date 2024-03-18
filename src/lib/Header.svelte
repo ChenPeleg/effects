@@ -7,6 +7,7 @@
   import CategorySelect from "./components/CategorySelect.svelte";
   import NavLinks from "./components/NavLinks.svelte";
   import StopButton from "./components/StopButton.svelte";
+  import {appConfig} from '../config/appConfig.js';
   /**
    * @type {number}
    */
@@ -19,6 +20,10 @@
 <header data-testid="app-header">
   <div class="header-wrapper">
     <div class="header-and-wave">
+      {#if appConfig.hasSaveOption}
+        <Divider w={30} />
+      {/if}
+
       <h1>Effects</h1>
       <Divider w={15} />
       {#if card > 0}

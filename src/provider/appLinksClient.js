@@ -31,6 +31,11 @@ class ApplinksPanelOptionsGraphicUtils {
         left: 0;
         top:0;
         border-radius: 0 0 2px 0 ;
+        z-index: 1000;
+        button {
+          outline: none;
+          border: none;
+        }
     }
     
     #${id}-main-user-button {
@@ -303,6 +308,7 @@ export class ApplinksPanel {
         this.panelOptions = panelOptions || new ApplinksPanelOptions();
 
         this.#panelElement = this.#createPanelElement();
+        console.log(this.#panelElement);
 
         this.#addCSS(ApplinksPanelOptionsGraphicUtils.getCss(this.#applinksPanelId));
     }
