@@ -3,11 +3,12 @@ import { CardStore } from "./store.cards";
 
 const MAXIMUM_SOUND_TIME = 2000;
 
-/**@type{MainStore} */
+/**@type { MainStore } */
 const initialStore = {
   user: "",
   currentCard: 0,
   currentCardContent: null,
+  soundPlaying: true,
 };
 
 /**
@@ -49,9 +50,17 @@ const CreateMainStore = () => {
       // });
     }, MAXIMUM_SOUND_TIME);
   };
+const  setSoundPlaying = (/** @type {boolean} */ isPlaying) => {
+    update((s) => {
+      s.soundPlaying = isPlaying;
+
+      return s;
+    });
+  };
   return {
     subscribe,
     cardChosen,
+    setSoundPlaying
   };
 };
 export const MainStore = CreateMainStore();
