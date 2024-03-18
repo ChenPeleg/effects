@@ -16,6 +16,7 @@ const configBuilder = () => {
     return {
         nodeENV: nodeenv,
         environmentName: envName,
+        hasSaveOption: envName === 'prodfirebase',
     };
 }
 
