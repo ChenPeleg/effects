@@ -21,7 +21,7 @@
   <div class="header-wrapper">
     <div class="header-and-wave">
       {#if appConfig.hasSaveOption}
-        <Divider w={30} />
+        <Divider w={33} />
       {/if}
 
       <h1>Effects</h1>

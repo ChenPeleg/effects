@@ -3,9 +3,14 @@ import {CardStore} from "./store.cards";
 
 const MAXIMUM_SOUND_TIME = 2000;
 
+
+
+
 /**@type { MainStore } */
 const initialStore = {
-    user: "", currentCard: 0, currentCardContent: null, soundPlaying: true,
+    user: "", currentCard: 0, currentCardContent: null,
+        soundPlaying:
+            localStorage.getItem('soundIs' )  === 'on',
 };
 
 /**
@@ -53,6 +58,7 @@ const CreateMainStore = () => {
     const setSoundPlaying = (/** @type {boolean} */ isPlaying) => {
         update((s) => {
             s.soundPlaying = isPlaying;
+            localStorage.setItem('soundIs' , isPlaying ? 'on' : 'off')
             if (audio) {
                 audio.volume = isPlaying ? 1 : 0;
             }
