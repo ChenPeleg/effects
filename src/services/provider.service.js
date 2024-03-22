@@ -1,5 +1,6 @@
 import {APPLinksClient, ApplinksPanel} from '../provider/appLinksClient.js';
-console.log('record.service.js');
+import {MainStore} from '../store/store.main.js';
+
 export const providerService = {
     /**
      * @type {APPLinksClient | null}
@@ -18,14 +19,24 @@ export const providerService = {
         this.client.loadSavedRecords().then((data) => {
             console.log(data);
         });
+        this.client.setClientActionCallBack = (data) => {
+            switch (data.type) {
+                case APPLinksClient.ApplinksClientEvents.UserWasSet:
+                    console.log('UserWasSet');
+                    break;
+                case APPLinksClient.ApplinksClientEvents.UserLoggedOut:
+                    console.log('UserWasRemoved');
+                    break;
+            }
+            MainStore.updateUser(this.client.user);
+        };
 
     }, saveDebounce(data) {
         if (this.client === null) {
             return;
         }
         this.client.debounceSave(data);
-    },
-    isLogged() {
+    }, isLogged() {
         return this.client?.userStatus === APPLinksClient.Messages.UserWasSet;
     }
 };
