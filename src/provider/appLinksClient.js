@@ -633,6 +633,7 @@ ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
  * @typedef ApplinksClientOptions
  * @property { boolean } useClientPanel
  * @property { boolean } useLocalStorage
+ * @property { number } debounceTime
  * @property { APPLinkUtils | any } appLinkUtils
  * @property { ApplinksPanelOptions | any } panelOptions
  */
@@ -885,6 +886,9 @@ export class APPLinksClient {
     /** @type {UserData | null} */
     #UserData;
 
+    #debounceTime = 5000;
+    #lastSavedRecordTime = null;
+
     /**
      * @param {string} appId
      * @param {ApplinksClientOptions} options
@@ -892,6 +896,7 @@ export class APPLinksClient {
     constructor(
         appId,
         options = {
+            debounceTime: 5000,
             useClientPanel: false,
             useLocalStorage: true,
             appLinkUtils: APPLinkUtils,
@@ -901,6 +906,9 @@ export class APPLinksClient {
         this.#appId = appId;
         this.#options = options;
         this.#setUpPanel(options);
+        if (options.debaunceTime) {
+            this.#debounceTime = options.debaunceTime;
+        }
 
         if (options.useLocalStorage) {
             const result = this.#tryToUpdateUserDataFromLocalStorage();
@@ -1028,6 +1036,18 @@ export class APPLinksClient {
         this.#updatePanelStatus('updateComplete');
         return body;
     }
+
+    /**
+     * @param {Record<string, any>} dataToSave
+     */
+    debounceSave = (dataToSave) => {
+        if (this.#lastSavedRecordTime) {
+            clearTimeout(this.#lastSavedRecordTime);
+        }
+        this.#lastSavedRecordTime = setTimeout(() => {
+            this.savedRecord(dataToSave).then();
+        }, this.#debounceTime);
+    };
 
     /** @type {()=> Promise<LoginData>}*/
     async LoginThroughAppLinks() {
