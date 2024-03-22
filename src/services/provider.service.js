@@ -1,4 +1,5 @@
 import {APPLinksClient, ApplinksPanel} from '../provider/appLinksClient.js';
+
 import {MainStore} from '../store/store.main.js';
 
 export const providerService = {
@@ -19,6 +20,7 @@ export const providerService = {
         this.client.loadSavedRecords().then((data) => {
             console.log(data);
         });
+
         this.client.setClientActionCallBack = (data) => {
             switch (data.type) {
                 case APPLinksClient.ApplinksClientEvents.UserWasSet:
@@ -28,7 +30,7 @@ export const providerService = {
                     console.log('UserWasRemoved');
                     break;
             }
-            MainStore.updateUser(this.client.user);
+            // MainStore.updateUser(this.client.user);
         };
 
     }, saveDebounce(data) {

@@ -1,4 +1,5 @@
-import {providerService} from './provider.service.js';
+
+
 
 const LS_KEY = "effects_data";
 const CUSTOM_CATEGORIES = "CustomCategories";
@@ -16,7 +17,7 @@ export const storageService = {
         data[CUSTOM_CATEGORIES] = cats;
         data.timestamp = new Date().getTime();
         localStorage.setItem(LS_KEY, JSON.stringify(data));
-        providerService.saveDebounce(data);
+       // providerService.saveDebounce(data);
     }, getCategories: () => {
         const stringifiedData = localStorage.getItem(LS_KEY);
         let data = {};
@@ -35,7 +36,7 @@ export const storageService = {
         data[LAST_CATEGORY] = cat;
         data.timestamp = new Date().getTime();
         localStorage.setItem(LS_KEY, JSON.stringify(data));
-        providerService.saveDebounce(data);
+     //   providerService.saveDebounce(data);
 
     }, getSelection: () => {
         const stringifiedData = localStorage.getItem(LS_KEY);

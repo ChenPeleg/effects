@@ -66,6 +66,7 @@ const CreateMainStore = () => {
             return s;
         });
     };
+
     return {
         subscribe, cardChosen, setSoundPlaying, updateUser: (/** @type {string} */ user) => {
             update((s) => {
