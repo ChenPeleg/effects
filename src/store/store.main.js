@@ -8,7 +8,8 @@ const MAXIMUM_SOUND_TIME = 2000;
 
 /**@type { MainStore } */
 const initialStore = {
-    user: "", currentCard: 0, currentCardContent: null,
+    user: "",
+    currentCard: 0, currentCardContent: null,
         soundPlaying:
             localStorage.getItem('soundIs' )  === 'on',
 };
@@ -66,7 +67,12 @@ const CreateMainStore = () => {
         });
     };
     return {
-        subscribe, cardChosen, setSoundPlaying
+        subscribe, cardChosen, setSoundPlaying, updateUser: (/** @type {string} */ user) => {
+            update((s) => {
+                s.user = user;
+                return s;
+            });
+        }
     };
 };
 export const MainStore = CreateMainStore();

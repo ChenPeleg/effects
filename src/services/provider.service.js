@@ -1,6 +1,6 @@
 import {APPLinksClient, ApplinksPanel} from '../provider/appLinksClient.js';
-
-export const recordService = {
+console.log('record.service.js');
+export const providerService = {
     /**
      * @type {APPLinksClient | null}
      */
@@ -24,5 +24,8 @@ export const recordService = {
             return;
         }
         this.client.debounceSave(data);
+    },
+    isLogged() {
+        return this.client?.userStatus === APPLinksClient.Messages.UserWasSet;
     }
 };
