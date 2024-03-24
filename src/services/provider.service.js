@@ -1,7 +1,8 @@
 import {APPLinksClient, ApplinksPanel} from '../provider/appLinksClient.js';
 
 import {MainStore} from '../store/store.main.js';
- import {storageService} from './storage.service.js';
+import {storageService} from './storage.service.js';
+import {categoryStore} from '../store/store.custom.js';
 
 export const providerService = {
     /**
@@ -31,10 +32,15 @@ export const providerService = {
             }
             MainStore.updateUser(this.client.user);
         };
-        if (this.client.userStatus === APPLinksClient.Messages.UserWasSet) {
+        if (this.client.userStatus === APPLinksClient.Messages.UserIsSet) {
             this.client.loadSavedRecords().then((data) => {
-                console.log('loaded data', data);
-             //   const timeStamp = storageService.getTimeStampFromLs();
+
+                const timeStampFromProvider = data.app_data.timestamp;
+                const timestampFromLs = storageService.getTimeStampFromLs();
+                if (timeStampFromProvider > timestampFromLs) {
+                    categoryStore.updateAllCategoriesFromSave(data.app_data.CustomCategories);
+                }
+
 
             });
         }
