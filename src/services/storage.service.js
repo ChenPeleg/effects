@@ -17,7 +17,7 @@ export const storageService = {
         data[CUSTOM_CATEGORIES] = cats;
         data.timestamp = new Date().getTime();
         localStorage.setItem(LS_KEY, JSON.stringify(data));
-        // providerService.saveDebounce(data);
+        providerService.saveDebounce(data);
     }, getCategories: () => {
         const stringifiedData = localStorage.getItem(LS_KEY);
         let data = {};
@@ -35,6 +35,7 @@ export const storageService = {
         return data.timestamp || null;
     }
     , saveSelection: (cat) => {
+
         const stringifiedData = localStorage.getItem(LS_KEY);
         let data;
         if (!stringifiedData) {
@@ -45,7 +46,8 @@ export const storageService = {
         data[LAST_CATEGORY] = cat;
         data.timestamp = new Date().getTime();
         localStorage.setItem(LS_KEY, JSON.stringify(data));
-        providerService.saveDebounce(data);
+        // Do not save the selection
+
 
     }, getSelection: () => {
         const stringifyData = localStorage.getItem(LS_KEY);

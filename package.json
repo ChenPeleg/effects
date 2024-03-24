@@ -9,7 +9,7 @@
   },
   "scripts": {
     "predeploy": "vite build --mode prodgithub",
-    "deploy": "gh-pages -d build",
+    "deploy:hg": "gh-pages -d build",
     "dev": "vite --mode prodfirebase",
     "dev:github": "vite --mode prodgithub",
     "build": "vite build",
