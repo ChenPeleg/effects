@@ -50,7 +50,7 @@
 
 <div>
   <select
-    class={lang === "en" ? "rtl" : "ltr"}
+    class={ `${lang === "en" ? "rtl" : "ltr"} select-category` }
     data-testid="category-select-select"
     disabled={!pathStore.match(path.replace("#/", ""), "")}
     bind:value={selected}
@@ -115,5 +115,10 @@
   }
   select :hover:enabled {
     box-shadow: var(--main-box-shadow-hover);
+  }
+  @media (max-width: 600px) {
+    select {
+      max-width: 140px;
+    }
   }
 </style>

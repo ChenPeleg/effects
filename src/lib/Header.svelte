@@ -7,6 +7,7 @@
   import CategorySelect from "./components/CategorySelect.svelte";
   import NavLinks from "./components/NavLinks.svelte";
   import StopButton from "./components/StopButton.svelte";
+  import {appConfig} from '../config/appConfig.js';
   /**
    * @type {number}
    */
@@ -19,8 +20,13 @@
 <header data-testid="app-header">
   <div class="header-wrapper">
     <div class="header-and-wave">
+      {#if appConfig.hasSaveOption}
+        <Divider  w={33} />
+        <div class="more-mobile-space"></div>
+      {/if}
+
       <h1>Effects</h1>
-      <Divider w={15} />
+       <div class="desktop-divider"></div>
       {#if card > 0}
         <WaveAnimation />
         <StopButton />
@@ -77,6 +83,10 @@
     display: flex;
     justify-content: space-between;
   }
+  .desktop-divider{
+    width: 15px;
+    height: 15px;
+  }
   @media (max-width: 576px) {
     h1 {
       font-size: 20px;
@@ -93,6 +103,14 @@
     }
     .categories-and-settings {
       min-width: 80px;
+    }
+    .more-mobile-space {
+      width: 10px;
+      height: 10px;
+    }
+    .desktop-divider{
+      width: 4px;
+      height: 15px;
     }
   }
 </style>

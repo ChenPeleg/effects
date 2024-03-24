@@ -15,7 +15,7 @@
   let cards = [];
 
   const unsubscribe = CardStore.subscribe((Storecards) => {
-    console.log(Storecards);
+
     cards = Storecards;
   });
   onDestroy(unsubscribe);
