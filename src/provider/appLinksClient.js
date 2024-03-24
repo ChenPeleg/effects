@@ -1065,14 +1065,13 @@ export class APPLinksClient {
 
         const isMobile = screenWidth < 500;
 
-        const html = `<div id="iframe-container" style="width: 100%; overflow: hidden;max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
+        const html = `<div id="iframe-container" style="width: 100%; background-color: #0a1bd3; overflow: hidden;max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
             <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; background: #FFFFFF;" id="login-i-frame" src="${
             this.#util.htmlLoginUrl
         }"></iframe> </div>`;
 
         const newLoginWindow = window.open(
-            '',
-            '',
+           '', '',
             `width=${isMobile ? screenWidth : '500'},height=${isMobile ? screenHeight : '700'}`
         );
         this.#newLoginWindowRef = newLoginWindow;
@@ -1082,6 +1081,7 @@ export class APPLinksClient {
             newLoginWindow.addEventListener(
                 'message',
                 (msg) => {
+                    console.log('message received', msg)
                     const data = msg.data;
                     const { userData, appData, appSaveData, token, clientConfig, refreshToken } = data;
                     this.#util.setConfigs(clientConfig);
@@ -1104,7 +1104,7 @@ export class APPLinksClient {
                 },
                 false
             );
-            doc.write(html);
+              doc.write(html);
         });
     }
 
