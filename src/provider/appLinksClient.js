@@ -1117,11 +1117,12 @@ export class APPLinksClient {
             });
             throw new Error('logout failed');
         }
+        this.#UserData = null;
         this.#emitAction({
             type: APPLinksClient.ApplinksClientEvents.UserLoggedOut,
             data: this.#UserData,
         });
-        this.#UserData = null;
+
     }
 
     /**

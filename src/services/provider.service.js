@@ -28,13 +28,11 @@ export const providerService = {
                     console.log('UserWasRemoved');
                     break;
             }
-            console.log(data);
-            console.log(this.client.user);
            MainStore.updateUser(this.client.user);
         };
         if (this.client.userStatus === APPLinksClient.Messages.UserWasSet) {
             this.client.loadSavedRecords().then((data) => {
-                console.log(data);
+
             });
         }
 
