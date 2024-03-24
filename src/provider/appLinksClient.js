@@ -963,7 +963,7 @@ export class APPLinksClient {
             }
             this.#handleAuthFailure();
 
-            throw new Error('cannot load record without user data; auth failed');
+            throw new Error('Auth failed. Cannot load record');
         }
 
         await this.checkHeadersForAdditionalAction(headers);
