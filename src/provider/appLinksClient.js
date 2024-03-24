@@ -21,17 +21,22 @@ class ApplinksPanelOptionsGraphicUtils {
      **/
     static getCss = (id, panelOption) => {
         const popoverLeft = 6 + panelOption.customModifiers.x;
-        const popoverTop =
-            45 + ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) + panelOption.customModifiers.y;
-        const roundedPanelSizeChange = panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? -2 : 0;
-        const textRoundedModifier = panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? 0.7 : 1;
+        const popoverTop = 45 +
+            ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) +
+            panelOption.customModifiers.y;
+        const roundedPanelSizeChange = panelOption.panelType ===
+        ApplinksPanelOptions.PanelType.rounded ? -2 : 0;
+        const textRoundedModifier = panelOption.panelType ===
+        ApplinksPanelOptions.PanelType.rounded ? 0.7 : 1;
         return `
     :root {
        --popover-transition-duration: 0.1s;
     }
     #${id}-wrapper {
-        width: ${(40 + roundedPanelSizeChange) * (panelOption.customModifiers.sizeModifier / 100)}px;
-        height: ${(40 + roundedPanelSizeChange) * (panelOption.customModifiers.sizeModifier / 100)}px;
+        width: ${(40 + roundedPanelSizeChange) *
+        (panelOption.customModifiers.sizeModifier / 100)}px;
+        height: ${(40 + roundedPanelSizeChange) *
+        (panelOption.customModifiers.sizeModifier / 100)}px;
         background-color: ${panelOption.customModifiers.mainBgColor};
         background-opacity: 0.5;
         position: fixed;
@@ -40,7 +45,8 @@ class ApplinksPanelOptionsGraphicUtils {
         align-items: center;
         left: ${panelOption.customModifiers.x}px;
         top: ${panelOption.customModifiers.y}px;
-        border-radius: ${panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? '50%' : '0 0 2px 0'} ;
+        border-radius: ${panelOption.panelType ===
+        ApplinksPanelOptions.PanelType.rounded ? '50%' : '0 0 2px 0'} ;
         z-index: 1000;
          button {
           outline: none;
@@ -83,12 +89,10 @@ class ApplinksPanelOptionsGraphicUtils {
   
     #${id}-user-initials {
         color : black;
-        padding-top: ${
-            panelOption.panelType === ApplinksPanelOptions.PanelType.rounded
-                ? (panelOption.customModifiers.sizeModifier / 100) * 1.3
-                : '0'
-        }px;
-        font-size: ${(panelOption.customModifiers.sizeModifier / 100) * textRoundedModifier}rem;
+        padding-top: ${panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ?
+            (panelOption.customModifiers.sizeModifier / 100) * 1.3 : '0'}px;
+        font-size: ${(panelOption.customModifiers.sizeModifier / 100) *
+        textRoundedModifier}rem;
     }
     #${id}-popover {
         position: fixed;
@@ -231,7 +235,8 @@ body [popover] {
     }
     #${id}-message-info {
       position: fixed;
-      left: ${45 + ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) + panelOption.customModifiers.x}px;
+      left: ${45 + ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) +
+        panelOption.customModifiers.x}px;
       padding: 0;
       border-radius: 7px;
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
@@ -289,12 +294,10 @@ class ApplinksPanelOptions {
         topRight: 'topRight',
     };
     static PanelType = {
-        classic: 'classic',
-        rounded: 'rounded',
+        classic: 'classic', rounded: 'rounded',
     };
     static userIcon = {
-        icon: 'icon',
-        initials: 'initials',
+        icon: 'icon', initials: 'initials',
     };
 
     /**
@@ -331,9 +334,12 @@ class ApplinksPanelOptions {
         if (color === '#000000') {
             color = 'lightgray';
         }
-        if (color && !mainBgColor && panelType !== ApplinksPanelOptions.PanelType.rounded) {
-            mainBgColor = mainBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 20);
-            iconsBgColor = iconsBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
+        if (color && !mainBgColor && panelType !==
+            ApplinksPanelOptions.PanelType.rounded) {
+            mainBgColor =
+                mainBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 20);
+            iconsBgColor =
+                iconsBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
             textColor = textColor || ApplinksPanelOptions.makeHexColorLighter(color, -20);
             // menuColor = menuColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
         } else if (panelType === ApplinksPanelOptions.PanelType.rounded) {
@@ -359,12 +365,8 @@ class ApplinksPanelOptions {
             B = ((num >> 8) & 0x00ff) + amt,
             G = (num & 0x0000ff) + amt;
 
-        return `#${(
-            0x1000000 +
-            (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
-            (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 +
-            (G < 255 ? (G < 1 ? 0 : G) : 255)
-        )
+        return `#${(0x1000000 + (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+            (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 + (G < 255 ? (G < 1 ? 0 : G) : 255))
             .toString(16)
             .slice(1)}`;
     };
@@ -405,7 +407,8 @@ export class ApplinksPanel {
      * @param {UserData} [userData]
      */
     setStatus(status, userData = null) {
-        const allIcons = ['user-logged', 'cloud-error', 'cloud-complete', 'cloud-update', 'unloged-user'];
+        const allIcons = ['user-logged', 'cloud-error', 'cloud-complete', 'cloud-update',
+                          'unloged-user'];
         const showOnly = (/** @type {string} */ icon) => {
             allIcons.forEach((i) => {
                 const el = document.getElementById(`${this.#applinksPanelId}-${i}`);
@@ -488,10 +491,9 @@ export class ApplinksPanel {
         if (this.#panelElement) return;
         const element = document.createElement('div');
 
-        const userIcon =
-            this.panelOptions.userIcon === 'initials'
-                ? `<div id="${this.#applinksPanelId}-user-initials"></div>`
-                : ApplinksPanelOptionsGraphicUtils.userLoggedIcon;
+        const userIcon = this.panelOptions.userIcon === 'initials' ?
+            `<div id="${this.#applinksPanelId}-user-initials"></div>` :
+            ApplinksPanelOptionsGraphicUtils.userLoggedIcon;
 
         const innerHtml = `
  
@@ -500,9 +502,7 @@ export class ApplinksPanel {
         
             <div class="close-container">
              <div> <div id="${this.#applinksPanelId}-popover-login-name"> Logged in </div> </div>
-             <div role="button" class="close-container-button" id="${this.#applinksPanelId}-popover-close">${
-            ApplinksPanelOptionsGraphicUtils.xIcon
-        }</div>
+             <div role="button" class="close-container-button" id="${this.#applinksPanelId}-popover-close">${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
             </div>
            
             <div class="applinks-panel-popover-content">  
@@ -512,15 +512,11 @@ export class ApplinksPanel {
                  <div> ${ApplinksPanelOptionsGraphicUtils.settingsIcon} Settings</div> </div>
                 <div role="button"  class="applinks-panel-menu-item" id="${this.#applinksPanelId}-button-help"> 
                 <div> ${ApplinksPanelOptionsGraphicUtils.helpIcon} Support </div> </div>
-                <div role="button"  class="applinks-panel-menu-item" id="${
-            this.#applinksPanelId
-        }-button-logout"> <div> ${ApplinksPanelOptionsGraphicUtils.logoutIcon} Logout </div> </div>
+                <div role="button"  class="applinks-panel-menu-item" id="${this.#applinksPanelId}-button-logout"> <div> ${ApplinksPanelOptionsGraphicUtils.logoutIcon} Logout </div> </div>
                 </div>
             </div>
         </div> 
-         <button style="background-color: transparent" popovertarget="${
-            this.#applinksPanelId
-        }-popover" popovertargetaction="toggle">
+         <button style="background-color: transparent" popovertarget="${this.#applinksPanelId}-popover" popovertargetaction="toggle">
         <div id="${this.#applinksPanelId}-main-user-button" aria-haspopup="true" >
             
             <div id="${this.#applinksPanelId}-unloged-user"  
@@ -548,9 +544,7 @@ export class ApplinksPanel {
         </div>
           </button>
           <div id="${this.#applinksPanelId}-message-info" class="${this.#applinksPanelId}-message-info"> 
-         <div class="message-text" id="${
-            this.#applinksPanelId
-        }-message-content"> You're not connected. Please login </div>
+         <div class="message-text" id="${this.#applinksPanelId}-message-content"> You're not connected. Please login </div>
            <div class="close-container"> 
              <div role="button" class="close-container-button" id="${this.#applinksPanelId}-message-close">
 ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
@@ -695,7 +689,7 @@ export class APPLinkUtils {
      * @param {{ baseUrl: string; userLoginHtmlPath: string; recordsApiPath: string; localStorageTokenKey: string; }} configs
      */
     static setConfigs(configs) {
-        APPLinkUtils.#configs = { ...APPLinkUtils.#configs, ...configs };
+        APPLinkUtils.#configs = {...APPLinkUtils.#configs, ...configs};
     }
 
     /**
@@ -735,12 +729,9 @@ export class APPLinkUtils {
             headers['Authorization'] = 'Token ' + token;
         }
         const response = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache', // credentials: 'same-origin',
-            headers: headers,
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify({ Data: data }),
+            method: 'POST', mode: 'cors', cache: 'no-cache', // credentials: 'same-origin',
+            headers: headers, referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({Data: data}),
         });
 
         return {
@@ -764,9 +755,7 @@ export class APPLinkUtils {
             }
 
             const response = await fetch(url, {
-                headers: headers,
-                mode: 'cors',
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: headers, mode: 'cors', cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer',
@@ -774,9 +763,7 @@ export class APPLinkUtils {
 
             const asJson = await response.json();
             return {
-                body: asJson,
-                status: response.status,
-                headers: response.headers,
+                body: asJson, status: response.status, headers: response.headers,
             };
         } catch (err) {
             throw new Error('cannot get data' + err.toString());
@@ -798,14 +785,10 @@ export class APPLinkUtils {
             headers['Authorization'] = 'Token ' + token;
         }
         const response = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache', // credentials: 'same-origin',
-            headers: headers,
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            method: 'POST', mode: 'cors', cache: 'no-cache', // credentials: 'same-origin',
+            headers: headers, referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify({
-                applinksAuthToken: token,
-                refreshToken: refreshToken,
+                applinksAuthToken: token, refreshToken: refreshToken,
             }),
         });
 
@@ -837,7 +820,7 @@ export class APPLinkUtils {
      * @param {{ Name: any; }} appData
      * @returns {RecordData}
      */
-    static serializeRecordData(recordData, appData = { Name: '' }) {
+    static serializeRecordData(recordData, appData = {Name: ''}) {
         return {
             app_data: recordData.Data,
             app_name: appData.Name,
@@ -855,8 +838,7 @@ export class APPLinkUtils {
 
 export class APPLinksClient {
     static Messages = {
-        UserIsSet: 'UserWasSet',
-        UserNotSet: 'UserWasNotSet',
+        UserIsSet: 'UserWasSet', UserNotSet: 'UserWasNotSet',
     };
 
     static AuthError = APPLinkUtils.AuthError;
@@ -892,16 +874,13 @@ export class APPLinksClient {
      * @param {string} appId
      * @param {ApplinksClientOptions} options
      */
-    constructor(
-        appId,
-        options = {
-            debaunceTime: 5000,
-            useClientPanel: false,
-            useLocalStorage: true,
-            appLinkUtils: APPLinkUtils,
-            panelOptions: new ApplinksPanel.Options(),
-        }
-    ) {
+    constructor(appId, options = {
+        debaunceTime: 5000,
+        useClientPanel: false,
+        useLocalStorage: true,
+        appLinkUtils: APPLinkUtils,
+        panelOptions: new ApplinksPanel.Options(),
+    }) {
         this.#appId = appId;
         this.#options = options;
         this.#setUpPanel(options);
@@ -942,17 +921,16 @@ export class APPLinksClient {
     }
 
     get userStatus() {
-        return this.#UserData ? APPLinksClient.Messages.UserIsSet : APPLinksClient.Messages.UserNotSet;
+        return this.#UserData ? APPLinksClient.Messages.UserIsSet :
+            APPLinksClient.Messages.UserNotSet;
     }
 
     get user() {
-        return this.#UserData
-            ? {
-                username: this.#UserData.username,
-                fullName: this.#UserData.fullName,
-                id: this.#UserData.id,
-            }
-            : null;
+        return this.#UserData ? {
+            username: this.#UserData.username,
+            fullName: this.#UserData.fullName,
+            id: this.#UserData.id,
+        } : null;
     }
 
     async loadSavedRecords() {
@@ -962,25 +940,24 @@ export class APPLinksClient {
                 data: this.#UserData,
             });
 
-            throw new Error(
-                this.#UserData
-                    ? 'User data is corrupt or invalid'
-                    : 'User is not logged in; cannot load record without user data'
-            );
+            throw new Error(this.#UserData ? 'User data is corrupt or invalid' :
+                'User is not logged in; cannot load record without user data');
         }
         this.#updatePanelStatus('updating');
-        const url =
-            `${this.#util.recordUrl}?` +
-            new URLSearchParams({
-                appId: this.#appId || '',
-            });
-        const { body, status, headers } = await this.#util.GetData(url, this.#UserData?.token);
+        const url = `${this.#util.recordUrl}?` + new URLSearchParams({
+            appId: this.#appId || '',
+        });
+        const {
+            body,
+            status,
+            headers
+        } = await this.#util.GetData(url, this.#UserData?.token);
 
         if (status === 440) {
             if ((await this.#requestTokenRefresh()) === APPLinkUtils.Success) {
                 this.#emitAction({
                     type: APPLinksClient.ApplinksClientEvents.UserRecordLoaded,
-                    data: { body, status, headers },
+                    data: {body, status, headers},
                 });
                 return this.loadSavedRecords();
             }
@@ -993,7 +970,7 @@ export class APPLinksClient {
         this.#updatePanelStatus('updateComplete');
         this.#emitAction({
             type: APPLinksClient.ApplinksClientEvents.UserRecordLoaded,
-            data: { body, status, headers },
+            data: {body, status, headers},
         });
 
         return this.#util.serializeRecordData(body);
@@ -1020,20 +997,19 @@ export class APPLinksClient {
                 data: this.#UserData,
             });
 
-            throw new Error(
-                this.#UserData
-                    ? 'User data is corrupt or invalid'
-                    : 'User is not logged in; cannot save record without user data'
-            );
+            throw new Error(this.#UserData ? 'User data is corrupt or invalid' :
+                'User is not logged in; cannot save record without user data');
         }
 
         this.#updatePanelStatus('updating');
-        const url =
-            `${this.#util.recordUrl}?` +
-            new URLSearchParams({
-                appId: this.#appId || '',
-            });
-        const { body, headers, status } = await this.#util.PostData(url, dataToSave, this.#UserData.token);
+        const url = `${this.#util.recordUrl}?` + new URLSearchParams({
+            appId: this.#appId || '',
+        });
+        const {
+            body,
+            headers,
+            status
+        } = await this.#util.PostData(url, dataToSave, this.#UserData.token);
         if (status === 440) {
             if ((await this.#requestTokenRefresh()) === APPLinkUtils.Success) {
                 return this.savedRecord(dataToSave);
@@ -1064,47 +1040,50 @@ export class APPLinksClient {
         const screenHeight = window.innerHeight;
 
         const isMobile = screenWidth < 500;
+        const cacheBreaker = Math.random().toString(36).substring(7);
 
-        const html = `<div id="iframe-container" style="width: 100%; background-color: #0a1bd3; overflow: hidden;max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
-            <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; background: #FFFFFF;" id="login-i-frame" src="${
-            this.#util.htmlLoginUrl
-        }"></iframe> </div>`;
+        const html = `<div id="iframe-container" style="width: 100%; background-color: #0a1bd3; overflow: hidden;height: 100%; max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
+            <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; background: #FFFFFF;" id="login-i-frame" src="${this.#util.htmlLoginUrl +
+        '?cacheBreaker=' + cacheBreaker}"></iframe> </div>`;
 
-        const newLoginWindow = window.open(
-           '', '',
-            `width=${isMobile ? screenWidth : '500'},height=${isMobile ? screenHeight : '700'}`
-        );
+        const newLoginWindow = window.open('', '', `width=${isMobile ? screenWidth :
+            '500'},height=${isMobile ? screenHeight : '700'}`);
         this.#newLoginWindowRef = newLoginWindow;
         const doc = newLoginWindow.document;
         doc.open();
         return await new Promise((resolve, reject) => {
-            newLoginWindow.addEventListener(
-                'message',
-                (msg) => {
-                    console.log('message received', msg)
-                    const data = msg.data;
-                    const { userData, appData, appSaveData, token, clientConfig, refreshToken } = data;
-                    this.#util.setConfigs(clientConfig);
+            newLoginWindow.addEventListener('message', (msg) => {
+                console.log('message received', msg);
+                const data = msg.data;
+                const {
+                    userData,
+                    appData,
+                    appSaveData,
+                    token,
+                    clientConfig,
+                    refreshToken
+                } = data;
+                this.#util.setConfigs(clientConfig);
 
-                    this.#UserData = this.#util.serializeUserData(userData, token, refreshToken);
-                    if (this.#newLoginWindowRef) {
-                        this.#newLoginWindowRef.close();
-                        this.#newLoginWindowRef = null;
-                    }
+                this.#UserData =
+                    this.#util.serializeUserData(userData, token, refreshToken);
+                if (this.#newLoginWindowRef) {
+                    //  this.#newLoginWindowRef.close();
+                    this.#newLoginWindowRef = null;
+                }
 
-                    if (!data?.token) {
-                        reject(msg);
-                    }
-                    this.#loginActions();
+                if (!data?.token) {
+                    reject(msg);
+                }
+                this.#loginActions();
 
-                    resolve({
-                        userData: this.#UserData,
-                        recordData: appSaveData ? this.#util.serializeRecordData(appSaveData, appData) : undefined,
-                    });
-                },
-                false
-            );
-              doc.write(html);
+                resolve({
+                    userData: this.#UserData,
+                    recordData: appSaveData ?
+                        this.#util.serializeRecordData(appSaveData, appData) : undefined,
+                });
+            }, false);
+            doc.write(html);
         });
     }
 
@@ -1112,11 +1091,7 @@ export class APPLinksClient {
         this.#updatePanelStatus('not-logged-in');
         APPLinkUtils.removeUserDataFromLocalStorage();
         const url = this.#util.logoutUrl;
-        const { status } = await this.#util.PostData(
-            url,
-            { refreshToken: this.#UserData?.refreshToken },
-            this.#UserData?.token
-        );
+        const {status} = await this.#util.PostData(url, {refreshToken: this.#UserData?.refreshToken}, this.#UserData?.token);
 
         if (status !== 200) {
             this.#emitAction({
@@ -1127,8 +1102,7 @@ export class APPLinksClient {
         }
         this.#UserData = null;
         this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.UserLoggedOut,
-            data: this.#UserData,
+            type: APPLinksClient.ApplinksClientEvents.UserLoggedOut, data: this.#UserData,
         });
     }
 
@@ -1143,15 +1117,15 @@ export class APPLinksClient {
     #setUpPanel = (/** @type {{ useClientPanel: any; panelOptions: ApplinksPanelOptions | undefined  }} */ options) => {
         if (options.useClientPanel) {
             this.#usePanel = new ApplinksPanel(options.panelOptions);
-            this.#usePanel.actionCallBack = (/** @type {"login" | "logout"} */ action) =>
-                this.#applinksClientPanelAction(action);
+            this.#usePanel.actionCallBack =
+                (/** @type {"login" | "logout"} */ action) => this.#applinksClientPanelAction(action);
         }
     };
 
     #applinksClientPanelAction = async (/** @type {"login" | "logout" | "help" | "account" } */ action) => {
         switch (action) {
             case 'login':
-                const { userData } = /** @type { UserData }*/ await this.LoginThroughAppLinks();
+                const {userData} = /** @type { UserData }*/ await this.LoginThroughAppLinks();
                 localStorage.setItem('user-data', JSON.stringify(userData));
                 break;
             case 'logout':
@@ -1169,7 +1143,7 @@ export class APPLinksClient {
     /** @type {(userData : UserData) => (typeof APPLinksClient.Messages[keyof APPLinksClient.Messages])}*/
     #setUserData(userData) {
         if (userData.fullName && userData.id && userData.username && userData.token) {
-            this.#UserData = { ...userData };
+            this.#UserData = {...userData};
             this.#updatePanelStatus('logged-in');
             return APPLinksClient.Messages.UserIsSet;
         }
@@ -1189,8 +1163,7 @@ export class APPLinksClient {
 
     #loginActions = () => {
         this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.UserLoggedIn,
-            data: this.#UserData,
+            type: APPLinksClient.ApplinksClientEvents.UserLoggedIn, data: this.#UserData,
         });
         this.#updatePanelStatus('logged-in');
         if (this.#options.useLocalStorage) {
@@ -1198,8 +1171,8 @@ export class APPLinksClient {
         }
     };
 
-    #validateUserData = (/** @type {{ fullName: any; id: any; username: any; token: any; }} */ userData) =>
-        userData?.fullName && userData.id && userData.username && userData.token;
+    #validateUserData = (/** @type {{ fullName: any; id: any; username: any; token: any; }} */ userData) => userData?.fullName &&
+        userData.id && userData.username && userData.token;
 
     #saveUserDataToLocalStorage() {
         this.#util.storeUserDataToLocalStorage(this.#UserData);
@@ -1217,21 +1190,20 @@ export class APPLinksClient {
         const userFromLS = checkLSForUSerData();
 
         if (this.#setUserData(userFromLS) === APPLinksClient.Messages.UserIsSet) {
-            return { user: userFromLS, message: APPLinksClient.Messages.UserIsSet };
+            return {user: userFromLS, message: APPLinksClient.Messages.UserIsSet};
         }
-        return { user: null, message: APPLinksClient.Messages.UserNotSet };
+        return {user: null, message: APPLinksClient.Messages.UserNotSet};
     }
 
     async #requestTokenRefresh() {
         this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.RefreshingToken,
-            data: {},
+            type: APPLinksClient.ApplinksClientEvents.RefreshingToken, data: {},
         });
-        const { status, body } = await this.#util.RequestTokenRefresh(
-            this.#util.refreshUrl,
-            this.#UserData?.refreshToken || '',
-            this.#UserData?.token || ''
-        );
+        const {
+            status,
+            body
+        } = await this.#util.RequestTokenRefresh(this.#util.refreshUrl, this.#UserData?.refreshToken ||
+            '', this.#UserData?.token || '');
         if (status === 200 && body.token) {
             this.#UserData.token = body.token;
             this.#UserData.refreshToken = body.refreshToken;
@@ -1239,13 +1211,13 @@ export class APPLinksClient {
             this.#saveUserDataToLocalStorage();
             this.#emitAction({
                 type: APPLinksClient.ApplinksClientEvents.RefreshingTokenSuccess,
-                data: { status, body },
+                data: {status, body},
             });
             return APPLinkUtils.Success;
         } else {
             this.#emitAction({
                 type: APPLinksClient.ApplinksClientEvents.RefreshingTokenFailed,
-                data: { status, body },
+                data: {status, body},
             });
             return APPLinkUtils.Error;
         }
@@ -1253,8 +1225,7 @@ export class APPLinksClient {
 
     #handleAuthFailure() {
         this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.authFailed,
-            data: this.#UserData,
+            type: APPLinksClient.ApplinksClientEvents.authFailed, data: this.#UserData,
         });
         this.#updatePanelStatus('error-please-relogin');
     }
