@@ -1045,11 +1045,16 @@ export class APPLinksClient {
         const html = `<div id="iframe-container" style="width: 100%; background-color: #0a1bd3; overflow: hidden;height: 100%; min-height: 60vh; max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
             <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; color: black; background: #FFFFFF;" id="login-i-frame" src="${this.#util.htmlLoginUrl +
         '?cacheBreaker=' + cacheBreaker}"></iframe> </div>`;
-
-        const newLoginWindow = window.open('', '', `width=${isMobile ? screenWidth :
+    const newLoginWindow = window.open('', '', `width=${isMobile ? screenWidth :
             '500'},height=${isMobile ? screenHeight : '700'}`);
         this.#newLoginWindowRef = newLoginWindow;
         const doc = newLoginWindow.document;
+        const viewPortTag=doc.createElement('meta');
+        viewPortTag.id="viewport";
+        viewPortTag.name = "viewport";
+        viewPortTag.content = "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;";
+        doc.getElementsByTagName('head')[0].appendChild(viewPortTag);
+
         doc.open();
         return await new Promise((resolve, reject) => {
             newLoginWindow.addEventListener('message', (msg) => {
