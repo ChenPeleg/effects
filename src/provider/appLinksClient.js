@@ -948,9 +948,7 @@ export class APPLinksClient {
             appId: this.#appId || '',
         });
         const {
-            body,
-            status,
-            headers
+            body, status, headers
         } = await this.#util.GetData(url, this.#UserData?.token);
 
         if (status === 440) {
@@ -1006,9 +1004,7 @@ export class APPLinksClient {
             appId: this.#appId || '',
         });
         const {
-            body,
-            headers,
-            status
+            body, headers, status
         } = await this.#util.PostData(url, dataToSave, this.#UserData.token);
         if (status === 440) {
             if ((await this.#requestTokenRefresh()) === APPLinkUtils.Success) {
@@ -1031,7 +1027,7 @@ export class APPLinksClient {
         }
         this.#lastSavedRecordTime = setTimeout(() => {
             if (!this.#UserData) {
-                return
+                return;
             }
             this.savedRecord(dataToSave).then();
         }, this.#debounceTime);
@@ -1048,12 +1044,12 @@ export class APPLinksClient {
         const html = `<div id="iframe-container" style="width: 100%; background-color: #ffffff; overflow: hidden;height: 100%; min-height: 60vh; max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
             <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; color: black; background: #FFFFFF;" id="login-i-frame" src="${this.#util.htmlLoginUrl +
         '?cacheBreaker=' + cacheBreaker}"></iframe> </div>`;
-    const newLoginWindow = window.open('', '', `width=${isMobile ? screenWidth :
+        const newLoginWindow = window.open('', '', `width=${isMobile ? screenWidth :
             '500'},height=${isMobile ? screenHeight : '700'}`);
         this.#newLoginWindowRef = newLoginWindow;
         const doc = newLoginWindow.document;
-        const viewPortTag=doc.createElement('meta');
-        viewPortTag.id="viewport";
+        const viewPortTag = doc.createElement('meta');
+        viewPortTag.id = "viewport";
         viewPortTag.name = "viewport";
         viewPortTag.content = "width=device-width; initial-scale=0.8;" +
             " maximum-scale=1.0; user-scalable=0;";
@@ -1062,28 +1058,21 @@ export class APPLinksClient {
         doc.open();
         return await new Promise((resolve, reject) => {
             newLoginWindow.addEventListener('message', (msg) => {
-                console.log('message received', msg );
-
                 const data = msg.data;
-                if ( typeof data !== 'object') {
-                   return reject('data is not an object');
+                if (typeof data !== 'object') {
+                    return reject('data is not an object');
                 }
                 const {
-                    userData,
-                    appData,
-                    appSaveData,
-                    token,
-                    clientConfig,
-                    refreshToken
+                    userData, appData, appSaveData, token, clientConfig, refreshToken
                 } = data;
                 this.#util.setConfigs(clientConfig);
                 if (!data?.token) {
-                   return  reject(msg);
+                    return reject(msg);
                 }
                 this.#UserData =
                     this.#util.serializeUserData(userData, token, refreshToken);
                 if (this.#newLoginWindowRef) {
-                    //  this.#newLoginWindowRef.close();
+                    this.#newLoginWindowRef.close();
                     this.#newLoginWindowRef = null;
                 }
 
@@ -1143,9 +1132,9 @@ export class APPLinksClient {
                     localStorage.setItem('user-data', JSON.stringify(userData));
                 } catch (err) {
                     this.#clientActionCallBack({
-                        type:
-                        APPLinksClient.ApplinksClientEvents.UserLoginFailed,
-                        data: err});
+                        type: APPLinksClient.ApplinksClientEvents.UserLoginFailed,
+                        data: err
+                    });
                 }
 
                 break;
@@ -1221,8 +1210,7 @@ export class APPLinksClient {
             type: APPLinksClient.ApplinksClientEvents.RefreshingToken, data: {},
         });
         const {
-            status,
-            body
+            status, body
         } = await this.#util.RequestTokenRefresh(this.#util.refreshUrl, this.#UserData?.refreshToken ||
             '', this.#UserData?.token || '');
         if (status === 200 && body.token) {
