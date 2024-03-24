@@ -1,6 +1,7 @@
 import {APPLinksClient, ApplinksPanel} from '../provider/appLinksClient.js';
 
 import {MainStore} from '../store/store.main.js';
+ import {storageService} from './storage.service.js';
 
 export const providerService = {
     /**
@@ -28,11 +29,13 @@ export const providerService = {
 
                     break;
             }
-           MainStore.updateUser(this.client.user);
+            MainStore.updateUser(this.client.user);
         };
         if (this.client.userStatus === APPLinksClient.Messages.UserWasSet) {
             this.client.loadSavedRecords().then((data) => {
-console.log(data)
+                console.log('loaded data', data);
+             //   const timeStamp = storageService.getTimeStampFromLs();
+
             });
         }
 

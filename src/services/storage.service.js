@@ -25,7 +25,16 @@ export const storageService = {
             data = JSON.parse(stringifiedData);
         }
         return data[CUSTOM_CATEGORIES] || null;
-    }, saveSelection: (cat) => {
+    },
+    getTimeStampFromLs: () => {
+        const stringifyData = localStorage.getItem(LS_KEY);
+        let data = {};
+        if (stringifyData) {
+            data = JSON.parse(stringifyData);
+        }
+        return data.timestamp || null;
+    }
+    , saveSelection: (cat) => {
         const stringifiedData = localStorage.getItem(LS_KEY);
         let data;
         if (!stringifiedData) {

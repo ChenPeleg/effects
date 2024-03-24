@@ -14,10 +14,7 @@ const initialStore = {
             localStorage.getItem('soundIs' )  === 'on',
 };
 
-/**
- * @type {CardContent[]}
- */
-let allCards = CardStore.getAllCards();
+
 
 /**@type { HTMLAudioElement | null} */
 let audio;
@@ -29,7 +26,7 @@ const CreateMainStore = () => {
     const cardChosen = (/** @type {number} */ cardId) => {
         update((s) => {
             s.currentCard = cardId || 0;
-            const card = allCards.find((c) => c.id === cardId);
+            const card = CardStore.getAllCards().find((c) => c.id === cardId);
             const fileName = card?.soundFile || "car_remote";
             if (!audio) {
                 audio = new Audio();
