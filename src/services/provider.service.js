@@ -36,8 +36,9 @@ export const providerService = {
             this.client.loadSavedRecords().then((data) => {
 
                 const timeStampFromProvider = data.app_data.timestamp;
+
                 const timestampFromLs = storageService.getTimeStampFromLs();
-                if (timeStampFromProvider > timestampFromLs) {
+                if (+timeStampFromProvider > +timestampFromLs) {
                     categoryStore.updateAllCategoriesFromSave(data.app_data.CustomCategories);
                 }
 
