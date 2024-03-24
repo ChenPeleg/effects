@@ -13,7 +13,7 @@
   let selected = "";
   let path;
   /**@type {CustomCategory[]}*/
-  let custumCategories = [];
+  let customCategories = [];
 
   let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
 
@@ -32,7 +32,7 @@
     path = p;
   });
   const unsubscribe2 = categoryStore.subscribe((s) => {
-    custumCategories = s.filter((c) => categoryStore.isCatExist(c));
+    customCategories = s.filter((c) => categoryStore.isCatExist(c));
   });
 
   onDestroy(() => {
@@ -56,7 +56,7 @@
     bind:value={selected}
     on:change={categoryChanged}
   >
-    {#each custumCategories as customCat}
+    {#each customCategories as customCat}
       <option
         data-testid={"custumCategories_" + customCat.name}
         value={customCat.name + CUSTOM_INDICATOR}

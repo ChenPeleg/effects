@@ -393,7 +393,6 @@ export class ApplinksPanel {
 
     actionCallBack = (/** @type {string} */ action) => {
         if (action === 'logout') {
-
         }
     };
     #commitAction = (/** @type {string} */ action) => {
@@ -1061,12 +1060,21 @@ export class APPLinksClient {
 
     /** @type {()=> Promise<LoginData>}*/
     async LoginThroughAppLinks() {
-        const html = `<div id="iframe-container" style="width: 100%; overflow: hidden;max-height: 95vh; height :600px; display: flex; flex-direction: row;justify-content: center">
-            <iframe style="width: 500px;height :600px;border:none;" id="login-i-frame" src="${
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const isMobile = screenWidth < 500;
+
+        const html = `<div id="iframe-container" style="width: 100%; overflow: hidden;max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
+            <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; background: #FFFFFF;" id="login-i-frame" src="${
             this.#util.htmlLoginUrl
         }"></iframe> </div>`;
 
-        const newLoginWindow = window.open('', '', 'width=500,height=700');
+        const newLoginWindow = window.open(
+            '',
+            '',
+            `width=${isMobile ? screenWidth : '500'},height=${isMobile ? screenHeight : '700'}`
+        );
         this.#newLoginWindowRef = newLoginWindow;
         const doc = newLoginWindow.document;
         doc.open();
@@ -1112,7 +1120,7 @@ export class APPLinksClient {
 
         if (status !== 200) {
             this.#emitAction({
-                type: APPLinksClient.ApplinksClientEvents.UserLogoutFailed ,
+                type: APPLinksClient.ApplinksClientEvents.UserLogoutFailed,
                 data: this.#UserData,
             });
             throw new Error('logout failed');
@@ -1122,7 +1130,6 @@ export class APPLinksClient {
             type: APPLinksClient.ApplinksClientEvents.UserLoggedOut,
             data: this.#UserData,
         });
-
     }
 
     /**
