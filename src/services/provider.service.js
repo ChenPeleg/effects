@@ -22,10 +22,11 @@ export const providerService = {
 
 
         this.client.setClientActionCallBack = (data) => {
+            console.log(data);
 
             switch (data.type) {
                 case APPLinksClient.ApplinksClientEvents.UserLoggedIn:
-
+                    this.compareLocalAndServerData();
                     break;
                 case APPLinksClient.ApplinksClientEvents.UserLoggedOut:
 

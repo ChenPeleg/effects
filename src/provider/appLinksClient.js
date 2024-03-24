@@ -1030,6 +1030,9 @@ export class APPLinksClient {
             clearTimeout(this.#lastSavedRecordTime);
         }
         this.#lastSavedRecordTime = setTimeout(() => {
+            if (!this.#UserData) {
+                return
+            }
             this.savedRecord(dataToSave).then();
         }, this.#debounceTime);
     };
@@ -1063,7 +1066,7 @@ export class APPLinksClient {
 
                 const data = msg.data;
                 if ( typeof data !== 'object') {
-                    reject('data is not an object');
+                   return reject('data is not an object');
                 }
                 const {
                     userData,
@@ -1075,7 +1078,7 @@ export class APPLinksClient {
                 } = data;
                 this.#util.setConfigs(clientConfig);
                 if (!data?.token) {
-                    reject(msg);
+                   return  reject(msg);
                 }
                 this.#UserData =
                     this.#util.serializeUserData(userData, token, refreshToken);
