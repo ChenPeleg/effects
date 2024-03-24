@@ -1,15 +1,33 @@
 <script>
-  import CategoryCards from "./components/CaegoryCards.svelte";
-  import CategoryEditor from "./components/CategoryEditor.svelte";
-  import EditCategories from "./components/ChooseEditCategories.svelte";
+    import CategoryCards from "./components/CaegoryCards.svelte";
+    import CategoryEditor from "./components/CategoryEditor.svelte";
+    import EditCategories from "./components/ChooseEditCategories.svelte";
+    import {MainStore} from '../store/store.main.js';
+    import {appConfig} from '../config/appConfig.js';
+
+
+    let showSettings = true;
+    const unsubscribe1 = MainStore.subscribe((s) => {
+        if (appConfig.hasSaveOption) {
+            showSettings = !!s.user;
+        }
+    });
 </script>
 
 <div id="settings-component">
-  <EditCategories />
-  <CategoryEditor />
-  <div class="cards-wrapper">
-    <CategoryCards />
-  </div>
+    {#if showSettings}
+
+        <EditCategories/>
+        <CategoryEditor/>
+        <div class="cards-wrapper">
+            <CategoryCards/>
+        </div>
+    {:else}
+        <div class="no-user">
+            <h2>Sign in to save your categories</h2>
+        </div>
+    {/if}
+
 </div>
 
 <style>
