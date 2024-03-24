@@ -1,14 +1,14 @@
 <script>
-  import CaegoryCards from "./components/CaegoryCards.svelte";
+  import CategoryCards from "./components/CaegoryCards.svelte";
   import CategoryEditor from "./components/CategoryEditor.svelte";
   import EditCategories from "./components/ChooseEditCategories.svelte";
 </script>
 
-<div>
+<div id="settings-component">
   <EditCategories />
   <CategoryEditor />
   <div class="cards-wrapper">
-    <CaegoryCards />
+    <CategoryCards />
   </div>
 </div>
 

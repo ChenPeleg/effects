@@ -30,7 +30,7 @@ export const providerService = {
                     console.log('UserWasRemoved');
                     break;
             }
-            // MainStore.updateUser(this.client.user);
+           MainStore.updateUser(this.client.user);
         };
 
     }, saveDebounce(data) {

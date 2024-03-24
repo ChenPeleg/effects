@@ -4,32 +4,32 @@
   import { categoryStore } from "../../store/store.custom.js";
 
   let name;
-  let slodId;
+  let slotId;
   /**@type {CustomCategory []}*/
   let allCats = [];
   const unsubscribe1 = SettingsStore.subscribe((s) => {
-    slodId = s.slotInEdit;
-    const currentCat = allCats.find((c) => c.customId === slodId);
+    slotId = s.slotInEdit;
+    const currentCat = allCats.find((c) => c.customId === slotId);
     name = currentCat ? currentCat.name : name;
   });
   categoryStore.subscribe((cats) => (allCats = cats));
   const updatename = () => {
-    const currentCat = allCats.find((c) => c.customId === slodId);
+    const currentCat = allCats.find((c) => c.customId === slotId);
     if (!currentCat) {
       return;
     }
     currentCat.name = name;
-    categoryStore.updateCustomCategory(slodId, currentCat);
+    categoryStore.updateCustomCategory(slotId, currentCat);
   };
   const clear = () => {
-    categoryStore.deleteCategory(slodId);
+    categoryStore.deleteCategory(slotId);
   };
   onDestroy(() => {
     unsubscribe1();
   });
 </script>
 
-<div class="wrapper">
+<div class="wrapper" id="category-editor-component">
   <div class="row">
     <div class="input-wrapper">
       <input
