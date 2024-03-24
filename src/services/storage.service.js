@@ -44,7 +44,7 @@ export const storageService = {
             data = JSON.parse(stringifiedData);
         }
         data[LAST_CATEGORY] = cat;
-        data.timestamp = new Date().getTime();
+       // data.timestamp = new Date().getTime();
         localStorage.setItem(LS_KEY, JSON.stringify(data));
         // Do not save the selection
 

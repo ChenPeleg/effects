@@ -23,6 +23,6 @@ export const CardsService = {
    * @returns {CardContent[]}
    */
   filterCardsByCustomCategory(cards, customCategory) {
-    return cards.filter((c) => customCategory.cardsIds.includes(c.id));
+    return cards.filter((c) => (customCategory || []).cardsIds.includes(c.id));
   },
 };
