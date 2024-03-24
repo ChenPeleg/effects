@@ -7,7 +7,7 @@
   };
 </script>
 
-<div>
+<div id="choose-edit-category-component">
   <div class="flex-box">
     {#each $categoryStore as saveSlot}
       <div

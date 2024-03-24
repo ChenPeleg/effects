@@ -1,8 +1,9 @@
 /** The main store of the app use @to inlist all the data you need
  * @typedef MainStore
- * @property  {string} user
- * @prop {number} currentCard
- * @prop { CardContent | null } currentCardContent
+ * @property {string} user
+ * @property {number} currentCard
+ * @property { CardContent | null } currentCardContent
+ * @property {boolean} soundPlaying
  */
 
 /**@see other to notify */

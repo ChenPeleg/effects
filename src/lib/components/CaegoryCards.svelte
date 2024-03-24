@@ -77,7 +77,7 @@
   };
 </script>
 
-<div class="board">
+<div class="board" id="category-card-component">
   <div class="left">
     <h3>Choose effect</h3>
     {#each cards.filter((t) => !t.isInCategory) as card (card.id)}

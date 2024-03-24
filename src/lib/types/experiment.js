@@ -16,12 +16,12 @@ var MyNewType = module.exports = (first, second) => {
 
     function logFirst(times) {
         for (let i = 0; i < times; i++) {
-            console.log(first);
+
         }
     }
     function logSecond(times) {
         for (let i = 0; i < times; i++) {
-            console.log(second);
+
         }
     }
 

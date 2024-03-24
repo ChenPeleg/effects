@@ -1,5 +1,22 @@
+<script>
+  import { MainStore } from "../../store/store.main";
+  import {onDestroy} from 'svelte';
+  let isSoundOn = true;
+  const unsubscribe = MainStore.subscribe((s) => (isSoundOn = s.soundPlaying));
+onDestroy(unsubscribe)
+</script>
+
 <div class="nav-links-wrapper">
-  <a class="link" href="#/">🔊</a>
+  <a class="link"  href="javascript:void(0);"
+     on:click={()=>MainStore.setSoundPlaying(!isSoundOn)} >
+    {#if isSoundOn}
+      <span>🔊</span>
+    {:else}
+      <span>🔇</span>
+    {/if}
+
+  </a>
+  <a class="link" href="#/">▶️</a>
   <a class="link" href="#/settings">⚙️</a>
 </div>
 
