@@ -22,9 +22,9 @@ export const providerService = {
 
 
         this.client.setClientActionCallBack = (data) => {
-            console.log(data)
+
             switch (data.type) {
-                case APPLinksClient.ApplinksClientEvents.UserWasSet:
+                case APPLinksClient.ApplinksClientEvents.UserLoggedIn:
 
                     break;
                 case APPLinksClient.ApplinksClientEvents.UserLoggedOut:
@@ -38,20 +38,20 @@ export const providerService = {
             MainStore.updateUser(user);
         };
         if (this.client.userStatus === APPLinksClient.Messages.UserIsSet) {
-            this.client.loadSavedRecords().then((data) => {
-
-                const timeStampFromProvider = data.app_data.timestamp;
-
-                const timestampFromLs = storageService.getTimeStampFromLs();
-                if (+timeStampFromProvider > +timestampFromLs) {
-                    categoryStore.updateAllCategoriesFromSave(data.app_data.CustomCategories);
-                }
-
-
-            });
+            this.compareLocalAndServerData();
         }
 
 
+    }, compareLocalAndServerData() {
+        this.client.loadSavedRecords().then((data) => {
+            const timeStampFromProvider = data.app_data.timestamp;
+            const timestampFromLs = storageService.getTimeStampFromLs();
+            if (+timeStampFromProvider > +timestampFromLs) {
+                categoryStore.updateAllCategoriesFromSave(data.app_data.CustomCategories);
+            }
+
+
+        });
     }, saveDebounce(data) {
         if (this.client === null) {
             return;
