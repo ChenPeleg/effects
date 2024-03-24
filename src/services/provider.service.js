@@ -22,6 +22,7 @@ export const providerService = {
 
 
         this.client.setClientActionCallBack = (data) => {
+            console.log(data)
             switch (data.type) {
                 case APPLinksClient.ApplinksClientEvents.UserWasSet:
 
@@ -30,7 +31,11 @@ export const providerService = {
 
                     break;
             }
-            MainStore.updateUser(this.client.user);
+            let user = this.client.user;
+            if (this.client.userStatus === APPLinksClient.Messages.UserNotSet) {
+                user = null;
+            }
+            MainStore.updateUser(user);
         };
         if (this.client.userStatus === APPLinksClient.Messages.UserIsSet) {
             this.client.loadSavedRecords().then((data) => {

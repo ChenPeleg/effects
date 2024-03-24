@@ -1219,6 +1219,7 @@ export class APPLinksClient {
                 type: APPLinksClient.ApplinksClientEvents.RefreshingTokenFailed,
                 data: {status, body},
             });
+            this.#UserData = null;
             return APPLinkUtils.Error;
         }
     }
