@@ -1112,13 +1112,13 @@ export class APPLinksClient {
 
         if (status !== 200) {
             this.#emitAction({
-                type: APPLinksClient.ApplinksClientEvents.UserLoggedOut,
+                type: APPLinksClient.ApplinksClientEvents.UserLogoutFailed ,
                 data: this.#UserData,
             });
             throw new Error('logout failed');
         }
         this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.UserLogoutFailed,
+            type: APPLinksClient.ApplinksClientEvents.UserLoggedOut,
             data: this.#UserData,
         });
         this.#UserData = null;

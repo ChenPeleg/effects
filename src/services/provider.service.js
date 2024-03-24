@@ -17,9 +17,7 @@ export const providerService = {
                 sizeModifier: 115
             })
         });
-        this.client.loadSavedRecords().then((data) => {
-            console.log(data);
-        });
+
 
         this.client.setClientActionCallBack = (data) => {
             switch (data.type) {
@@ -30,8 +28,16 @@ export const providerService = {
                     console.log('UserWasRemoved');
                     break;
             }
+            console.log(data);
+            console.log(this.client.user);
            MainStore.updateUser(this.client.user);
         };
+        if (this.client.userStatus === APPLinksClient.Messages.UserWasSet) {
+            this.client.loadSavedRecords().then((data) => {
+                console.log(data);
+            });
+        }
+
 
     }, saveDebounce(data) {
         if (this.client === null) {
