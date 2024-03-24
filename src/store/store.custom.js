@@ -17,6 +17,11 @@ const createCustomCategoryStore = (
       return s;
     });
   };
+ const  updateAllCategoriesFromSave =  (allCategories) => {
+    set(allCategories);
+    customCategories = allCategories;
+   storageService.saveCategories(s)
+ }
   subscribe((all) => (customCategories = all));
   const getAll = () => customCategories;
   const deleteCategory = (catId) =>
@@ -27,6 +32,7 @@ const createCustomCategoryStore = (
   return {
     subscribe,
     updateCustomCategory,
+    updateAllCategoriesFromSave,
     deleteCategory,
     isCatExist,
     getAll,

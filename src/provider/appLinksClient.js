@@ -393,7 +393,7 @@ export class ApplinksPanel {
 
     actionCallBack = (/** @type {string} */ action) => {
         if (action === 'logout') {
-            console.log('logout');
+
         }
     };
     #commitAction = (/** @type {string} */ action) => {

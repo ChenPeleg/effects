@@ -22,17 +22,17 @@ export const providerService = {
         this.client.setClientActionCallBack = (data) => {
             switch (data.type) {
                 case APPLinksClient.ApplinksClientEvents.UserWasSet:
-                    console.log('UserWasSet');
+
                     break;
                 case APPLinksClient.ApplinksClientEvents.UserLoggedOut:
-                    console.log('UserWasRemoved');
+
                     break;
             }
            MainStore.updateUser(this.client.user);
         };
         if (this.client.userStatus === APPLinksClient.Messages.UserWasSet) {
             this.client.loadSavedRecords().then((data) => {
-
+console.log(data)
             });
         }
 
