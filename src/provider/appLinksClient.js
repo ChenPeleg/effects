@@ -1052,7 +1052,7 @@ export class APPLinksClient {
         const viewPortTag=doc.createElement('meta');
         viewPortTag.id="viewport";
         viewPortTag.name = "viewport";
-        viewPortTag.content = "width=device-width; initial-scale=0.7;" +
+        viewPortTag.content = "width=device-width; initial-scale=0.8;" +
             " maximum-scale=1.0; user-scalable=0;";
         doc.getElementsByTagName('head')[0].appendChild(viewPortTag);
 
