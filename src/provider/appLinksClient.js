@@ -1052,13 +1052,14 @@ export class APPLinksClient {
         const viewPortTag=doc.createElement('meta');
         viewPortTag.id="viewport";
         viewPortTag.name = "viewport";
-        viewPortTag.content = "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;";
+        viewPortTag.content = "width=device-width; initial-scale=0.7;" +
+            " maximum-scale=1.0; user-scalable=0;";
         doc.getElementsByTagName('head')[0].appendChild(viewPortTag);
 
         doc.open();
         return await new Promise((resolve, reject) => {
             newLoginWindow.addEventListener('message', (msg) => {
-                console.log('message received', msg);
+
                 const data = msg.data;
                 const {
                     userData,
@@ -1069,7 +1070,9 @@ export class APPLinksClient {
                     refreshToken
                 } = data;
                 this.#util.setConfigs(clientConfig);
-
+                if (!data?.token) {
+                    reject(msg);
+                }
                 this.#UserData =
                     this.#util.serializeUserData(userData, token, refreshToken);
                 if (this.#newLoginWindowRef) {
@@ -1077,9 +1080,7 @@ export class APPLinksClient {
                     this.#newLoginWindowRef = null;
                 }
 
-                if (!data?.token) {
-                    reject(msg);
-                }
+
                 this.#loginActions();
 
                 resolve({
