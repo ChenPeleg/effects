@@ -1059,8 +1059,12 @@ export class APPLinksClient {
         doc.open();
         return await new Promise((resolve, reject) => {
             newLoginWindow.addEventListener('message', (msg) => {
+                console.log('message received', msg );
 
                 const data = msg.data;
+                if ( typeof data !== 'object') {
+                    reject('data is not an object');
+                }
                 const {
                     userData,
                     appData,
