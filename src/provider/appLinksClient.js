@@ -1135,8 +1135,16 @@ export class APPLinksClient {
     #applinksClientPanelAction = async (/** @type {"login" | "logout" | "help" | "account" } */ action) => {
         switch (action) {
             case 'login':
-                const {userData} = /** @type { UserData }*/ await this.LoginThroughAppLinks();
-                localStorage.setItem('user-data', JSON.stringify(userData));
+                try {
+                    const {userData} = /** @type { UserData }*/ await this.LoginThroughAppLinks();
+                    localStorage.setItem('user-data', JSON.stringify(userData));
+                } catch (err) {
+                    this.#clientActionCallBack({
+                        type:
+                        APPLinksClient.ApplinksClientEvents.UserLoginFailed,
+                        data: err});
+                }
+
                 break;
             case 'logout':
                 this.logoutClient().then();
