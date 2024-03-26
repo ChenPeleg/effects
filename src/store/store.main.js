@@ -1,5 +1,6 @@
 import {writable} from "svelte/store";
 import {CardStore} from "./store.cards";
+import {appConfig} from '../config/appConfig.js';
 
 const MAXIMUM_SOUND_TIME = 2000;
 
@@ -37,7 +38,8 @@ const CreateMainStore = () => {
                     });
                 });
             }
-            audio.setAttribute("src", `/audio/${fileName}.mp3`);
+
+            audio.setAttribute("src", `${appConfig.soundUrlPrefix}/audio/${fileName}.mp3`);
             audio.load();
             if (audio) {
                 audio.volume = s.soundPlaying  ? 1 : 0;
