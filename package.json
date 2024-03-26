@@ -8,6 +8,7 @@
     "node": "18"
   },
   "scripts": {
+
     "predeploy:gh": "vite build --mode prodgithub",
     "deploy:gh": "gh-pages -d build",
     "dev": "vite --mode prodfirebase",
