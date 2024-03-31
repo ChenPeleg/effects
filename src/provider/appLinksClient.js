@@ -22,28 +22,16 @@ class ApplinksPanelOptionsGraphicUtils {
     static getCss = (id, panelOption) => {
         const popoverLeft = 6 + panelOption.customModifiers.x;
         const popoverTop =
-            45 +
-            ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) +
-            panelOption.customModifiers.y;
-        const roundedPanelSizeChange =
-            panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? -2 : 0;
-        const textRoundedModifier =
-            panelOption.panelType === ApplinksPanelOptions.PanelType.rounded
-                ? 0.7
-                : 1;
+            45 + ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) + panelOption.customModifiers.y;
+        const roundedPanelSizeChange = panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? -2 : 0;
+        const textRoundedModifier = panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? 0.7 : 1;
         return `
     :root {
        --popover-transition-duration: 0.1s;
     }
     #${id}-wrapper {
-        width: ${
-            (40 + roundedPanelSizeChange) *
-            (panelOption.customModifiers.sizeModifier / 100)
-        }px;
-        height: ${
-            (40 + roundedPanelSizeChange) *
-            (panelOption.customModifiers.sizeModifier / 100)
-        }px;
+        width: ${(40 + roundedPanelSizeChange) * (panelOption.customModifiers.sizeModifier / 100)}px;
+        height: ${(40 + roundedPanelSizeChange) * (panelOption.customModifiers.sizeModifier / 100)}px;
         background-color: ${panelOption.customModifiers.mainBgColor};
         background-opacity: 0.5;
         position: fixed;
@@ -52,11 +40,7 @@ class ApplinksPanelOptionsGraphicUtils {
         align-items: center;
         left: ${panelOption.customModifiers.x}px;
         top: ${panelOption.customModifiers.y}px;
-        border-radius: ${
-            panelOption.panelType === ApplinksPanelOptions.PanelType.rounded
-                ? "50%"
-                : "0 0 2px 0"
-        } ;
+        border-radius: ${panelOption.panelType === ApplinksPanelOptions.PanelType.rounded ? '50%' : '0 0 2px 0'} ;
         z-index: 1000;
          button {
           outline: none;
@@ -102,11 +86,9 @@ class ApplinksPanelOptionsGraphicUtils {
         padding-top: ${
             panelOption.panelType === ApplinksPanelOptions.PanelType.rounded
                 ? (panelOption.customModifiers.sizeModifier / 100) * 1.3
-                : "0"
+                : '0'
         }px;
-        font-size: ${
-            (panelOption.customModifiers.sizeModifier / 100) * textRoundedModifier
-        }rem;
+        font-size: ${(panelOption.customModifiers.sizeModifier / 100) * textRoundedModifier}rem;
     }
     #${id}-popover {
         position: fixed;
@@ -249,11 +231,7 @@ body [popover] {
     }
     #${id}-message-info {
       position: fixed;
-      left: ${
-            45 +
-            ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) +
-            panelOption.customModifiers.x
-        }px;
+      left: ${45 + ((panelOption.customModifiers.sizeModifier / 100) * 40 - 40) + panelOption.customModifiers.x}px;
       padding: 0;
       border-radius: 7px;
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
@@ -300,23 +278,23 @@ body [popover] {
 }
 
 /**
- * @typedef  {"not-logged-in" | "updating" | "updateComplete" | "error" | "logged-in" | "error-please-relogin"}  AppLinkPanelStatusDisplay
+ * @typedef  {'not-logged-in' | 'updating' | 'updateComplete' | 'error' | 'logged-in' | 'error-please-relogin'}  AppLinkPanelStatusDisplay
  */
 
 class ApplinksPanelOptions {
     static Position = {
-        bottomLeft: "bottomLeft",
-        bottomRight: "bottomRight",
-        topLeft: "topLeft",
-        topRight: "topRight",
+        bottomLeft: 'bottomLeft',
+        bottomRight: 'bottomRight',
+        topLeft: 'topLeft',
+        topRight: 'topRight',
     };
     static PanelType = {
-        classic: "classic",
-        rounded: "rounded",
+        classic: 'classic',
+        rounded: 'rounded',
     };
     static userIcon = {
-        icon: "icon",
-        initials: "initials",
+        icon: 'icon',
+        initials: 'initials',
     };
 
     /**
@@ -350,44 +328,32 @@ class ApplinksPanelOptions {
         this.position = position || ApplinksPanelOptions.Position.topLeft;
         this.panelType = panelType || ApplinksPanelOptions.PanelType.classic;
         this.userIcon = userIcon || ApplinksPanelOptions.userIcon.initials;
-        if (color === "#000000") {
-            color = "lightgray";
+        if (color === '#000000') {
+            color = 'lightgray';
         }
-        if (
-            color &&
-            !mainBgColor &&
-            panelType !== ApplinksPanelOptions.PanelType.rounded
-        ) {
-            mainBgColor =
-                mainBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 20);
-            iconsBgColor =
-                iconsBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
-            textColor =
-                textColor || ApplinksPanelOptions.makeHexColorLighter(color, -20);
+        if (color && !mainBgColor && panelType !== ApplinksPanelOptions.PanelType.rounded) {
+            mainBgColor = mainBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 20);
+            iconsBgColor = iconsBgColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
+            textColor = textColor || ApplinksPanelOptions.makeHexColorLighter(color, -20);
             // menuColor = menuColor || ApplinksPanelOptions.makeHexColorLighter(color, 10);
         } else if (panelType === ApplinksPanelOptions.PanelType.rounded) {
-            iconsBgColor = mainBgColor || iconsBgColor || color || "lightgray";
-            mainBgColor = "transparent";
+            iconsBgColor = mainBgColor || iconsBgColor || color || 'lightgray';
+            mainBgColor = 'transparent';
         }
         this.customModifiers = {
             // @ts-ignore
-            x: +x || 0,
-            // @ts-ignore
-            y: +y || 0,
-            // @ts-ignore
+            x: +x || 0, // @ts-ignore
+            y: +y || 0, // @ts-ignore
             sizeModifier: +sizeModifier || 100,
-            color: color || "lightgray",
-            mainBgColor: mainBgColor || "lightgray",
-            iconsBgColor: iconsBgColor || "aliceblue",
-            menuColor: menuColor || "#FAF9F6",
-            textColor: textColor || "black",
+            color: color || 'lightgray',
+            mainBgColor: mainBgColor || 'lightgray',
+            iconsBgColor: iconsBgColor || 'aliceblue',
+            menuColor: menuColor || '#FAF9F6',
+            textColor: textColor || 'black',
         };
     }
 
-    static makeHexColorLighter = (
-        /** @type {string} */ color,
-        /** @type {number} */ percent
-    ) => {
+    static makeHexColorLighter = (/** @type {string} */ color, /** @type {number} */ percent) => {
         let num = parseInt(color.slice(1), 16),
             amt = Math.round(2.55 * percent),
             R = (num >> 16) + amt,
@@ -407,8 +373,8 @@ class ApplinksPanelOptions {
 
 export class ApplinksPanel {
     static Options = ApplinksPanelOptions;
-    #status = "not-logged-in";
-    #applinksPanelId = "app-links-Panel-Id";
+    #status = 'not-logged-in';
+    #applinksPanelId = 'app-links-Panel-Id';
 
     #returnToUserInterval = null;
 
@@ -423,16 +389,11 @@ export class ApplinksPanel {
         // @ts-ignore
         this.#panelElement = this.#createPanelElement();
 
-        this.#addCSS(
-            ApplinksPanelOptionsGraphicUtils.getCss(
-                this.#applinksPanelId,
-                this.panelOptions
-            )
-        );
+        this.#addCSS(ApplinksPanelOptionsGraphicUtils.getCss(this.#applinksPanelId, this.panelOptions));
     }
 
     actionCallBack = (/** @type {string} */ action) => {
-        if (action === "logout") {
+        if (action === 'logout') {
         }
     };
     #commitAction = (/** @type {string} */ action) => {
@@ -446,13 +407,7 @@ export class ApplinksPanel {
      */
     // @ts-ignore
     setStatus(status, userData = null) {
-        const allIcons = [
-            "user-logged",
-            "cloud-error",
-            "cloud-complete",
-            "cloud-update",
-            "unloged-user",
-        ];
+        const allIcons = ['user-logged', 'cloud-error', 'cloud-complete', 'cloud-update', 'unloged-user'];
         const showOnly = (/** @type {string} */ icon) => {
             allIcons.forEach((i) => {
                 const el = document.getElementById(`${this.#applinksPanelId}-${i}`);
@@ -460,13 +415,13 @@ export class ApplinksPanel {
                     return;
                 }
                 if (i === icon) {
-                    el.style.display = "flex";
+                    el.style.display = 'flex';
                     setTimeout(() => {
-                        el.classList.add("active");
+                        el.classList.add('active');
                     }, 100);
                 } else {
-                    el.style.display = "none";
-                    el.classList.remove("active");
+                    el.style.display = 'none';
+                    el.classList.remove('active');
                 }
             });
         };
@@ -474,48 +429,42 @@ export class ApplinksPanel {
         this.#status = status;
         // status = 'error-please-relogin';
         switch (status) {
-            case "not-logged-in":
-                showOnly("unloged-user");
+            case 'not-logged-in':
+                showOnly('unloged-user');
                 break;
-            case "updating":
-                showOnly("cloud-update");
+            case 'updating':
+                showOnly('cloud-update');
                 break;
-            case "updateComplete":
-                showOnly("cloud-complete");
+            case 'updateComplete':
+                showOnly('cloud-complete');
                 // @ts-ignore
                 clearTimeout(this.#returnToUserInterval);
                 // @ts-ignore
                 this.#returnToUserInterval = setTimeout(() => {
-                    this.setStatus("logged-in");
+                    this.setStatus('logged-in');
                 }, 2000);
 
                 break;
-            case "error":
-                showOnly("cloud-error");
+            case 'error':
+                showOnly('cloud-error');
                 break;
-            case "logged-in":
-                showOnly("user-logged");
-                const userInitials = document.getElementById(
-                    `${this.#applinksPanelId}-user-initials`
-                );
-                const userNameInMenu = document.getElementById(
-                    `${this.#applinksPanelId}-popover-login-name`
-                );
-                const errorMessageElement = document.querySelector(
-                    `#${this.#applinksPanelId}-message-info`
-                );
+            case 'logged-in':
+                showOnly('user-logged');
+                const userInitials = document.getElementById(`${this.#applinksPanelId}-user-initials`);
+                const userNameInMenu = document.getElementById(`${this.#applinksPanelId}-popover-login-name`);
+                const errorMessageElement = document.querySelector(`#${this.#applinksPanelId}-message-info`);
                 // @ts-ignore
-                errorMessageElement.style.display = "none";
+                errorMessageElement.style.display = 'none';
 
                 if (userInitials?.innerHTML) {
                     return;
                 }
 
-                const name = userData?.fullName || userData?.username || "User";
+                const name = userData?.fullName || userData?.username || 'User';
                 const initials = name
-                    .split(" ")
+                    .split(' ')
                     .map((n) => n[0])
-                    .join("");
+                    .join('');
                 if (userInitials) {
                     userInitials.innerHTML = initials;
                 }
@@ -524,15 +473,13 @@ export class ApplinksPanel {
                 }
 
                 break;
-            case "error-please-relogin":
-                showOnly("cloud-error");
-                const messageElement = document.querySelector(
-                    `#${this.#applinksPanelId}-message-info`
-                );
+            case 'error-please-relogin':
+                showOnly('cloud-error');
+                const messageElement = document.querySelector(`#${this.#applinksPanelId}-message-info`);
                 // @ts-ignore
-                messageElement.style.display = "flex";
+                messageElement.style.display = 'flex';
                 setTimeout(() => {
-                    this.setStatus("not-logged-in");
+                    this.setStatus('not-logged-in');
                 }, 1000);
 
                 break;
@@ -541,15 +488,15 @@ export class ApplinksPanel {
     }
 
     #addCSS = (/** @type {string} */ css) => {
-        document.head.appendChild(document.createElement("style")).innerHTML = css;
+        document.head.appendChild(document.createElement('style')).innerHTML = css;
     };
 
     #createPanelElement() {
         if (this.#panelElement) return;
-        const element = document.createElement("div");
+        const element = document.createElement('div');
 
         const userIcon =
-            this.panelOptions.userIcon === "initials"
+            this.panelOptions.userIcon === 'initials'
                 ? `<div id="${this.#applinksPanelId}-user-initials"></div>`
                 : ApplinksPanelOptionsGraphicUtils.userLoggedIcon;
 
@@ -559,88 +506,60 @@ export class ApplinksPanel {
             <div popover  id="${this.#applinksPanelId}-popover">
 
             <div class="close-container">
-             <div> <div id="${
-            this.#applinksPanelId
-        }-popover-login-name"> Logged in </div> </div>
-             <div role="button" class="close-container-button" id="${
-            this.#applinksPanelId
-        }-popover-close">${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
+             <div> <div id="${this.#applinksPanelId}-popover-login-name"> Logged in </div> </div>
+             <div role="button" class="close-container-button" id="${this.#applinksPanelId}-popover-close">${
+            ApplinksPanelOptionsGraphicUtils.xIcon
+        }</div>
             </div>
 
             <div class="applinks-panel-popover-content">
 
                 <div class="applinks-panel-menu">
+                <div role="button"  class="applinks-panel-menu-item" id="${this.#applinksPanelId}-button-account">
+                 <div> ${ApplinksPanelOptionsGraphicUtils.settingsIcon} Settings</div> </div>
+                <div role="button"  class="applinks-panel-menu-item" id="${this.#applinksPanelId}-button-help">
+                <div> ${ApplinksPanelOptionsGraphicUtils.helpIcon} Support </div> </div>
                 <div role="button"  class="applinks-panel-menu-item" id="${
             this.#applinksPanelId
-        }-button-account">
-                 <div> ${
-            ApplinksPanelOptionsGraphicUtils.settingsIcon
-        } Settings</div> </div>
-                <div role="button"  class="applinks-panel-menu-item" id="${
-            this.#applinksPanelId
-        }-button-help">
-                <div> ${
-            ApplinksPanelOptionsGraphicUtils.helpIcon
-        } Support </div> </div>
-                <div role="button"  class="applinks-panel-menu-item" id="${
-            this.#applinksPanelId
-        }-button-logout"> <div> ${
-            ApplinksPanelOptionsGraphicUtils.logoutIcon
-        } Logout </div> </div>
+        }-button-logout"> <div> ${ApplinksPanelOptionsGraphicUtils.logoutIcon} Logout </div> </div>
                 </div>
             </div>
         </div>
          <button style="background-color: transparent" popovertarget="${
             this.#applinksPanelId
         }-popover" popovertargetaction="toggle">
-        <div id="${
-            this.#applinksPanelId
-        }-main-user-button" aria-haspopup="true" >
+        <div id="${this.#applinksPanelId}-main-user-button" aria-haspopup="true" >
 
             <div id="${this.#applinksPanelId}-unloged-user"
-              class="${
-            this.#applinksPanelId
-        }-main-icon active" style="display: flex">
+              class="${this.#applinksPanelId}-main-icon active" style="display: flex">
               ${ApplinksPanelOptionsGraphicUtils.userIcon}
             </div>
 
-            <div id="${this.#applinksPanelId}-cloud-update"  class="${
-            this.#applinksPanelId
-        }-main-icon"
+            <div id="${this.#applinksPanelId}-cloud-update"  class="${this.#applinksPanelId}-main-icon"
             style="display: none">
               ${ApplinksPanelOptionsGraphicUtils.cloudUpdateIcon}
             </div>
-              <div id="${this.#applinksPanelId}-cloud-complete"  class="${
-            this.#applinksPanelId
-        }-main-icon"
+              <div id="${this.#applinksPanelId}-cloud-complete"  class="${this.#applinksPanelId}-main-icon"
             style="display: none">
               ${ApplinksPanelOptionsGraphicUtils.cloudCompleteIcon}
             </div>
-              <div id="${this.#applinksPanelId}-cloud-error"  class="${
-            this.#applinksPanelId
-        }-main-icon"
+              <div id="${this.#applinksPanelId}-cloud-error"  class="${this.#applinksPanelId}-main-icon"
             style="display: none">
               ${ApplinksPanelOptionsGraphicUtils.cloudErrorIcon}
             </div>
-              <div id="${this.#applinksPanelId}-user-logged"  class="${
-            this.#applinksPanelId
-        }-main-icon"
+              <div id="${this.#applinksPanelId}-user-logged"  class="${this.#applinksPanelId}-main-icon"
             style="display: none">
               ${userIcon}
             </div>
 
         </div>
           </button>
-          <div id="${this.#applinksPanelId}-message-info" class="${
-            this.#applinksPanelId
-        }-message-info">
+          <div id="${this.#applinksPanelId}-message-info" class="${this.#applinksPanelId}-message-info">
          <div class="message-text" id="${
             this.#applinksPanelId
         }-message-content"> You're not connected. Please login </div>
            <div class="close-container">
-             <div role="button" class="close-container-button" id="${
-            this.#applinksPanelId
-        }-message-close">
+             <div role="button" class="close-container-button" id="${this.#applinksPanelId}-message-close">
 ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
 
             </div>
@@ -654,49 +573,39 @@ ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
     }
 
     #attachHandlers = () => {
-        const mainElement = document.querySelector(
-            `#${this.#applinksPanelId}-wrapper`
-        );
+        const mainElement = document.querySelector(`#${this.#applinksPanelId}-wrapper`);
         const popover = document.querySelector(`#${this.#applinksPanelId}-popover`);
-        const messageElement = document.querySelector(
-            `#${this.#applinksPanelId}-message-info`
-        );
+        const messageElement = document.querySelector(`#${this.#applinksPanelId}-message-info`);
 
-        mainElement?.addEventListener("click", (ev) => {
-            if (this.#status === "not-logged-in") {
+        mainElement?.addEventListener('click', (ev) => {
+            if (this.#status === 'not-logged-in') {
                 ev.preventDefault();
                 ev.stopPropagation();
-                this.actionCallBack("login");
+                this.actionCallBack('login');
             }
         });
         // @ts-ignore
-        document
-            .querySelector(`#${this.#applinksPanelId}-popover-close`)
-            .addEventListener("click", () => {
+        document.querySelector(`#${this.#applinksPanelId}-popover-close`).addEventListener('click', () => {
+            // @ts-ignore
+            popover.hidePopover();
+        });
+        // @ts-ignore
+        document.querySelector(`#${this.#applinksPanelId}-message-close`).addEventListener('click', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            // @ts-ignore
+            messageElement.style.display = 'none';
+        });
+
+        ['account', 'help', 'logout'].forEach((id) => {
+            // @ts-ignore
+            document.querySelector(`#${this.#applinksPanelId}-button-${id}`).addEventListener('click', (ev) => {
+                ev.preventDefault();
+                ev.stopPropagation();
+                this.#commitAction(id);
                 // @ts-ignore
                 popover.hidePopover();
             });
-        // @ts-ignore
-        document
-            .querySelector(`#${this.#applinksPanelId}-message-close`)
-            .addEventListener("click", (ev) => {
-                ev.preventDefault();
-                ev.stopPropagation();
-                // @ts-ignore
-                messageElement.style.display = "none";
-            });
-
-        ["account", "help", "logout"].forEach((id) => {
-            // @ts-ignore
-            document
-                .querySelector(`#${this.#applinksPanelId}-button-${id}`)
-                .addEventListener("click", (ev) => {
-                    ev.preventDefault();
-                    ev.stopPropagation();
-                    this.#commitAction(id);
-                    // @ts-ignore
-                    popover.hidePopover();
-                });
         });
     };
 }
@@ -714,7 +623,7 @@ ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
 
 /**
  * @typedef RecordData
- * @property { string } app_data
+ * @property { any } app_data
  * @property { string } app_name
  * @property { string } app_id
  * @property  { string } message
@@ -732,25 +641,25 @@ ${ApplinksPanelOptionsGraphicUtils.xIcon}</div>
  * @typedef ApplinksClientOptions
  * @property { boolean } useClientPanel
  * @property { boolean } useLocalStorage
- * @property { number } debaunceTime
+ * @property { number } debounceTime
  * @property { APPLinkUtils | any } appLinkUtils
  * @property { ApplinksPanelOptions | any } panelOptions
  */
 export class APPLinkUtils {
     static #configs = {
-        baseUrl: "https://apps-links.web.app", // 'http://localhost:5173', https://apps-links.web.app
-        userLoginHtmlPath: "site/app-login",
-        userHelpHtmlPath: "site/support",
-        userAccountHtmlPath: "site/account",
-        recordsApiPath: "api/appRecord",
-        logoutApiPath: "api/logout",
-        refreshApiPath: "api/refreshToken",
-        localStorageUserData: "app-links-user-data",
-        localStorageConfigData: "app-links-config-data",
-        tokenSoonToExpireHeader: "Expires",
+        baseUrl: 'https://apps-links.web.app', // 'http://localhost:5173', https://apps-links.web.app
+        userLoginHtmlPath: 'site/app-login',
+        userHelpHtmlPath: 'site/support',
+        userAccountHtmlPath: 'site/account',
+        recordsApiPath: 'api/appRecord',
+        logoutApiPath: 'api/logout',
+        refreshApiPath: 'api/refreshToken',
+        localStorageUserData: 'app-links-user-data',
+        localStorageConfigData: 'app-links-config-data',
+        tokenSoonToExpireHeader: 'Expires',
     };
-    static Success = "success";
-    static Error = "error";
+    static Success = 'success';
+    static Error = 'error';
 
     constructor() {}
 
@@ -768,39 +677,27 @@ export class APPLinkUtils {
     }
 
     static get htmlLoginUrl() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.userLoginHtmlPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.userLoginHtmlPath}`;
     }
 
     static get recordUrl() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.recordsApiPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.recordsApiPath}`;
     }
 
     static get logoutUrl() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.logoutApiPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.logoutApiPath}`;
     }
 
     static get helpHtmlPath() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.userHelpHtmlPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.userHelpHtmlPath}`;
     }
 
     static get refreshUrl() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.refreshApiPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.refreshApiPath}`;
     }
 
     static get accountHtmlPath() {
-        return `${APPLinkUtils.#configs.baseUrl}/${
-            APPLinkUtils.#configs.userAccountHtmlPath
-        }`;
+        return `${APPLinkUtils.#configs.baseUrl}/${APPLinkUtils.#configs.userAccountHtmlPath}`;
     }
 
     /**
@@ -814,10 +711,7 @@ export class APPLinkUtils {
      * @param {any} userData
      */
     static storeUserDataToLocalStorage(userData) {
-        localStorage.setItem(
-            APPLinkUtils.#configs.localStorageUserData,
-            JSON.stringify(userData)
-        );
+        localStorage.setItem(APPLinkUtils.#configs.localStorageUserData, JSON.stringify(userData));
     }
 
     static removeUserDataFromLocalStorage() {
@@ -842,20 +736,20 @@ export class APPLinkUtils {
      * @param  {string} token
      * @return { Promise<{ body: any; status: number; headers: Headers; }>}
      */
-    static async PostData(url = "", data = {}, token) {
+    static async PostData(url = '', data = {}, token) {
         /**@type {Record<string,string>} */
         const headers = {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         };
         if (token) {
-            headers["Authorization"] = "Token " + token;
+            headers['Authorization'] = 'Token ' + token;
         }
         const response = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache", // credentials: 'same-origin',
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache', // credentials: 'same-origin',
             headers: headers,
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify({ Data: data }),
         });
 
@@ -870,23 +764,23 @@ export class APPLinkUtils {
      * @param url
      * @param {string} token
      */
-    static async GetData(url = "", token) {
+    static async GetData(url = '', token) {
         try {
             /**@type {Record<string,string>} */
             const headers /** @type {HeadersInit | any} */ = {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             };
             if (token) {
-                headers["Authorization"] = "Token " + token;
+                headers['Authorization'] = 'Token ' + token;
             }
 
             const response = await fetch(url, {
                 headers: headers,
-                mode: "cors",
-                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: "same-origin", // include, *same-origin, omit
-                redirect: "follow", // manual, *follow, error
-                referrerPolicy: "no-referrer",
+                mode: 'cors',
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer',
             });
 
             const asJson = await response.json();
@@ -896,7 +790,7 @@ export class APPLinkUtils {
                 headers: response.headers,
             };
         } catch (err /** @type {Error} */) {
-            throw new Error("cannot get data" + err?.toString());
+            throw new Error('cannot get data' + err?.toString());
         }
     }
 
@@ -907,20 +801,20 @@ export class APPLinkUtils {
      * @param  {string} token
      * @return { Promise<{ body: any; status: number; headers: Headers; }>}
      */
-    static async RequestTokenRefresh(url = "", refreshToken, token) {
+    static async RequestTokenRefresh(url = '', refreshToken, token) {
         /**@type {Record<string,string>} */
         const headers = {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         };
         if (token) {
-            headers["Authorization"] = "Token " + token;
+            headers['Authorization'] = 'Token ' + token;
         }
         const response = await fetch(url, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache", // credentials: 'same-origin',
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache', // credentials: 'same-origin',
             headers: headers,
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify({
                 applinksAuthToken: token,
                 refreshToken: refreshToken,
@@ -946,7 +840,7 @@ export class APPLinkUtils {
             fullName: userData.FullName,
             id: userData.UID,
             token: TokenKey,
-            refreshToken: refreshToken || "",
+            refreshToken: refreshToken || '',
         };
     }
 
@@ -955,12 +849,12 @@ export class APPLinkUtils {
      * @param {{ Name: any; }} appData
      * @returns {RecordData}
      */
-    static serializeRecordData(recordData, appData = { Name: "" }) {
+    static serializeRecordData(recordData, appData = { Name: '' }) {
         return {
             app_data: recordData.Data,
             app_name: appData.Name,
             app_id: recordData.AppId,
-            message: recordData.message || "",
+            message: recordData.message || '',
             saved_date: recordData.Timestamp,
             user_id: recordData.UserId,
         };
@@ -973,24 +867,25 @@ export class APPLinkUtils {
 
 export class APPLinksClient {
     static Messages = {
-        UserIsSet: "UserWasSet",
-        UserNotSet: "UserWasNotSet",
+        UserIsSet: 'UserWasSet',
+        UserNotSet: 'UserWasNotSet',
     };
 
     static AuthError = APPLinkUtils.AuthError;
+    static PostMessageIsOfDifferentOrigin = 'PostMessageIsOfDifferentOrigin';
     static ApplinksClientEvents = {
-        UserLoggedIn: "UserLoggedIn",
-        UserLoggedOut: "UserLoggedOut",
-        UserLoginFailed: "UserLoginFailed",
-        UserLogoutFailed: "UserLogoutFailed",
-        UserRecordUpdated: "UserRecordUpdated",
-        UserRecordUpdateFailed: "UserRecordUpdateFailed",
-        UserRecordLoaded: "UserRecordLoaded",
-        UserRecordLoadFailed: "UserRecordLoadFailed",
-        RefreshingToken: "RefreshingToken",
-        RefreshingTokenSuccess: "RefreshingTokenSuccess",
-        RefreshingTokenFailed: "RefreshingTokenFailed",
-        authFailed: "authFailed",
+        UserLoggedIn: 'UserLoggedIn',
+        UserLoggedOut: 'UserLoggedOut',
+        UserLoginFailed: 'UserLoginFailed',
+        UserLogoutFailed: 'UserLogoutFailed',
+        UserRecordUpdated: 'UserRecordUpdated',
+        UserRecordUpdateFailed: 'UserRecordUpdateFailed',
+        UserRecordLoaded: 'UserRecordLoaded',
+        UserRecordLoadFailed: 'UserRecordLoadFailed',
+        RefreshingToken: 'RefreshingToken',
+        RefreshingTokenSuccess: 'RefreshingTokenSuccess',
+        RefreshingTokenFailed: 'RefreshingTokenFailed',
+        authFailed: 'authFailed',
     };
 
     /** @type {ApplinksClientOptions  } */
@@ -1006,7 +901,7 @@ export class APPLinksClient {
     #UserData = null;
 
     #debounceTime = 5000;
-    /** @type { NodeJS.Timeout | null} */
+    /** @type { any | null} */
     #lastSavedRecordTime = null;
 
     /**
@@ -1016,7 +911,7 @@ export class APPLinksClient {
     constructor(
         appId,
         options = {
-            debaunceTime: 5000,
+            debounceTime: 5000,
             useClientPanel: false,
             useLocalStorage: true,
             appLinkUtils: APPLinkUtils,
@@ -1026,14 +921,14 @@ export class APPLinksClient {
         this.#appId = appId;
         this.#options = options;
         this.#setUpPanel(options);
-        if (options.debaunceTime) {
-            this.#debounceTime = options.debaunceTime;
+        if (options.debounceTime) {
+            this.#debounceTime = options.debounceTime;
         }
 
         if (options.useLocalStorage) {
             const result = this.#tryToUpdateUserDataFromLocalStorage();
             if (result.message === APPLinksClient.Messages.UserIsSet) {
-                this.#updatePanelStatus("logged-in");
+                this.#updatePanelStatus('logged-in');
             }
         }
     }
@@ -1042,32 +937,28 @@ export class APPLinksClient {
      * @param  {(action: {type : APPLinksClient.ApplinksClientEvents [keyof APPLinksClient.ApplinksClientEvents], data: any})=>void} cb
      */
     set setClientActionCallBack(cb) {
-        if (typeof cb === "function") {
+        if (typeof cb === 'function') {
             this.#clientActionCallBack = cb;
             return;
         }
-        throw new Error("clientActionCallBack must be a function");
+        throw new Error('clientActionCallBack must be a function');
     }
 
     get innerMethods() {
         return {
             /** @type {(userData : UserData) => (typeof APPLinksClient.Messages[keyof APPLinksClient.Messages])}*/
             setUserData: (userData) => this.#setUserData(userData),
-            tryToUpdateUserDataFromLocalStorage: () =>
-                this.#tryToUpdateUserDataFromLocalStorage(),
+            tryToUpdateUserDataFromLocalStorage: () => this.#tryToUpdateUserDataFromLocalStorage(),
             requestTokenRefresh: () => this.#requestTokenRefresh(),
-            /** @type  {(action :  "login" | "logout" | "help" | "account"  ) => Promise<void>}  */
-            applinksClientPanelAction: (action) =>
-                this.#applinksClientPanelAction(action),
+            /** @type  {(action :  'login' | 'logout' | 'help' | 'account'  ) => Promise<void>}  */
+            applinksClientPanelAction: (action) => this.#applinksClientPanelAction(action),
             handleAuthFailure: () => this.#handleAuthFailure(),
             saveUserDataToLocalStorage: () => this.#saveUserDataToLocalStorage(),
         };
     }
 
     get userStatus() {
-        return this.#UserData
-            ? APPLinksClient.Messages.UserIsSet
-            : APPLinksClient.Messages.UserNotSet;
+        return this.#UserData ? APPLinksClient.Messages.UserIsSet : APPLinksClient.Messages.UserNotSet;
     }
 
     get user() {
@@ -1079,6 +970,20 @@ export class APPLinksClient {
             }
             : null;
     }
+
+    /**
+     * @param {UserData} userData
+     */
+    #hideAuthData = (userData) => {
+        if (!userData || !userData.id) {
+            return userData;
+        }
+        return {
+            username: userData.username,
+            fullName: userData.fullName,
+            id: userData.id,
+        };
+    };
 
     /**
      *
@@ -1093,20 +998,17 @@ export class APPLinksClient {
 
             throw new Error(
                 this.#UserData
-                    ? "User data is corrupt or invalid"
-                    : "User is not logged in; cannot load record without user data"
+                    ? 'User data is corrupt or invalid'
+                    : 'User is not logged in; cannot load record without user data'
             );
         }
-        this.#updatePanelStatus("updating");
+        this.#updatePanelStatus('updating');
         const url =
             `${this.#util.recordUrl}?` +
             new URLSearchParams({
-                appId: this.#appId || "",
+                appId: this.#appId || '',
             });
-        const { body, status, headers } = await this.#util.GetData(
-            url,
-            this.#UserData?.token || ""
-        );
+        const { body, status, headers } = await this.#util.GetData(url, this.#UserData?.token || '');
 
         if (status === 440) {
             if ((await this.#requestTokenRefresh()) === APPLinkUtils.Success) {
@@ -1118,11 +1020,11 @@ export class APPLinksClient {
             }
             this.#handleAuthFailure();
 
-            throw new Error("Auth failed. Cannot load record");
+            throw new Error('Auth failed. Cannot load record');
         }
 
         await this.checkHeadersForAdditionalAction(headers);
-        this.#updatePanelStatus("updateComplete");
+        this.#updatePanelStatus('updateComplete');
         this.#emitAction({
             type: APPLinksClient.ApplinksClientEvents.UserRecordLoaded,
             data: { body, status, headers },
@@ -1135,7 +1037,7 @@ export class APPLinksClient {
      * @param { Headers  } headers
      */
     async checkHeadersForAdditionalAction(headers) {
-        if (headers.get("x-action") === "login") {
+        if (headers.get('x-action') === 'login') {
             await this.LoginThroughAppLinks();
         } else if (APPLinkUtils.hasTokenExpiryHeader(headers)) {
             this.#requestTokenRefresh().then();
@@ -1155,33 +1057,27 @@ export class APPLinksClient {
 
             throw new Error(
                 this.#UserData
-                    ? "User data is corrupt or invalid"
-                    : "User is not logged in; cannot save record without user data"
+                    ? 'User data is corrupt or invalid'
+                    : 'User is not logged in; cannot save record without user data'
             );
         }
 
-        this.#updatePanelStatus("updating");
+        this.#updatePanelStatus('updating');
         const url =
             `${this.#util.recordUrl}?` +
             new URLSearchParams({
-                appId: this.#appId || "",
+                appId: this.#appId || '',
             });
-        const { body, headers, status } = await this.#util.PostData(
-            url,
-            dataToSave,
-            this.#UserData?.token || ""
-        );
+        const { body, headers, status } = await this.#util.PostData(url, dataToSave, this.#UserData?.token || '');
         if (status === 440) {
             if ((await this.#requestTokenRefresh()) === APPLinkUtils.Success) {
                 return this.savedRecord(dataToSave);
             }
             this.#handleAuthFailure();
-            throw new APPLinksClient.AuthError(
-                "cannot save record without user data; auth failed"
-            );
+            throw new APPLinksClient.AuthError('cannot save record without user data; auth failed');
         }
         await this.checkHeadersForAdditionalAction(headers);
-        this.#updatePanelStatus("updateComplete");
+        this.#updatePanelStatus('updateComplete');
         return body;
     }
 
@@ -1207,71 +1103,65 @@ export class APPLinksClient {
 
         const isMobile = screenWidth < 500;
         const cacheBreaker = Math.random().toString(36).substring(7);
+        const appIdForUrl = this.#appId ? `&appId=${this.#appId}` : '';
 
         const html = `<div id="iframe-container" style="width: 100%; background-color: #ffffff; overflow: hidden;height: 100%; min-height: 60vh; max-height: 95vh;  display: flex; flex-direction: row;justify-content: center">
             <iframe allowtransparency="true"  style="width: 100% ; height: 100% ;border:none; color: black; background: #FFFFFF;" id="login-i-frame" src="${
-            this.#util.htmlLoginUrl + "?cacheBreaker=" + cacheBreaker
+            this.#util.htmlLoginUrl + '?cacheBreaker=' + cacheBreaker + appIdForUrl
         }"></iframe> </div>`;
         const newLoginWindow = window.open(
-            "",
-            "",
-            `width=${isMobile ? screenWidth : "500"},height=${
-                isMobile ? screenHeight : "700"
-            }`
+            '',
+            '',
+            `width=${isMobile ? screenWidth : '500'},height=${isMobile ? screenHeight : '700'}`
         );
         this.#newLoginWindowRef = newLoginWindow;
         if (!newLoginWindow) {
-            throw new Error("cannot open login window");
+            throw new Error('cannot open login window');
         }
         const doc = newLoginWindow.document;
 
-        const viewPortTag = doc.createElement("meta");
+        const viewPortTag = doc.createElement('meta');
 
-        viewPortTag.id = "viewport";
-        viewPortTag.name = "viewport";
-        viewPortTag.content =
-            "width=device-width; initial-scale=0.8;" +
-            " maximum-scale=1.0; user-scalable=0;";
-        doc.getElementsByTagName("head")[0].appendChild(viewPortTag);
+        viewPortTag.id = 'viewport';
+        viewPortTag.name = 'viewport';
+        viewPortTag.content = 'width=device-width; initial-scale=0.8;' + ' maximum-scale=1.0; user-scalable=0;';
+        doc.getElementsByTagName('head')[0].appendChild(viewPortTag);
 
         doc.open();
         return await new Promise((resolve, reject) => {
             newLoginWindow.addEventListener(
-                "message",
+                'message',
                 (msg) => {
                     const data = msg.data;
-                    if (typeof data !== "object") {
-                        return reject("data is not an object");
+                    if (typeof data !== 'object') {
+                        return reject(APPLinksClient.PostMessageIsOfDifferentOrigin);
                     }
-                    const {
-                        userData,
-                        appData,
-                        appSaveData,
-                        token,
-                        clientConfig,
-                        refreshToken,
-                    } = data;
+                    const { userData, appData, appSaveData, token, clientConfig, refreshToken } = data;
                     this.#util.setConfigs(clientConfig);
                     if (!data?.token) {
                         return reject(msg);
                     }
-                    this.#UserData = this.#util.serializeUserData(
-                        userData,
-                        token,
-                        refreshToken
-                    );
+                    this.#UserData = this.#util.serializeUserData(userData, token, refreshToken);
                     if (this.#newLoginWindowRef) {
                         this.#newLoginWindowRef.close();
                         this.#newLoginWindowRef = null;
                     }
 
-                    this.#loginActions();
+                    this.#emitAction({
+                        type: APPLinksClient.ApplinksClientEvents.UserLoggedIn,
+                        data: {
+                            userData: this.#hideAuthData(this.#UserData),
+                            recordData: appSaveData ? this.#util.serializeRecordData(appSaveData, appData) : undefined,
+                        },
+                    });
+                    this.#updatePanelStatus('logged-in');
+                    if (this.#options.useLocalStorage) {
+                        this.#saveUserDataToLocalStorage();
+                    }
 
                     resolve({
                         userData: this.#UserData,
-                        recordData: appSaveData
-                            ? this.#util.serializeRecordData(appSaveData, appData)
-                            : undefined,
+                        recordData: appSaveData ? this.#util.serializeRecordData(appSaveData, appData) : undefined,
                     });
                 },
                 false
@@ -1281,13 +1171,13 @@ export class APPLinksClient {
     }
 
     async logoutClient() {
-        this.#updatePanelStatus("not-logged-in");
+        this.#updatePanelStatus('not-logged-in');
         APPLinkUtils.removeUserDataFromLocalStorage();
         const url = this.#util.logoutUrl;
         const { status } = await this.#util.PostData(
             url,
             { refreshToken: this.#UserData?.refreshToken },
-            this.#UserData?.token || ""
+            this.#UserData?.token || ''
         );
 
         if (status !== 200) {
@@ -1295,7 +1185,7 @@ export class APPLinksClient {
                 type: APPLinksClient.ApplinksClientEvents.UserLogoutFailed,
                 data: this.#UserData,
             });
-            throw new Error("logout failed");
+            throw new Error('logout failed');
         }
         this.#UserData = null;
         this.#emitAction({
@@ -1312,30 +1202,28 @@ export class APPLinksClient {
         action;
     };
 
-    #setUpPanel = (
-        /** @type {{ useClientPanel: any; panelOptions: ApplinksPanelOptions | undefined  }} */ options
-    ) => {
+    #setUpPanel = (/** @type {{ useClientPanel: any; panelOptions: ApplinksPanelOptions | undefined  }} */ options) => {
         if (options.useClientPanel) {
             this.#usePanel = new ApplinksPanel(options.panelOptions);
             // @ts-ignore
-            this.#usePanel.actionCallBack =
-                // @ts-ignore
-                (/** @type {"login" | "logout"} */ action) => {
+            this.#usePanel.actionCallBack = // @ts-ignore
+                (/** @type {'login' | 'logout'} */ action) => {
                     this.#applinksClientPanelAction(action).then();
                 };
         }
     };
 
-    #applinksClientPanelAction = async (
-        /** @type {"login" | "logout" | "help" | "account" } */ action
-    ) => {
+    #applinksClientPanelAction = async (/** @type {'login' | 'logout' | 'help' | 'account' } */ action) => {
         switch (action) {
-            case "login":
+            case 'login':
                 try {
-                    const { userData } =
-                        /** @type { UserData }*/ await this.LoginThroughAppLinks();
-                    localStorage.setItem("user-data", JSON.stringify(userData));
+                    const { userData } = /** @type { UserData }*/ await this.LoginThroughAppLinks();
+                    localStorage.setItem('user-data', JSON.stringify(userData));
                 } catch (err) {
+                    if (err === APPLinksClient.PostMessageIsOfDifferentOrigin) {
+                        // This means the post message is not from the same origin (i.e. the login window)
+                        return;
+                    }
                     this.#clientActionCallBack({
                         type: APPLinksClient.ApplinksClientEvents.UserLoginFailed,
                         data: err,
@@ -1343,28 +1231,23 @@ export class APPLinksClient {
                 }
 
                 break;
-            case "logout":
+            case 'logout':
                 this.logoutClient().then();
                 break;
-            case "help":
-                window.open(this.#util.helpHtmlPath, "_blank");
+            case 'help':
+                window.open(this.#util.helpHtmlPath, '_blank');
                 break;
-            case "account":
-                window.open(this.#util.accountHtmlPath, "_blank");
+            case 'account':
+                window.open(this.#util.accountHtmlPath, '_blank');
                 break;
         }
     };
 
     /** @type {(userData : UserData) => (typeof APPLinksClient.Messages[keyof APPLinksClient.Messages])}*/
     #setUserData(userData) {
-        if (
-            userData.fullName &&
-            userData.id &&
-            userData.username &&
-            userData.token
-        ) {
+        if (userData.fullName && userData.id && userData.username && userData.token) {
             this.#UserData = { ...userData };
-            this.#updatePanelStatus("logged-in");
+            this.#updatePanelStatus('logged-in');
             return APPLinksClient.Messages.UserIsSet;
         }
         return APPLinksClient.Messages.UserNotSet;
@@ -1372,7 +1255,7 @@ export class APPLinksClient {
 
     /**
      *
-     * @param {"not-logged-in" | "updating" | "updateComplete" | "error" | "logged-in" | "error-please-relogin"} status
+     * @param {'not-logged-in' | 'updating' | 'updateComplete' | 'error' | 'logged-in' | 'error-please-relogin'} status
      */
     #updatePanelStatus(status) {
         if (!this.#usePanel) {
@@ -1382,20 +1265,8 @@ export class APPLinksClient {
         this.#usePanel.setStatus(status, this.#UserData);
     }
 
-    #loginActions = () => {
-        this.#emitAction({
-            type: APPLinksClient.ApplinksClientEvents.UserLoggedIn,
-            data: this.#UserData,
-        });
-        this.#updatePanelStatus("logged-in");
-        if (this.#options.useLocalStorage) {
-            this.#saveUserDataToLocalStorage();
-        }
-    };
-
-    #validateUserData = (
-        /** @type {{ fullName: any; id: any; username: any; token: any; } | null} */ userData
-    ) => userData?.fullName && userData.id && userData.username && userData.token;
+    #validateUserData = (/** @type {{ fullName: any; id: any; username: any; token: any; } | null} */ userData) =>
+        userData?.fullName && userData.id && userData.username && userData.token;
 
     #saveUserDataToLocalStorage() {
         this.#util.storeUserDataToLocalStorage(this.#UserData);
@@ -1425,8 +1296,8 @@ export class APPLinksClient {
         });
         const { status, body } = await this.#util.RequestTokenRefresh(
             this.#util.refreshUrl,
-            this.#UserData?.refreshToken || "",
-            this.#UserData?.token || ""
+            this.#UserData?.refreshToken || '',
+            this.#UserData?.token || ''
         );
         if (status === 200 && body.token) {
             // @ts-ignore
@@ -1455,7 +1326,7 @@ export class APPLinksClient {
             type: APPLinksClient.ApplinksClientEvents.authFailed,
             data: this.#UserData,
         });
-        this.#updatePanelStatus("error-please-relogin");
+        this.#updatePanelStatus('error-please-relogin');
     }
 
     /**
