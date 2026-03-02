@@ -4,17 +4,15 @@
     import EditCategories from "./components/ChooseEditCategories.svelte";
     import {MainStore} from '../store/store.main.js';
     import {appConfig} from '../config/appConfig.js';
-    import {onDestroy} from 'svelte';
 
-
-    let showSettings = true;
-    const unsubscribe1 = MainStore.subscribe((s) => {
-        if (appConfig.hasSaveOption || appConfig.environmentName === 'development') {
-            showSettings = !!s.user;
-        }
-    });
-    onDestroy(() => {
-        unsubscribe1();
+    let showSettings = $state(true);
+    $effect(() => {
+        const unsubscribe = MainStore.subscribe((s) => {
+            if (appConfig.hasSaveOption || appConfig.environmentName === 'development') {
+                showSettings = !!s.user;
+            }
+        });
+        return unsubscribe;
     });
 </script>
 

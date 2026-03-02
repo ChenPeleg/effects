@@ -1,18 +1,23 @@
 <script>
   import { SettingsStore } from "../../store/settings.store";
-  import { onDestroy } from "svelte";
   import { categoryStore } from "../../store/store.custom.js";
 
-  let name;
-  let slotId;
+  let name = $state("");
+  let slotId = $state(null);
   /**@type {CustomCategory []}*/
-  let allCats = [];
-  const unsubscribe1 = SettingsStore.subscribe((s) => {
-    slotId = s.slotInEdit;
-    const currentCat = allCats.find((c) => c.customId === slotId);
-    name = currentCat ? currentCat.name : name;
+  let allCats = $state([]);
+  $effect(() => {
+    const unsubscribe1 = SettingsStore.subscribe((s) => {
+      slotId = s.slotInEdit;
+      const currentCat = allCats.find((c) => c.customId === slotId);
+      name = currentCat ? currentCat.name : name;
+    });
+    const unsubscribe2 = categoryStore.subscribe((cats) => (allCats = cats));
+    return () => {
+      unsubscribe1();
+      unsubscribe2();
+    };
   });
-  categoryStore.subscribe((cats) => (allCats = cats));
   const updatename = () => {
     const currentCat = allCats.find((c) => c.customId === slotId);
     if (!currentCat) {
@@ -24,9 +29,6 @@
   const clear = () => {
     categoryStore.deleteCategory(slotId);
   };
-  onDestroy(() => {
-    unsubscribe1();
-  });
 </script>
 
 <div class="wrapper" id="category-editor-component">
@@ -36,10 +38,10 @@
         class="form-input"
         bind:value={name}
         maxlength="20"
-        on:focusout={(ev) => updatename()}
+        onfocusout={(ev) => updatename()}
       />
     </div>
-    <button class="clear-button" on:click={(ev) => clear()}>Clear</button>
+    <button class="clear-button" onclick={(ev) => clear()}>Clear</button>
   </div>
 </div>
 

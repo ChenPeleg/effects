@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from "svelte";
 
-  let tick = 0;
+  let tick = $state(0);
   const speed = 20;
   const interval = setInterval(() => {
     tick++;
@@ -38,12 +38,12 @@
 
     The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible.
  `;
-  $: shownText = text
+  let shownText = $derived(text
     .replace(/\n/g, "     <br>")
     .substring(0, tick)
     .split("<br>")
     .filter((v, i, arr) => arr.length - i < 5)
-    .join("<br>");
+    .join("<br>"));
 </script>
 
 <div class="wrapper">
@@ -53,7 +53,7 @@
       class="console-output"
       contenteditable="false"
       bind:innerHTML={shownText}
-    />
+    ></div>
   </div>
 </div>
 

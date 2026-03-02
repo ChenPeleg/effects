@@ -1,14 +1,15 @@
 <script>
   import { MainStore } from "../../store/store.main";
-  import {onDestroy} from 'svelte';
-  let isSoundOn = true;
-  const unsubscribe = MainStore.subscribe((s) => (isSoundOn = s.soundPlaying));
-onDestroy(unsubscribe)
+  let isSoundOn = $state(true);
+  $effect(() => {
+    const unsubscribe = MainStore.subscribe((s) => (isSoundOn = s.soundPlaying));
+    return unsubscribe;
+  });
 </script>
 
 <div class="nav-links-wrapper">
-  <a class="link"  href="javascript:void(0);"
-     on:click={()=>MainStore.setSoundPlaying(!isSoundOn)} >
+  <a class="link" href="#sound"
+     onclick={(e) => { e.preventDefault(); MainStore.setSoundPlaying(!isSoundOn); }} >
     {#if isSoundOn}
       <span>🔊</span>
     {:else}

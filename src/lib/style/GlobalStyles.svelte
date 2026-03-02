@@ -1,7 +1,4 @@
-<script>
-</script>
-
-<span data-testid="global-styles" />
+<span data-testid="global-styles"></span>
 
 <style>
   @font-face {

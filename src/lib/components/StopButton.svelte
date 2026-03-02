@@ -6,7 +6,7 @@
   };
 </script>
 
-<div class="stop-button" on:click={(ev) => stop()}>Stop</div>
+<div class="stop-button" onclick={stop} role="button" tabindex="0" onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && stop()}>Stop</div>
 
 <style>
   .stop-button {

@@ -5,7 +5,6 @@
   import { CardStore } from "../../store/store.cards";
   import { categoryStore } from "../../store/store.custom";
   import { SettingsStore } from "../../store/settings.store";
-  import { onDestroy } from "svelte";
 
   const [send, receive] = crossfade({
     duration: (d) => Math.sqrt(d * 200),
@@ -25,17 +24,17 @@
   });
   const allCards = CardStore.getAllCards();
   /**@type { CustomCategory[]}*/
-  let allCategories = [];
-  let catInEdit = null;
+  let allCategories = $state([]);
+  let catInEdit = $state(null);
 
-  let cards = [
+  let cards = $state([
     {
       id: 1,
       isInCategory: false,
       description: "write some docs",
       cardContent: {},
     },
-  ];
+  ]);
   function updateCards() {
     const cureentCategory = allCategories.find((c) => c.customId === catInEdit);
     if (!cureentCategory) {
@@ -51,14 +50,16 @@
       };
     });
   }
-  let unsbscribe = categoryStore.subscribe((s) => (allCategories = s));
-  let unsbscribe2 = SettingsStore.subscribe((s) => {
-    catInEdit = s.slotInEdit;
-    updateCards();
-  });
-  onDestroy(() => {
-    unsbscribe();
-    unsbscribe2();
+  $effect(() => {
+    const unsubscribe1 = categoryStore.subscribe((s) => (allCategories = s));
+    const unsubscribe2 = SettingsStore.subscribe((s) => {
+      catInEdit = s.slotInEdit;
+      updateCards();
+    });
+    return () => {
+      unsubscribe1();
+      unsubscribe2();
+    };
   });
 
   const mark = (card, isInCategory) => {
@@ -86,7 +87,7 @@
         out:send={{ key: card.id }}
         animate:flip
       >
-        <input type="checkbox" on:change={() => mark(card, true)} />
+        <input type="checkbox" onchange={() => mark(card, true)} />
         {card.description}
       </label>
     {/each}
@@ -101,7 +102,7 @@
         out:send={{ key: card.id }}
         animate:flip
       >
-        <input type="checkbox" checked on:change={() => mark(card, false)} />
+        <input type="checkbox" checked onchange={() => mark(card, false)} />
         {card.description}
       </label>
     {/each}

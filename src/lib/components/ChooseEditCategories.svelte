@@ -13,7 +13,10 @@
       <div
         class="save-slot"
         class:isSelected={$SettingsStore.slotInEdit === saveSlot.customId}
-        on:click={(ev) => selectSlot(saveSlot.customId)}
+        onclick={(ev) => selectSlot(saveSlot.customId)}
+        role="button"
+        tabindex="0"
+        onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && selectSlot(saveSlot.customId)}
       >
         {saveSlot.name || " Slot " + saveSlot.customId}
       </div>

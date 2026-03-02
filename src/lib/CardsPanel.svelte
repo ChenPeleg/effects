@@ -1,24 +1,23 @@
 <script>
-  import { onDestroy } from "svelte";
   import { CardStore } from "../store/store.cards";
   import { MainStore } from "../store/store.main";
   import Card from "./Card.svelte";
-  /**
-   * @type {number}
-   */
-  let currentCard /**@typedef {number} */;
 
-  /**@typedef {CardContent} */
-  const unsbscribe = MainStore.subscribe((s) => (currentCard = s.currentCard));
-  /**@type {CardContent[]}*/
+  let currentCard = $state(0);
 
-  let cards = [];
-
-  const unsubscribe = CardStore.subscribe((Storecards) => {
-
-    cards = Storecards;
+  $effect(() => {
+    const unsubscribe = MainStore.subscribe((s) => (currentCard = s.currentCard));
+    return unsubscribe;
   });
-  onDestroy(unsubscribe);
+
+  let cards = $state([]);
+
+  $effect(() => {
+    const unsubscribe = CardStore.subscribe((storeCards) => {
+      cards = storeCards;
+    });
+    return unsubscribe;
+  });
 </script>
 
 <div class="cards-pannel-flex">

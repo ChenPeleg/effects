@@ -3,17 +3,17 @@
   import { LanguageService } from "../../services/language.service";
   import { CategoryNames } from "../models/categories";
   import { pathStore } from "../../store/store.path";
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { categoryStore } from "../../store/store.custom";
   import { storageService } from "../../services/storage.service";
 
   const CUSTOM_INDICATOR = "__custom__";
 
   /**@type {string }*/
-  let selected = "";
-  let path;
+  let selected = $state("");
+  let path = $state("");
   /**@type {CustomCategory[]}*/
-  let customCategories = [];
+  let customCategories = $state([]);
 
   let categories = Object.keys(CategoryNames).map((key) => CategoryNames[key]);
 
@@ -28,16 +28,17 @@
     }
   };
   let lang;
-  const unsubscribe = pathStore.subscribe((p) => {
-    path = p;
-  });
-  const unsubscribe2 = categoryStore.subscribe((s) => {
-    customCategories = s.filter((c) => categoryStore.isCatExist(c));
-  });
-
-  onDestroy(() => {
-    unsubscribe();
-    unsubscribe2();
+  $effect(() => {
+    const unsubscribe = pathStore.subscribe((p) => {
+      path = p;
+    });
+    const unsubscribe2 = categoryStore.subscribe((s) => {
+      customCategories = s.filter((c) => categoryStore.isCatExist(c));
+    });
+    return () => {
+      unsubscribe();
+      unsubscribe2();
+    };
   });
   onMount(() => {
     const saved = storageService.getSelection();
@@ -54,7 +55,7 @@
     data-testid="category-select-select"
     disabled={!pathStore.match(path.replace("#/", ""), "")}
     bind:value={selected}
-    on:change={categoryChanged}
+    onchange={categoryChanged}
   >
     {#each customCategories as customCat}
       <option

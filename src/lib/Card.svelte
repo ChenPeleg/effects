@@ -3,13 +3,9 @@
   import { MainStore } from "../store/store.main";
 
   /**@type {CardContent} */
-  export let cardContent;
-  /**@type {boolean}*/
-  export let isCurrent;
-  let clicks = 0;
+  let { cardContent, isCurrent } = $props();
 
-
-  const standartCaseName = LanguageService.toStandardCase(cardContent.name);
+  let standartCaseName = $derived(LanguageService.toStandardCase(cardContent.name));
 
   /**@type {MouseEventHandler} */
   const clickCard = (ev) => {
@@ -17,7 +13,7 @@
   };
 </script>
 
-<div on:click={clickCard} class="card-wrapper">
+<div onclick={clickCard} class="card-wrapper" role="button" tabindex="0" onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && clickCard(e)}>
   <div
     data-testid={"single-card-" + cardContent.id}
     class="card-body"

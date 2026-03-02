@@ -1,6 +1,5 @@
 <script>
   import { MainStore } from "../store/store.main";
-  import { onDestroy } from "svelte";
   import Divider from "./style/divider.svelte";
   import WaveAnimation from "./animation/WaveAnimation.svelte";
 
@@ -8,13 +7,12 @@
   import NavLinks from "./components/NavLinks.svelte";
   import StopButton from "./components/StopButton.svelte";
   import {appConfig} from '../config/appConfig.js';
-  /**
-   * @type {number}
-   */
 
-  let card;
-  const unsbscribe = MainStore.subscribe((s) => (card = s.currentCard));
-  onDestroy(unsbscribe);
+  let card = $state(0);
+  $effect(() => {
+    const unsubscribe = MainStore.subscribe((s) => (card = s.currentCard));
+    return unsubscribe;
+  });
 </script>
 
 <header data-testid="app-header">

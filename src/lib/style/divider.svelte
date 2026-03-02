@@ -1,6 +1,5 @@
 <script>
-  export let w = 20;
-  export let h = 20;
+  let { w = 20, h = 20 } = $props();
 </script>
 
-<div class="divider" style="width: {w + 'px'}; height : {h + 'px'}" />
+<div class="divider" style="width: {w + 'px'}; height : {h + 'px'}"></div>
