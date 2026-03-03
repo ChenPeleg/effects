@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage":"https://ChenPeleg.github.io/effects)",
+  "homepage": "https://ChenPeleg.github.io/effects)",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,9 +8,6 @@
     "node": "18"
   },
   "scripts": {
-
-    "predeploy:gh": "vite build --mode prodgithub",
-    "deploy:gh": "gh-pages -d build",
     "dev": "vite --mode prodfirebase",
     "dev:github": "vite --mode prodgithub",
     "build": "vite build",
@@ -36,8 +33,5 @@
     "svelte": "^3.49.0",
     "svelte-jester": "^2.3.2",
     "vite": "^3.0.0"
-  },
-  "dependencies": {
-    "gh-pages": "^4.0.0"
   }
 }
