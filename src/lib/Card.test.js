@@ -19,3 +19,4 @@ it("about page has expected h1", () => {
   const cardBody = getByTestId("single-card-1");
   expect(cardBody).toBeTruthy();
 });
+
