@@ -8,11 +8,11 @@
       "svelte",
       "js"
     ],
+    "extensionsToTreatAsEsm": [".svelte"],
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
+      "<rootDir>/jest.setup.mjs"
     ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@testing-library|svelte)/)"
-    ]
+    "transformIgnorePatterns": []
   }

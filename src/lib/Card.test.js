@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from "@testing-library/svelte";
+import { render, fireEvent, screen } from "@testing-library/svelte/svelte5";
 
 // @ts-ignore
 import Card from "./Card.svelte";

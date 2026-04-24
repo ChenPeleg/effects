@@ -14,7 +14,7 @@
     "build:pages": "vite build --mode prodgithub",
     "build:site": "vite build --mode prodfirebase",
     "preview": "vite preview",
-    "test": "jest src",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest src",
     "test:watch": "npm run test -- --watch",
     "test:changed": "npm run test -- -o --watch"
   },

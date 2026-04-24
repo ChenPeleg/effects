@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/svelte";
+import { fireEvent, render } from "@testing-library/svelte/svelte5";
 import { createCardStoreMock } from "../../tests/cardStore.mock";
 import CategorySelect from "./CategorySelect.svelte";
 
