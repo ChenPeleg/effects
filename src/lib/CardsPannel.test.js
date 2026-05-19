@@ -1,4 +1,4 @@
-import { render } from "@testing-library/svelte";
+import { render } from "@testing-library/svelte/svelte5";
 
 // @ts-ignore
 import CardsPanel from "./CardsPanel.svelte";

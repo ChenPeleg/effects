@@ -1,4 +1,4 @@
-import { render } from "@testing-library/svelte";
+import { render } from "@testing-library/svelte/svelte5";
 import { readable, writable } from "svelte/store";
 import { pathStore } from "../../store/store.path";
 import Route from "./route.svelte";
